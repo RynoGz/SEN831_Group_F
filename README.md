@@ -12,9 +12,9 @@ The team is currently establishing what CivicConnect must achieve, who it serves
 
 | Member | Primary responsibility for Milestone 1 |
 | --- | --- |
-| Member 1 - *Name to be added* | Problem analysis, stakeholders, scope, constraints, Team Working Agreement, and GitHub governance |
-| Member 2 - *Name to be added* | Functional and non-functional requirements, acceptance criteria, and Requirements Traceability Matrix |
-| Member 3 - *Name to be added* | Risks, forward engineering considerations, decision log, AI usage register, PED integration, and baseline sign-off |
+| Member 1 - Ryno Goetz | Problem analysis, stakeholders, scope, constraints, Team Working Agreement, and GitHub governance |
+| Member 2 - Steven Riaan Piek | Functional and non-functional requirements, acceptance criteria, and Requirements Traceability Matrix |
+| Member 3 - Willem Booysen | Risks, forward engineering considerations, decision log, AI usage register, PED integration, and baseline sign-off |
 
 Although each member has primary responsibilities, all members must review, understand, present, and defend every controlled project artefact.
 
