@@ -1,6 +1,6 @@
 # Ryno's four review and commit stages
 
-This pack is supplied in four coherent stages so you can check, revise and commit each unit separately. All initial files were drafted together with AI assistance. Multiple commits should record actual reviewed increments, not imply that separate meetings, approvals or dates occurred. Peer approvals and baseline sign-off are separate from local commits [S4, sections 9-10 and 23; source register in README.md].
+This pack is supplied in four coherent stages so you can check, revise and commit each unit separately before the 9 September 2026 M1 deadline. All initial files were drafted together with AI assistance. Multiple commits should record actual reviewed increments, not imply that separate meetings, approvals or dates occurred. Peer approvals and baseline sign-off are separate from local commits [S4, sections 9-10 and 23; source register in README.md].
 
 Run the commands from the repository root on a task branch. The commands below are suggestions; they have not been executed. Before staging each group, check `git status --short`. Stage only the listed files and inspect `git diff --cached` before committing. Use `git diff --cached --check` to check basic patch whitespace. If something unrelated was already staged, resolve that staging state before committing this work.
 
@@ -19,7 +19,7 @@ The index references later-stage files; those links become complete when the lat
 
 ## Stage 2 - Propose scope and analyse constraints
 
-Check all 16 minimum capabilities against the Master brief. Review proposed exclusions/deferments and their trade-offs. Confirm the known four-hour allowance and record any answers to policy/resource/deadline questions. Keep unapproved choices labelled as proposals. Give Steven scope/constraint inputs and Willem the risk/decision implications.
+Check all 16 minimum capabilities against the Master brief. Review the selected request fields, categories, roles, lifecycle, overdue rule and in-app feedback policy. Review the recommended exclusions/deferments and their trade-offs. Exact retention and quantitative performance targets remain open. Give Steven scope/constraint inputs and Willem the risk/decision implications.
 
 ```bash
 git add -- Milestone_1/Member_1/03-scope-baseline.md Milestone_1/Member_1/04-constraints-and-assumptions.md
@@ -30,7 +30,7 @@ git commit -m "docs: propose scope and analyse project constraints"
 
 ## Stage 3 - Review the Team Working Agreement
 
-Read the agreement with Steven and Willem. Confirm the channel use, meetings, available days, review commitments and conflict-resolution procedure. Record real approval evidence only once it exists. You can commit the draft before agreement, then make a later correction/approval commit when the team actually responds.
+Read the agreement with Steven and Willem. It records daily availability, four hours per member, WhatsApp/Discord use and meetings every second day after 11:00. Ryno reported that all three members agreed; preserve a real supporting reference if required and update the agreement if conditions change.
 
 ```bash
 git add -- Milestone_1/Member_1/05-team-working-agreement.md
@@ -41,7 +41,7 @@ git commit -m "docs: draft team working agreement"
 
 ## Stage 4 - Prepare governance evidence and your handoff
 
-Read GOV-001 to GOV-008 against the actual repository settings. Fill evidence references only after checking them. Review the AI-register entry and record your actual verification. Use the defence notes to test your understanding and prepare the final handoff. The governance document may be committed as a plan while implementation/evidence is still pending, but it cannot be presented as completed controls.
+Read GOV-001 to GOV-008 against the actual repository settings. All three members reportedly have full access, but registration and branch protection are separate checks. Record whether `main` is protected and remember that the Master requires both non-author approvals even if GitHub is configured for only one. Review the AI-register entry and record your actual verification. Use the defence notes to test your understanding and prepare the final handoff.
 
 ```bash
 git add -- Milestone_1/Member_1/06-github-governance.md Milestone_1/Member_1/07-review-and-defence-notes.md

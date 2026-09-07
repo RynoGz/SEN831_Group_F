@@ -1,6 +1,6 @@
 # 2. Stakeholder analysis
 
-Version 0.1 | 7 September 2026 | Responsible student: Ryno Goetz | Draft for review
+Version 0.2 | 7 September 2026 | Responsible student: Ryno Goetz | Updated working baseline; team review pending
 
 ## 2.1 Method and evidence limits
 
@@ -17,7 +17,7 @@ Influence means ability to affect scope, priorities, acceptance or policy. Inter
 | STK-003 | Management/oversight; explicit in S4 section 3 | Dependable activity views, identification of overdue/open/resolved/closed work, accountability and useful analysis | High / high: influences priorities, reporting definitions and acceptance | Agree reporting meaning and visibility; validate summaries against a known request set |
 | STK-004 | Service coordination responsibility; inferred from assignment/prioritisation problems in S4 section 2; may be held by STK-002 or STK-003 | Clear responsibility, controlled categories and consistent handling of unassigned or incorrectly routed work | High / high for workflow policy | Clarify who may assign, change category, reassign or close work; validate boundary cases |
 | STK-005 | Organisation's operational/security support responsibility; inferred from S4 sections 16-18; named owner unconfirmed | Appropriate access, manageable configuration, protected credentials, recoverability and sustainable operation | Medium / high; actual authority must be confirmed | Review sensitive-data questions and later deployment/support constraints without choosing a stack in M1 |
-| STK-006 | Project team: Ryno, Steven and Willem; S2 and S4 sections 7.1-8 | Clear scope and dependencies, feasible workload, shared understanding and maintainable engineering evidence | High / high for engineering choices within the brief | Daily discussions, meetings every second day, issues, meaningful two-reviewer PRs and joint baseline review |
+| STK-006 | Project team: Ryno, Steven and Willem; S2 and S4 sections 7.1-8 | Clear scope and dependencies, feasible workload, shared understanding and maintainable engineering evidence | High / high for engineering choices within the brief | Daily WhatsApp/Discord discussions, meetings every second day after 11:00, issues, meaningful two-reviewer PRs and joint baseline review |
 | STK-007 | SEN381 lecturer/assessor; S4 sections 19, 20 and 23 | A defensible product and authentic individual/team evidence that meets the project controls | High / high for assessment; not assumed to be the real organisation's management | Clarify ambiguous assessment requirements and demonstrate controlled evidence at milestones |
 
 ## 2.3 Stakeholder needs for requirements derivation
@@ -54,7 +54,7 @@ These conflicts are reasoned from the scenario and project constraints, not clai
 
 **Example A - requester visibility.** S4 section 3 -> STK-001 -> NEED-003 -> SCP-003/SCP-004. Candidate behaviour: an authorised requester can retrieve the current status and history/list of their submitted requests. Candidate acceptance scenario: seed two requesters with distinct requests; verify each sees the correct own list and current state after a permitted staff update. Whether either may see another person's requests must follow the agreed access policy, with denied-access cases included. Steven assigns final FR/NFR and acceptance IDs after review.
 
-**Example B - overdue reporting.** S4 section 3 -> STK-003 -> NEED-007 -> SCP-014. Candidate behaviour: management can identify overdue work under an agreed rule. Candidate acceptance scenario: use records either side of the due-time boundary and records in resolved/closed states; compare the result to the approved rule. The time basis and treatment of those states are Q-004, so do not invent a deadline or claim the criterion is baselined.
+**Example B - overdue reporting.** S4 section 3 -> STK-003 -> NEED-007 -> SCP-014. Working behaviour: a request is overdue when its agreed target date/time has passed and it is not Resolved, Closed or Rejected. The target is set by authorised staff or a manager during acceptance/assignment. Candidate acceptance scenario: use records either side of the due-time boundary and records in excluded states; compare the result to this rule. Steven should convert the rule into a testable requirement and the team should formally approve it.
 
 These examples demonstrate currently available traceability. Design, implementation, test execution and release evidence are added later, not marked complete now [S1, section 3; S4, section 11.1].
 
