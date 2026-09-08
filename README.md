@@ -6,7 +6,7 @@ CivicConnect is the SEN381 team project. This repository is the controlled works
 
 ## Project purpose
 
-The team is currently establishing what CivicConnect must achieve, who it serves, which constraints apply, and what will be formally included in the initial engineering baseline. The project-specific problem statement and business value will be added after they have been reviewed and approved by the team.
+The team is establishing CivicConnect's engineering and requirements baseline for Milestone 1, due 9 September 2026. Member 1's initial problem, stakeholder, scope, constraint and governance artefacts are available under `Milestone_1/Member_1` and remain subject to peer review and formal PED baseline sign-off.
 
 ## Team
 
@@ -101,4 +101,4 @@ Replace the placeholders in this README once the repository URL, member names, a
 
 ## Project status
 
-This README is an initial project overview and will be updated progressively as requirements are baselined and later milestones introduce architecture, implementation, testing, deployment, and operational evidence.
+This README is an initial project overview and will be updated progressively as requirements are baselined and later milestones introduce architecture, implementation, testing, deployment, and operational evidence. The team has agreed to daily WhatsApp/Discord discussions, four hours of work per member per day and a meeting every second day after 11:00. All three members report full repository access; this does not itself prove team registration or branch-protection compliance.

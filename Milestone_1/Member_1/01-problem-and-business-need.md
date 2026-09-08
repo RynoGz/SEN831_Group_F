@@ -1,6 +1,6 @@
 # 1. Problem and business need
 
-Version 0.1 | 7 September 2026 | Responsible student: Ryno Goetz | Draft for review
+Version 0.2 | 7 September 2026 | Responsible student: Ryno Goetz | Updated working baseline; team review pending
 
 ## 1.1 Problem statement
 
@@ -30,7 +30,7 @@ The proposed product scope therefore prioritises the required request-management
 
 ## 1.4 Intended value and how to assess it
 
-The following are proposed evaluation methods to turn business value into checkable outcomes. They are not measured results or final agreed acceptance thresholds. Steven should translate them into requirements and acceptance criteria; the team must agree any workload, timing and usability targets [S4, sections 5, 11 and 15].
+The following are proposed evaluation methods to turn business value into checkable outcomes. They are not measured results or final agreed acceptance thresholds. Steven should translate them into requirements and acceptance criteria using the selected working policies; the team must still agree quantitative workload, timing and usability targets [S4, sections 5, 11 and 15].
 
 | Value ID | Intended stakeholder value | Proposed validation evidence | Scope/need link |
 | --- | --- | --- | --- |
@@ -45,7 +45,7 @@ No percentage reduction in lost requests, turnaround time or operating cost is c
 
 ## 1.5 Boundaries and handoff
 
-The software supports the management of work such as maintenance, IT support, facility faults, equipment issues, lost property and security-related requests [S4, section 2]. It does not itself repair equipment or provide physical emergency response. The precise category list and operational escalation policy need validation; scenario examples are not automatically a fixed category taxonomy.
+The initial category set is Maintenance, IT support, Facility fault, Damaged equipment, Security concern, Lost property and Other. A request records a title, description, category, location, requester identity/contact details, automatic submission date/time, a sensitive-information indicator and an optional attachment. The software does not itself repair equipment or provide physical emergency response. The team should validate this working taxonomy during requirements review and control later changes.
 
 Steven receives the stakeholder needs and proposed success evidence as inputs to requirements and acceptance criteria. Willem receives the risks implied by lost ownership, inconsistent reporting and sensitive-data access as inputs to his risk and forward-consideration analysis. The team should judge success using stakeholder value, controlled scope, time, resources, quality, security and operational evidence, rather than a successful demonstration alone [S4, sections 5 and 21].
 
