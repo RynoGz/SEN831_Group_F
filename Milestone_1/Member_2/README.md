@@ -1,78 +1,45 @@
-CivicConnect -- Member 2 Contribution
+# Member 2 — Requirements & Traceability
 
-Responsible student: Steven Riaan Piek
-Primary responsibilities: Functional requirements, non-functional
-requirements, acceptance criteria and Requirements Traceability Matrix
-(RTM)
-Reviewers: Ryno Goetz and Willem Booysen
-Version: 0.2 | 7 September 2026
-Status: Proposed; team review and formal M1 baseline approval
-pending
+**Project:** CivicConnect — Community Service Request Management Platform
+**Responsible student:** Steven Riaan Piek
+**Version:** 0.3 | 8 September 2026
+**Status:** Proposed; team review and formal M1 baseline approval pending
+**Reviewers:** Ryno Goetz and Willem Booysen
 
-Contents
+## Purpose
 
-01-requirements-and-acceptance-criteria.md -- Functional and
-non-functional requirements with acceptance criteria.
+This folder contains Member 2's M1 requirements and requirements traceability evidence.
 
-02-requirements-traceability-matrix.md -- Initial RTM linking
-stakeholder needs and scope capabilities to requirements and later
-lifecycle evidence.
+## Contents
 
-Basis
+- `01-requirements-and-acceptance-criteria.md` — Functional and non-functional requirements with acceptance criteria.
+- `02-requirements-traceability-matrix.md` — Initial RTM linking stakeholders/sources through requirements and acceptance criteria to later lifecycle evidence.
 
-The requirements are derived from the SEN381 Master Project Brief and
-Ryno Goetz's Member 1 version 0.2 working baseline.
+## Traceability approach
 
-Member 1 currently records a recommended working policy covering:
+The requirements trace the following path:
 
-required request information and initial categories;
+**Stakeholder/Source → Need → Scope Capability → Requirement → Acceptance Criteria → Design → Issue/PR → Implementation → Test → Acceptance/Release Evidence**
 
-the request lifecycle;
+Later lifecycle evidence is intentionally marked **TBD** until it exists.
 
-rejection, assignment, reassignment and reopening;
+## Requirement baseline status
 
-the overdue rule;
+The Member 1 artefacts are version 0.2 working baselines with team review/sign-off pending. Therefore, the requirements in this folder remain **Proposed** until the team formally approves the M1 baseline.
 
-in-application feedback;
+## Controlled open questions
 
-least-privilege access and sensitive-information handling.
+`Q-001` through `Q-007` remain visible where the Member 1 artefacts identify unresolved policy or operating-condition decisions. They are not silently replaced with invented assumptions.
 
-The Member 1 pack states that formal team scope/PED sign-off remains
-pending. Therefore these requirements are proposed rather than presented
-as an approved baseline.
+## Engineering references
 
-Traceability approach
+- ISO/IEC/IEEE 29148:2018 — Requirements engineering processes and information items.
+- ISO/IEC 25010:2023 — Product quality model.
 
-The RTM preserves the following chain:
+The SEN381 CivicConnect Master Project Brief remains the authoritative project-specific source.
 
-Stakeholder/Source → NEED-* → SCP-* → FR/NFR → Acceptance Criteria →
-Design → Issue/PR → Implementation → Test → Acceptance/Release
+## Review and change control
 
-Later lifecycle evidence is marked TBD until it actually exists.
+Requirements should be reviewed against the Master Brief and the Member 1 artefacts. Approved requirement changes must update the RTM and affected artefacts. Requirement IDs should remain stable unless a controlled change requires otherwise.
 
-Open questions
-
-The requirements preserve Member 1's open questions Q-001 through
-Q-007. No unsupported numerical workload, performance, recovery or
-retention targets have been invented.
-
-Engineering references
-
-ISO/IEC/IEEE 29148:2018 -- Requirements engineering.
-
-ISO/IEC 25010:2023 -- Product quality model.
-
-Review and change control
-
-This contribution must be reviewed by both Ryno Goetz and Willem Booysen
-before merge. Material review findings must be addressed before
-approval. Changes after baseline approval must follow the team's
-controlled change process and update the RTM and affected artefacts.
-
-AI accountability
-
-AI assistance was used to help structure and draft requirements and
-traceability content. The final requirements must be human-verified
-against the Master Project Brief and Member 1 artefacts before baseline
-approval. Material AI use must be recorded in the team's AI Usage
-Register by the responsible team member.
+Material use of AI during requirements engineering must be recorded and verified in the team's AI Usage Register in accordance with the Master Project Brief.
