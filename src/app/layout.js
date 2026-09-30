@@ -23,9 +23,11 @@ export default function RootLayout({ children }) {
             </nav>
           </div>
         </header>
-        <div className="preview-banner">
-          <div className="container"><strong>Frontend preview</strong> — use fictional information. Requests are not saved.</div>
-        </div>
+<div className="preview-banner">
+  <div className="container">
+    <strong>Development environment</strong> — use fictional information for testing.
+  </div>
+</div>
         <main id="main" className="container main-content" tabIndex={-1}>{children}</main>
         <footer className="container site-footer">
           <span>CivicConnect</span><span>SEN381 · Milestone 2</span>

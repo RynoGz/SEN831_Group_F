@@ -1,15 +1,54 @@
-export default function RequestDetails({ request }) {
-  return (
-    <article className="panel">
-      <div className="detail-top"><p className="eyebrow">{request.reference || request.id}</p><span className="status-badge">{request.status}</span></div>
-      <h2>{request.title}</h2>
-      <dl className="details-grid">
-        <div><dt>Category</dt><dd>{request.category}</dd></div>
-        <div><dt>Location</dt><dd>{request.location}</dd></div>
-        <div><dt>Submitted</dt><dd><time dateTime={request.createdAt}>{new Intl.DateTimeFormat("en-ZA", { dateStyle: "medium", timeStyle: "short", timeZone: "Africa/Johannesburg" }).format(new Date(request.createdAt))} SAST</time></dd></div>
-        <div><dt>Sensitive information</dt><dd>{request.sensitiveInformation ? "Yes" : "No"}</dd></div>
-      </dl>
-      <section className="description"><h3>Description</h3><p>{request.description}</p></section>
-    </article>
-  );
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+
+export async function getRequestDetails(requestId) {
+  const supabase = await createSupabaseServerClient();
+
+  const { data: userData, error: userError } =
+    await supabase.auth.getUser();
+
+  if (userError || !userData.user) {
+    return null;
+  }
+
+  const { data, error } = await supabase
+    .from("requests")
+    .select(`
+      request_id,
+      title,
+      description,
+      location,
+      sensitive_information,
+      attachment_reference,
+      created_at,
+      categories (name),
+      statuses (name),
+      status_history (
+        status_history_id,
+        changed_at,
+        statuses (name)
+      )
+    `)
+    .eq("request_id", requestId)
+    .single();
+
+  if (error || !data) {
+    return null;
+  }
+
+  return {
+    id: data.request_id,
+    title: data.title,
+    description: data.description,
+    location: data.location,
+    sensitiveInformation: data.sensitive_information,
+    attachmentReference: data.attachment_reference,
+    createdAt: data.created_at,
+    category: data.categories?.name ?? "Unknown",
+    status: data.statuses?.name ?? "Unknown",
+    statusHistory: (data.status_history ?? []).map((item) => ({
+      id: item.status_history_id,
+      status: item.statuses?.name ?? "Unknown",
+      changedAt: item.changed_at,
+    })),
+  };
 }
