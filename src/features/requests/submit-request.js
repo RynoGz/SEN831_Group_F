@@ -56,6 +56,15 @@ export async function submitRequest(input) {
     };
   }
 
+  if (typeof sensitiveInformation !== "boolean") {
+    return {
+      ok: false,
+      fieldErrors: {
+        sensitiveInformation: "Choose whether the request contains sensitive information.",
+      },
+    };
+  }
+
   const { data: requester, error: requesterError } = await supabase
     .from("requesters")
     .select("requester_id")
@@ -94,7 +103,7 @@ export async function submitRequest(input) {
       location: location.trim(),
       requester_id: requester.requester_id,
       category_id: category.category_id,
-      sensitive_information: Boolean(sensitiveInformation),
+      sensitive_information: sensitiveInformation,
     })
     .select("request_id, created_at, status_id")
     .single();

@@ -1,5 +1,47 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
+export default function RequestDetails({ request }) {
+  const statusHistory = request.statusHistory ?? [];
+
+  return (
+    <>
+      <div className="form-card">
+        <p>
+          <strong>Category:</strong> {request.category}
+        </p>
+        <p>
+          <strong>Location:</strong> {request.location}
+        </p>
+        <p>
+          <strong>Submitted:</strong>{" "}
+          {new Date(request.createdAt).toLocaleString()}
+        </p>
+        <p>
+          <strong>Sensitive information:</strong>{" "}
+          {request.sensitiveInformation ? "Yes" : "No"}
+        </p>
+      </div>
+
+      <div className="form-card">
+        <h2>Status history</h2>
+        {statusHistory.length === 0 ? (
+          <p>No status history is available.</p>
+        ) : (
+          <ul>
+            {statusHistory.map((entry) => (
+              <li key={entry.id}>
+                <strong>{entry.status}</strong>{" "}
+                <span aria-hidden="true">—</span>{" "}
+                {new Date(entry.changedAt).toLocaleString()}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </>
+  );
+}
+
 export async function getRequestDetails(requestId) {
   const supabase = await createSupabaseServerClient();
 
