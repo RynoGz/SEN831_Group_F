@@ -6,11 +6,11 @@ CivicConnect is a community service request management platform developed for th
 
 | Item | Status |
 | --- | --- |
-| Current phase | Milestone 1 completed |
+| Current phase | Milestone 2 in progress |
 | Controlled baseline | PED v1.0 |
 | Baseline date | 8 September 2026 |
 | Gate outcome | ACCEPTED |
-| Next phase | Milestone 2 — Architecture, Design and Engineering Decisions |
+| Application | Next.js frontend preview; server integration pending |
 
 The approved Milestone 1 baseline is available in [SEN381 CivicConnect PED v1.0](Milestone_1/SEN381_CivicConnect_PED_v1.0.docx). It is the primary controlled document for the problem analysis, stakeholder needs, scope, constraints, requirements, traceability, risks, decisions, governance controls and AI usage record.
 
@@ -31,6 +31,54 @@ The approved baseline covers:
 
 Milestone 1 does not select the final technology stack or architecture and does not claim implementation, testing or deployment evidence that belongs to later milestones.
 
+## Milestone 2 contribution and application status
+
+The Master Project Brief remains the governing source. M2 extends the existing PED and requires meaningful application evidence; a frontend preview alone does not complete the milestone's integrated request path.
+
+- [Ryno's architecture and frontend contribution v0.2](Milestone_2/Member_1/CivicConnect_M2_Ryno_Architecture_and_Frontend_v0.2.docx), with a [Markdown review copy](Milestone_2/Member_1/Ryno_Architecture_and_Frontend.md). This supersedes Ryno's earlier Phase 1 draft, which remains as historical material.
+- [Accepted technology decision ADR-001](Milestone_2/Member_2/ADR-001-technology-stack.md).
+- [Steven's data model](Milestone_2/Member_2/CivicConnect_M2_Step_3_Data_Model_Baseline.docx).
+- [Frontend implementation and integration handoff](Milestone_2/Member_1/frontend-handoff.md).
+
+Ryno owns the Next.js bootstrap and frontend. Steven owns the schema, authentication/data integration, protected request operations and related verification. Willem owns the detailed design decisions and PED integration, with implementation contributions in the relevant modules. The shared ADR's older bootstrap ownership wording is awaiting the team's separate update.
+
+The frontend currently provides:
+
+- Home, new-request and requests pages, plus a clearly labelled fictional details example.
+- The approved category labels, required-field feedback and explicit sensitivity selection.
+- Responsive layouts, keyboard focus, labelled controls and accessible error/status messages.
+- A form integration point for a future protected submission function.
+
+**Not implemented:** authentication, database migrations, request persistence/retrieval, private attachment upload, staff workflows and management reports. The preview does not save data, send requests or use browser storage. It displays no real user records. FR-001 remains partially implemented; its optional-attachment capability and integrated acceptance checks remain outstanding.
+
+## Run the frontend locally
+
+Use Node.js **24.x** and npm **11.x**. Bootstrap was prepared with Node.js **24.16.0** and npm **11.13.0**. The application uses JavaScript, Next.js **16.3.7**, React/React DOM **19.3.0**, ESLint **9.39.5** and eslint-config-next **16.3.7**. Exact dependencies are pinned in `package.json` and `package-lock.json`.
+
+From the repository root:
+
+```bash
+npm ci
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000). No database or environment variables are needed for the current preview. Use fictional information only. The **Check request** button validates input and explicitly confirms that nothing was saved.
+
+```bash
+npm run lint
+npm test
+npm run build
+npm start
+```
+
+`npm start` serves the production build and requires `npm run build` first. Stop an existing development server before starting on the same port. The Node tests check frontend input handling; they do not prove server authorisation, persistence or end-to-end acceptance. `next build` is separate from lint and tests.
+
+**Tooling limitation:** npm flags ESLint 9.39.5 as unsupported. ESLint 10.11.0 was tried, but the selected Next.js lint parser failed with `scopeManager.addGlobals is not a function`. Version 9.39.5 is pinned for the working lint configuration; revisit it when the Next.js configuration supports the newer major. This concerns development tooling, not the application runtime.
+
+`.env.example` reserves public configuration names for the later Supabase integration. When needed, copy it to `.env.local` and use a nonproduction project. Currently these values are not read and entering them does not enable the backend. Never commit credentials or put privileged keys in `NEXT_PUBLIC_` variables. Database setup instructions will be added with Steven's actual migrations; there is no schema command to run yet.
+
+For Vercel, the intended root directory is this repository root, with the Next.js preset and Node.js 24.x. No hosted deployment is claimed. Confirm plan eligibility, environment isolation and configuration before connecting a deployment; frontend preview builds need no Supabase credentials.
+
 ## Team
 
 | Member | Primary Milestone 1 responsibility |
@@ -45,27 +93,24 @@ Primary ownership does not limit shared accountability. Every member must unders
 
 ```text
 .
-├── README.md
-├── Milestone_1/
-│   ├── SEN381_CivicConnect_PED_v1.0.docx
-│   ├── Member_1/
-│   │   ├── 01-problem-and-business-need.md
-│   │   ├── 02-stakeholder-analysis.md
-│   │   ├── 03-scope-baseline.md
-│   │   ├── 04-constraints-and-assumptions.md
-│   │   ├── 05-team-working-agreement.md
-│   │   ├── 06-github-governance.md
-│   │   └── 07-review-and-defence-notes.md
-│   ├── Member_2/
-│       ├── 01-requirements-and-acceptance-criteria.md
-│       ├── 02-requirements-traceability-matrix.md
-│       └── CivicConnect_Member_2_Requirements_and_RTM_Clean.docx
-│   └── Member_3/
-│       └── Risk_management.docx
+├── src/
+│   ├── app/                    Next.js pages, layout and global styles
+│   └── features/requests/      Form, details, preview fixtures and browser validation
+├── tests/                     Node frontend validation checks
+├── package.json               Application dependencies and commands
+├── package-lock.json          Reproducible dependency tree
+├── .env.example               Empty future configuration placeholders
+├── Milestone_1/               Approved PED v1.0 and supporting artefacts
 ├── Milestone_2/
+│   ├── Member_1/               Ryno's architecture, frontend and handoff evidence
+│   ├── Member_2/               Steven's requirements, technology and data evidence
+│   ├── Assignment_2/           Supporting design research
+│   └── Assignment_3/           Supporting quality, security and readiness research
 ├── Milestone_3/
 └── Milestone_4/
 ```
+
+`src/server/` and `supabase/` are proposed future locations in the architecture, not implemented modules. The frontend imports no database client. Its seven category IDs are labelled preview fixtures and must be replaced by real category identifiers during integration.
 
 The member folders retain supporting source artefacts and revision history. The approved PED is the unified Milestone 1 baseline.
 
