@@ -1,0 +1,13 @@
+-- Nonproduction setup example. Run only as a trusted database operator.
+-- First create fictional Auth users in the Supabase dashboard. Replace the UUIDs below
+-- with their actual Auth IDs. Do NOT run this file unedited or against production.
+-- Every user who will submit a request needs a requester profile.
+-- INSERT INTO public.requesters(auth_user_id,full_name,email)
+-- VALUES ('ACTUAL-AUTH-UUID','Fictional requester','requester@example.test');
+-- For a service user, additionally provision a membership and explicit category scope:
+-- INSERT INTO public.service_members(user_id,display_name,role,can_view_sensitive)
+-- VALUES ('ACTUAL-STAFF-AUTH-UUID','Fictional staff','staff',false);
+-- INSERT INTO public.service_scopes(user_id,category_id)
+-- SELECT 'ACTUAL-STAFF-AUTH-UUID',category_id FROM public.categories WHERE name='Maintenance';
+-- Repeat with role='manager' for the manager. Sensitive clearance must be deliberate.
+-- An admin membership grants no operational request access. No app user may self-promote.
