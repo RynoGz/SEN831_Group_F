@@ -1,6 +1,6 @@
 {
   "name": "civicconnect",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,17 +12,25 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "node --test tests/*.test.js"
+    "test": "node scripts/test.mjs unit",
+    "test:integration": "node scripts/test.mjs integration",
+    "test:e2e": "playwright test",
+    "check:secrets": "node scripts/security-check.mjs",
+    "build:simulation": "node scripts/build-simulation.mjs",
+    "test:performance": "node scripts/run-performance.mjs",
+    "staging:simulation": "node scripts/run-staging.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.117.2",
-    "next": "16.3.7",
+    "next": "16.3.8",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "@playwright/test": "^1.64.0",
     "eslint": "9.39.5",
-    "eslint-config-next": "16.3.7"
+    "eslint-config-next": "16.3.8"
   }
 }
