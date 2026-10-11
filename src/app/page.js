@@ -14,10 +14,10 @@ export default function HomePage() {
       </section>
       <section aria-labelledby="how-heading" className="how-section">
         <h2 id="how-heading">A clear path from issue to action</h2>
-        <p className="muted">The service workflow we are building.</p>
+        <p className="muted">Submit a request, receive confirmation and follow its progress.</p>
         <ol className="steps">
           <li><span className="step-number">01</span><h3>Tell us what happened</h3><p>Add the category, location and details that will help someone understand the issue.</p></li>
-          <li><span className="step-number">02</span><h3>Know it was received</h3><p>Once submission is connected, a saved request will receive a reference and confirmation.</p></li>
+          <li><span className="step-number">02</span><h3>Know it was received</h3><p>A saved request receives a reference and confirmation.</p></li>
           <li><span className="step-number">03</span><h3>Follow the progress</h3><p>Authorised request details will show the current status and relevant updates.</p></li>
         </ol>
       </section>

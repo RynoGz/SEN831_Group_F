@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
-  const router = useRouter();
+
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,19 +18,15 @@ export default function LoginPage() {
     setLoading(true);
     setMessage("");
 
-    const supabase = createSupabaseBrowserClient();
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setMessage(error.message);
-      setLoading(false);
-      return;
-    }
-
-    router.push("/requests/new");
+    try {
+      const supabase = createSupabaseBrowserClient();
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) { setMessage("Sign-in failed. Check your details and try again."); return; }
+      const sessionResponse=await fetch('/api/session',{cache:'no-store'});
+      const actor=sessionResponse.ok?await sessionResponse.json():null;
+      window.location.assign(actor?.role==='manager'?'/management':actor?.role==='staff'?'/work':'/requests');
+    } catch { setMessage("Sign-in is unavailable. Please try again later."); }
+    finally { setLoading(false); }
   }
 
   return (

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./globals.css";
+import AccountNav from "@/features/workflow/account-nav";
 
 export const metadata = {
   title: { default: "CivicConnect", template: "%s | CivicConnect" },
@@ -20,6 +21,7 @@ export default function RootLayout({ children }) {
             <nav aria-label="Main navigation">
               <Link href="/requests/new">New request</Link>
               <Link href="/requests">My requests</Link>
+              <AccountNav />
             </nav>
           </div>
         </header>
@@ -30,7 +32,7 @@ export default function RootLayout({ children }) {
 </div>
         <main id="main" className="container main-content" tabIndex={-1}>{children}</main>
         <footer className="container site-footer">
-          <span>CivicConnect</span><span>SEN381 · Milestone 2</span>
+          <span>CivicConnect</span><span>SEN381 · Milestone 3</span>
         </footer>
       </body>
     </html>

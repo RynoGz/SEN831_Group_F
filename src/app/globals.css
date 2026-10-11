@@ -82,3 +82,18 @@ dd { margin: 0; overflow-wrap: anywhere; }
   .actions, .form-actions { align-items: flex-start; gap: 18px; }
   .site-footer { flex-wrap: wrap; }
 }
+
+.form-card { background:white; border:1px solid var(--border); border-radius:12px; padding:28px; margin-bottom:20px; }
+.panel { margin-bottom:24px; }
+label { display:block; margin-bottom:18px; }
+.nav-button { border:0; background:none; color:var(--green); padding:0; cursor:pointer; }
+.filters { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:16px; }
+.filters label { margin:0; }
+.summary-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.summary-grid h2 { text-transform:capitalize; }
+.metric { font-size:2rem; }
+table { width:100%; border-collapse:collapse; }
+th,td { text-align:left; padding:12px; border-bottom:1px solid var(--border); }
+.preserve-lines { white-space:pre-wrap; overflow-wrap:anywhere; }
+.request-list { display:grid; gap:8px; }
+@media(max-width:640px){.filters,.summary-grid{grid-template-columns:1fr;}nav{gap:16px;} .form-card{padding:22px;}}
