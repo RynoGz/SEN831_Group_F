@@ -31,7 +31,7 @@ export default function RequestDetails({ request }) {
             {statusHistory.map((entry) => (
               <li key={entry.id}>
                 <strong>{entry.status}</strong>{" "}
-                <span aria-hidden="true">—</span>{" "}
+                <span aria-hidden="true">·</span>{" "}
                 {new Date(entry.changedAt).toLocaleString()}
               </li>
             ))}
