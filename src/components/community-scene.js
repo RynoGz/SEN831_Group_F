@@ -1,0 +1,12 @@
+import { useId } from 'react';
+
+export default function CommunityScene() {
+  const grid = useId().replaceAll(':', '');
+  return <div className="community-scene" role="img" aria-label="A neighbourhood illustration showing a service request moving towards resolution">
+    <svg viewBox="0 0 500 440" aria-hidden="true"><defs><pattern id={grid} width="28" height="28" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1" fill="#d7dfd8" /></pattern></defs><rect width="500" height="440" fill={`url(#${grid})`} /><path d="M0 292H500M310 0V440" stroke="white" strokeWidth="32" /><path d="M0 292H500M310 0V440" stroke="#d7dfd8" strokeDasharray="5 8" />
+      <g transform="translate(45 167)"><path d="M0 30L70 0L135 30V106L64 137L0 103Z" fill="#d7dfd8" /><path d="M0 30L64 62L135 30L70 0Z" fill="white" /><path d="M64 62V137L135 106V30Z" fill="#17634f" /><path d="M79 72L92 66V84L79 90ZM108 60L121 54V72L108 78ZM79 105L92 99V117L79 123ZM108 93L121 87V105L108 111Z" fill="#e9f1e6" /><path d="M18 61L31 68V85L18 78ZM41 73L53 79V96L41 90Z" fill="#576765" /></g>
+      <g transform="translate(341 90)"><path d="M0 26L53 0L111 27V99L53 127L0 101Z" fill="#d7dfd8" /><path d="M0 26L53 53L111 27L53 0Z" fill="white" /><path d="M53 53V127L111 99V27Z" fill="#173b38" /><path d="M67 67L79 61V81L67 87ZM90 55L102 49V69L90 75ZM67 96L79 90V110L67 116Z" fill="#e9f1e6" /></g>
+      <g fill="#17634f"><circle cx="236" cy="185" r="28" /><circle cx="221" cy="197" r="20" /><circle cx="248" cy="200" r="23" /></g><path d="M236 207V247" stroke="#173b38" strokeWidth="7" /><g fill="#17634f"><circle cx="64" cy="350" r="22" /><circle cx="51" cy="362" r="17" /><circle cx="76" cy="365" r="17" /></g><path d="M64 374V400" stroke="#173b38" strokeWidth="5" /><path className="request-route" d="M180 250V292H310V231H382" fill="none" stroke="#17634f" strokeWidth="4" strokeLinecap="round" /><circle cx="180" cy="250" r="6" fill="#17634f" /><circle cx="382" cy="231" r="8" fill="#17634f" stroke="white" strokeWidth="4" /></svg>
+    <div className="scene-card scene-card-first"><span className="small">YOUR REQUEST</span><h3>A small issue.<br />A clear next step.</h3><span className="status-badge status-submitted">Submitted</span></div><div className="scene-card scene-card-last"><span className="small">LATEST UPDATE</span><h3>The maintenance team is on it.</h3><span className="status-badge status-progress">In Progress</span></div>
+  </div>;
+}

@@ -1,26 +1,6 @@
-import Link from "next/link";
-
+import Link from 'next/link';
+import CommunityScene from '@/components/community-scene';
 export default function HomePage() {
-  return (
-    <>
-      <section className="hero">
-        <p className="eyebrow">Your community, connected</p>
-        <h1>A better place starts<br />with a request.</h1>
-        <p className="lead">Report a service issue and give the people who can help the details they need.</p>
-        <div className="actions">
-          <Link className="button" href="/requests/new">Create a request <span aria-hidden="true">↗</span></Link>
-          <Link className="text-link" href="/requests/example">View an example request</Link>
-        </div>
-      </section>
-      <section aria-labelledby="how-heading" className="how-section">
-        <h2 id="how-heading">A clear path from issue to action</h2>
-        <p className="muted">The service workflow we are building.</p>
-        <ol className="steps">
-          <li><span className="step-number">01</span><h3>Tell us what happened</h3><p>Add the category, location and details that will help someone understand the issue.</p></li>
-          <li><span className="step-number">02</span><h3>Know it was received</h3><p>Once submission is connected, a saved request will receive a reference and confirmation.</p></li>
-          <li><span className="step-number">03</span><h3>Follow the progress</h3><p>Authorised request details will show the current status and relevant updates.</p></li>
-        </ol>
-      </section>
-    </>
-  );
+ return <><section className="hero"><div><h1>Small requests.<br /><span>Better places.</span></h1><p className="lead">Something needs attention? Tell us what happened, then follow your request from the first report to the final update.</p><div className="actions"><Link className="button" href="/requests/new">Create a request</Link></div></div><CommunityScene /></section>
+ <section aria-labelledby="how-heading" className="how-section"><h2 id="how-heading">A simple way<br />to get things moving.</h2><ol className="steps"><li><h3>Tell us what happened</h3><p>Describe the issue and where to find it. The right details help the team get started.</p></li><li><h3>Know it was received</h3><p>Get confirmation that your request has been saved and is ready for review.</p></li><li><h3>Stay in the loop</h3><p>See status changes and public updates as your request moves forward.</p></li></ol></section></>;
 }

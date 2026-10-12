@@ -1,0 +1,37 @@
+import { test, expect } from '@playwright/test';
+
+test('responsive navigation, reduced motion and request-filter recovery', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.getByRole('heading', { name: 'Small requests. Better places.' })).toBeVisible();
+  await expect(page.locator('.request-route')).toHaveCSS('animation-name', 'none');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+  await page.goto('/auth/login');
+  await page.getByLabel('Email', { exact: true }).fill('requester@example.test');
+  await page.getByLabel('Password', { exact: true }).fill('Fictional-test-password-1!');
+  await page.getByRole('button', { name: 'Sign in', exact: true }).click();
+  await expect(page).toHaveURL('/requests');
+  await expect(page.locator('nav a[aria-current="page"]')).toHaveText('My requests');
+  await page.goto('/requests/new');
+  await page.getByLabel('Title', { exact: false }).fill('Responsive filter check');
+  await page.getByLabel('Description', { exact: false }).fill('A fictional issue for the responsive interface test.');
+  await page.getByLabel('Category', { exact: false }).selectOption({ label: 'Maintenance' });
+  await page.getByLabel('Location', { exact: false }).fill('Test hall');
+  await page.getByRole('radio', { name: 'No', exact: true }).check();
+  await page.getByRole('button', { name: 'Submit request', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Your request has been saved' })).toBeVisible();
+  await page.goto('/requests');
+  await expect(page.locator('.request-table')).toBeVisible();
+  await page.getByLabel('Search title, location or reference').fill('no-such-request-design-check');
+  await expect(page.getByRole('heading', { name: 'No matching requests' })).toBeVisible();
+  await page.getByRole('button', { name: 'Clear filters' }).click();
+  await expect(page.locator('.request-table tbody tr').first()).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.getByRole('navigation').getByRole('link', { name: 'New request' }).click();
+  await expect(page.locator('nav a[aria-current="page"]')).toHaveText('New request');
+  await expect(page.getByRole('heading', { name: 'New Request', exact: true })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

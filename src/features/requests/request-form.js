@@ -2,10 +2,10 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
+import Textarea from "@/components/textarea";
+import AttachmentUpload from "@/features/workflow/attachment-upload";
 import { validateRequestInput } from "./validate-request";
 
-// Proposed integration: supply authorised categories/requester and a protected
-// Server Action as submitRequest. See frontend-handoff.md before wiring it in.
 export default function RequestForm({ categories, requester, submitRequest }) {
   const [errors, setErrors] = useState({});
   const [feedback, setFeedback] = useState(null);
@@ -81,6 +81,7 @@ export default function RequestForm({ categories, requester, submitRequest }) {
         <p>Status: {savedRequest.status}</p>
         <p>Submitted: <time dateTime={savedRequest.createdAt}>{savedRequest.createdAt}</time></p>
         <Link className="button" href={`/requests/${encodeURIComponent(savedRequest.id)}`}>View request</Link>
+        <AttachmentUpload requestId={savedRequest.id}/>
       </section>
     );
   }
@@ -93,11 +94,12 @@ export default function RequestForm({ categories, requester, submitRequest }) {
           <ul>{Object.entries(errors).map(([field, message]) => <li key={field}><a href={`#${field}`}>{message}</a></li>)}</ul>
         </div>
       )}
+      <h2>About the issue</h2>
       <p className="form-intro">Fields marked <span aria-hidden="true">*</span> are required.</p>
       <div className="field"><label htmlFor="title">Title <span aria-hidden="true">*</span></label><input {...fieldProps("title")} required placeholder="A short summary of the issue" />{errorFor("title")}</div>
-      <div className="field"><label htmlFor="description">Description <span aria-hidden="true">*</span></label><textarea {...fieldProps("description")} required rows={5} placeholder="What happened? Include details that will help someone assist you." />{errorFor("description")}</div>
-      <div className="field"><label htmlFor="categoryId">Category <span aria-hidden="true">*</span></label><select {...fieldProps("categoryId")} required defaultValue=""><option value="" disabled>Select a category</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select>{errorFor("categoryId")}</div>
-      <div className="field"><label htmlFor="location">Location <span aria-hidden="true">*</span></label><input {...fieldProps("location")} required placeholder="Building, room or a nearby landmark" />{errorFor("location")}</div>
+      <div className="field"><label htmlFor="description">Description <span aria-hidden="true">*</span></label><Textarea className="resize-none" {...fieldProps("description")} required rows={5} placeholder="What happened? Include details that will help someone assist you." />{errorFor("description")}</div>
+      <div className="field-row"><div className="field"><label htmlFor="categoryId">Category <span aria-hidden="true">*</span></label><select {...fieldProps("categoryId")} required defaultValue=""><option value="" disabled>Select a category</option>{categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}</select>{errorFor("categoryId")}</div>
+      <div className="field"><label htmlFor="location">Location <span aria-hidden="true">*</span></label><input {...fieldProps("location")} required placeholder="Building, room or a nearby landmark" />{errorFor("location")}</div></div>
       <section className="requester-info" aria-labelledby="requester-heading">
         <h2 id="requester-heading">Requester details</h2>
         <p>{requester?.displayName || "Requester profile unavailable"}<br />{requester?.contact || "Contact details unavailable"}</p>
@@ -105,11 +107,11 @@ export default function RequestForm({ categories, requester, submitRequest }) {
       </section>
       <fieldset className="field" id="sensitiveInformation" tabIndex={-1} aria-describedby={errors.sensitiveInformation ? "sensitivity-hint sensitiveInformation-error" : "sensitivity-hint"} aria-invalid={errors.sensitiveInformation ? true : undefined}>
         <legend>Does this contain sensitive information? <span aria-hidden="true">*</span></legend>
-        <p id="sensitivity-hint" className="muted">Choose yes if the request needs restricted handling. Use fictional information in this preview.</p>
+        <p id="sensitivity-hint" className="muted">Choose yes if the request needs restricted handling. Avoid passwords or unnecessary personal information.</p>
         <div className="radio-row"><label><input type="radio" name="sensitiveInformation" value="no" required /> No</label><label><input type="radio" name="sensitiveInformation" value="yes" required /> Yes</label></div>
         {errorFor("sensitiveInformation")}
       </fieldset>
-      <section className="attachment-note" aria-labelledby="attachment-heading"><h2 id="attachment-heading">Attachment <span className="muted">· optional</span></h2><p>File attachments are not available yet. You can check the form without one.</p></section>
+      <section className="attachment-note" aria-labelledby="attachment-heading"><h2 id="attachment-heading">Attachment <span className="muted">· optional</span></h2><p>You can add a private PDF, PNG or JPEG after saving your request. Submitting without one is allowed.</p></section>
       <div ref={resultPanel} tabIndex={-1}>
         <div aria-live="polite" aria-atomic="true">{pending && <p>Submitting your request…</p>}{feedback && <p className={`feedback ${feedback.kind === "error" ? "error-feedback" : "info-feedback"}`}>{feedback.message}</p>}</div>
       </div>
