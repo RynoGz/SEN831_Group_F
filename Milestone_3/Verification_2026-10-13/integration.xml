@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="DB01 FR-001/010: insert creates Submitted status, time and attributable history" time="2.448155" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB02 NFR-001/002: other requester and admin cannot read a request" time="0.011661" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB03 NFR-002: sensitive request requires scoped clearance" time="0.012883" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB04 FR-010/NFR-003: accept, assign, work, resolve and close preserve audit" time="0.048466" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB05 FR-010: skipped transition rolls back without history/version change" time="0.015721" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB06 NFR-005: stale version update rejected" time="0.014193" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB07 FR-011: private staff comment is invisible to requester" time="0.014928" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB08 NFR-001: requester cannot call staff operation or direct update" time="0.011603" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB09 FR-009: manager cannot assign staff outside category scope" time="0.013998" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB10 FR-010: reopening request records reason without changing terminal status" time="0.012164" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB11 FR-001/NFR-002: staged attachment linking enforces ownership and read access" time="0.018929" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB12 NFR-005: failed initial-history write rolls back the request" time="0.006824" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB13 NFR-002: direct insert cannot forge an attachment link" time="0.002834" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB14 attachment recovery: owner can delete an unlinked staged file" time="0.009858" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<!-- tests 14 -->
+	<!-- suites 0 -->
+	<!-- pass 14 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 2876.9578 -->
+</testsuites>

@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-13",
+  "branch": "Ryno_branch",
+  "baseCommit": "6ae2ba77e9397768dda54b28b392cb40541f3d2a",
+  "uncommittedChanges": true,
+  "lint": "passed",
+  "secretPatternCheck": "passed",
+  "buildSimulation": "passed",
+  "unitPassed": 21,
+  "databasePassed": 14,
+  "browserApiPassed": 7,
+  "recoveryRehearsal": "passed",
+  "performancePassed": true,
+  "productionAuditVulnerabilities": 0,
+  "fullAuditHighDevelopmentFindings": 5,
+  "existingCommitGithubCI": "https://github.com/RynoGz/SEN831_Group_F/actions/runs/38167964481",
+  "newRecoveryRemoteCI": "Not executed remotely; working tree change",
+  "pedApproval": "Ryno confirmed PED approved on 13 October 2026; no other individual or lecturer approval inferred",
+  "sourceFileSha256": {
+    "scripts/simulation-backup.mjs": "a873281f419a45d28b959abd2db1d1f6b34f4df724a47909af5dd768f1b11429",
+    "scripts/test-recovery.mjs": "dbfefbd3ca7300461c60264afa15f6fa1c993354856ab3b656ab4b31811ae406",
+    "package.json": "caec49e689594a1331c53965be3bfd458394336cf5c1e79c5761fc98fee9b921",
+    ".github/workflows/m3-quality.yml": "ff1d25dcd8402f18754aec8ca96b1583d4b63e368b506d5ff8cd4d9e1b4e0db9"
+  },
+  "evidenceSha256": {
+    "unit.xml": "86b098cbde3d49a0281c4a594f876d2fcc7263c5b09f6aeb1e1628541f55dda5",
+    "integration.xml": "ab68c1403d967204d6be5e0f205e3340aff926966b1b76f80320c34eb8e7d823",
+    "e2e.json": "56c74673e917d6dac5c4afc8a4235ad7f108702b34734c7632963125448ae6a4",
+    "performance.json": "c708306135e1fbe51e7ab96c3043ecb201d1739203c81239c3a2479cb75d52d6",
+    "recovery.json": "350b6c0561513bcfc0926b321e37cce20363f966abbc78012c1146999d221a96",
+    "dependency-audit.json": "92f3be92f45baeb3aa29a61429ad7547c78023acc61eb3a1cd2cf9c746a36381"
+  },
+  "branchProtection": {
+    "status": "enforced",
+    "evidence": "Confirmed by Ryno in this conversation on 13 October 2026; not independently inspected through GitHub settings"
+  },
+  "executionSnapshotNote": "The uncommittedChanges field records the state at test execution. The sourceFileSha256 values identify the tested files preserved by the subsequent commit."
+}

@@ -18,6 +18,7 @@
     "check:secrets": "node scripts/security-check.mjs",
     "build:simulation": "node scripts/build-simulation.mjs",
     "test:performance": "node scripts/run-performance.mjs",
+    "test:recovery": "node scripts/test-recovery.mjs",
     "staging:simulation": "node scripts/run-staging.mjs"
   },
   "dependencies": {
