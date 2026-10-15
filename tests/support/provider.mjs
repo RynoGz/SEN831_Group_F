@@ -35,10 +35,11 @@ const server=createServer(async(req,res)=>{
  if(url.pathname==='/auth/v1/user'){if(!user){send(401,{msg:'Not authenticated'});return;}const name=Object.keys(USERS).find(k=>USERS[k]===user);send(200,authUser(name));return;}
  if(url.pathname==='/auth/v1/logout'){tokens.delete(req.headers.authorization?.replace(/^Bearer /i,''));send(204);return;}
  if(url.pathname.startsWith('/rest/v1/rpc/')){
-  const fn=url.pathname.split('/').pop();if(!['m3_change_request','m3_staff_directory','m3_is_owner','m3_can_work','m3_link_attachment'].includes(fn))throw Error('Unknown RPC');
+  const fn=url.pathname.split('/').pop();if(!['m3_change_request','m3_staff_directory','m3_assignment_history','m3_is_owner','m3_can_work','m3_link_attachment'].includes(fn))throw Error('Unknown RPC');
   const keys=Object.keys(body);const args=keys.map((k,i)=>`${identifier(k)}=>$${i+1}`).join(',');
-  const result=await asUser(db,user,tx=>tx.query(fn==='m3_staff_directory'?`select * from ${identifier(fn)}(${args})`:`select ${identifier(fn)}(${args}) result`,Object.values(body)));
-  send(200,fn==='m3_staff_directory'?result.rows:result.rows[0].result);return;
+  const tabular=['m3_staff_directory','m3_assignment_history'].includes(fn);
+  const result=await asUser(db,user,tx=>tx.query(tabular?`select * from ${identifier(fn)}(${args})`:`select ${identifier(fn)}(${args}) result`,Object.values(body)));
+  send(200,tabular?result.rows:result.rows[0].result);return;
  }
  if(url.pathname.startsWith('/rest/v1/')){
   const table=url.pathname.split('/').pop();if(!['requests','requesters','categories','statuses','status_history','service_members','service_scopes','request_comments','assignments','reopening_requests'].includes(table))throw Error('Unknown table');

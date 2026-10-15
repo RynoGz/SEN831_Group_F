@@ -14,6 +14,7 @@ try{
  await rpc(source,USERS.staff,request.request_id,1,'transition',{status:'Accepted'});
  await rpc(source,USERS.manager,request.request_id,2,'assign',{assignedTo:USERS.staff});
  await rpc(source,USERS.staff,request.request_id,3,'comment',{note:'Fictional private recovery note',visible:false});
+ await rpc(source,USERS.manager,request.request_id,4,'assign',{assignedTo:USERS.restricted,note:'Fictional reassignment recovery reason',visible:false});
  const terminal=await createRequest(source);
  await rpc(source,USERS.staff,terminal.request_id,1,'transition',{status:'Rejected',note:'Fictional rejection'});
  await rpc(source,USERS.requester,terminal.request_id,2,'reopen',{note:'Fictional reopening request'});
@@ -41,7 +42,10 @@ try{
  assert.equal((await asUser(restored,USERS.requester,tx=>tx.query('select * from storage.objects where name=$1',[key]))).rows.length,1);
  assert.equal((await asUser(restored,USERS.requester,tx=>tx.query('select * from request_comments where request_id=$1',[request.request_id]))).rows.length,0);
  const version=(await restored.query('select version from requests where request_id=$1',[request.request_id])).rows[0].version;
- await rpc(restored,USERS.staff,request.request_id,version,'transition',{status:'In Progress'});
+ const assignmentHistory=(await asUser(restored,USERS.manager,tx=>tx.query('select * from m3_assignment_history($1)',[request.request_id]))).rows;
+ assert.equal(assignmentHistory[0].reason,'Fictional reassignment recovery reason');
+ assert.equal((await asUser(restored,USERS.requester,tx=>tx.query('select * from m3_assignment_history($1)',[request.request_id]))).rows[0].reason,null);
+ await rpc(restored,USERS.restricted,request.request_id,version,'transition',{status:'In Progress'});
  const restoreMs=performance.now()-started;const lossWindowMs=failureAt.getTime()-Date.parse(backup.createdAt);
  // Ensure corrupted files are rejected before loading a database.
  const attachmentPath=join(directory,backup.files.attachments);await writeFile(attachmentPath,Buffer.concat([await readFile(attachmentPath),Buffer.from('corruption')]));

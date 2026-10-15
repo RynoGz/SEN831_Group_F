@@ -1,6 +1,7 @@
 // Framework-independent Supabase boundary, shared by routes and integration checks.
 import { validateRequestInput } from '../requests/validate-request.js';
 import { assertTransitionAllowed } from '../../domain/requests/request-transition-policy.js';
+import { assignmentReasonError } from '../../domain/requests/assignment-reason.js';
 const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 export class WorkflowError extends Error {
  constructor(message,status=400){ super(message); this.status=status; }
@@ -29,7 +30,7 @@ export async function detail(client,id){
  if(!row) throw new WorkflowError('Request unavailable.',404);
  const history=checked(await client.from('status_history').select('*,statuses(name)').eq('request_id',id).order('changed_at'))??[];
  const comments=checked(await client.from('request_comments').select('*').eq('request_id',id).order('created_at'))??[];
- const assignments=checked(await client.from('assignments').select('*').eq('request_id',id).order('assigned_at',{ascending:false}))??[];
+ const assignments=checked(await client.rpc('m3_assignment_history',{p_id:id}))??[];
  const reopenings=checked(await client.from('reopening_requests').select('*').eq('request_id',id))??[];
  const ownsRequest=checked(await client.rpc('m3_is_owner',{p_id:id}));
  const canWork=checked(await client.rpc('m3_can_work',{p_id:id}));
@@ -50,6 +51,10 @@ export async function change(client,id,input){
  if(!input||!Number.isInteger(input.version)||input.version<1) throw new WorkflowError('Reload the request before updating it.');
  if(typeof input.operation!=='string'||(input.note!=null&&typeof input.note!=='string')||(input.targetAt!=null&&typeof input.targetAt!=='string')||(input.visible!=null&&typeof input.visible!=='boolean'))throw new WorkflowError('Invalid update information.');
  const current=await detail(client,id);
+ if(input.operation==='assign'){
+  const error=assignmentReasonError(current.assignments[0]?.assigned_to,input.assignedTo,input.note);
+  if(error)throw new WorkflowError(error);
+ }
  if(input.operation==='transition'){
   try{assertTransitionAllowed(current.request.statuses?.name,input.status);}catch{throw new WorkflowError('That status change is not allowed.');}
  }

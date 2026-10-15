@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-15",
+  "changeRequest": "CR-M3-01",
+  "branch": "Ryno_branch",
+  "baseCommit": "ce2c5ef3b3246614bf617707173017c255783933",
+  "workingTreeChanges": true,
+  "implementationApproval": "Ryno Goetz, Steven Riaan Piek and Willem Booysen jointly approved implementation on 15 October 2026, as confirmed by Ryno",
+  "peerReview": "Not yet performed for this change",
+  "remoteCI": "Not run for these uncommitted changes",
+  "unitPassed": 24,
+  "databasePassed": 21,
+  "browserApiPassed": 8,
+  "totalTestsPassed": 53,
+  "lint": "passed",
+  "secretPatternCheck": "passed",
+  "buildSimulation": "passed",
+  "staticUiAudit": "passed with zero findings",
+  "recovery": "passed including reassignment reason and visibility after restore",
+  "performance": "passed; own-request list only",
+  "performanceP95Ms": 72.12639999999988,
+  "restoreMs": 483.0453000000002,
+  "simulatedLossWindowMs": 495,
+  "productionAudit": {
+    "info": 0,
+    "low": 0,
+    "moderate": 0,
+    "high": 0,
+    "critical": 0,
+    "total": 0
+  },
+  "knownVerificationFinding": "Initial CRE2E01 selector matched both the field alert and Next route announcer; narrowed to the associated field error. Initial failed report retained; final complete suite passed.",
+  "sourceFileSha256": {
+    "src/domain/requests/assignment-reason.js": "1a02927800ace743fa82c71846eb95e0d4ed4dd087daca43653c85c4bd84df3c",
+    "src/features/workflow/service.js": "ea1c2892f77becdce991037fc62d592fa7b2b109875d6d16dcb7b50fee6d31d0",
+    "src/features/workflow/request-workspace.js": "16e79a0e4c65cffc600c6161ebe05e5cbcd7cc3241e3bd1b5bb38de62137755a",
+    "supabase/migrations/007_m3_reassignment_reason.sql": "66d27861ab393ee34db052751405c303fdd792181b991e4df1cdfc466fe91456",
+    "tests/support/provider.mjs": "4025a16d84549eeecb5164b985c70a9ecdb0333d816974314c41436eba716868",
+    "tests/support/database.js": "44753b44a904be7b2bec5d991f0447b2ced33620173c0f26f693ecfd6cfc75b1",
+    "tests/assignment-reason.test.js": "b7ebc67f2d7d4590c7494668a70323d5babc16372f020ee31bfe7e1416c572e7",
+    "tests/integration/reassignment.test.js": "f6e53c8f352862ad2b66dbf90171654a16df754b542777b116f59573fd0ecc17",
+    "tests/e2e/workflow.spec.js": "3901d12d143a0ec34c175dee2091ef25a381975f3a2fda2a558ebc08afbfb815",
+    "scripts/test-recovery.mjs": "ffa97d0d5b3ba32820ed127603c91cd793397614fae229443375e4d336e6c6dd"
+  },
+  "evidenceSha256": {
+    "unit.xml": "1156944185c85d2efe3b042fd769668b72aa46640c4127d335f41d85354b2d23",
+    "integration.xml": "aa4c8de3cecdfd1b2fafd6a9888f1975eae4f00975377d82d2f63ef0d59c7f3d",
+    "e2e.json": "9a0843d53d9b9e1eaa9ec4c4a0641fcadfacfdd221d89b2ada590c4d9f019996",
+    "performance.json": "fc94fa327e5ec0fcf8fba5cb86bfac1d1779535352820c965878df3b12fe5e4f",
+    "recovery.json": "40c9dfa11a76a858eeb8069e8ae6ea2a277b3eead47f327b8a873b6481dc0e40",
+    "reassignment-ui-audit.json": "dd6a443e62ea74cdae9a4c1ff71b2056e49e5a85ebae41cfaaafe4504850ab21",
+    "reassignment-mobile.png": "219967b9d09825ef08fb2f29fdf307becb022c067f3e5d79f1c38c0a3adac329",
+    "production-audit.json": "d520787a3210204aa2b3b75f021a445e75d617c500f3793f181a3da04ef64425"
+  },
+  "limitations": [
+    "Local simulation only; no hosted migration applied",
+    "Existing scheduled-backup and hosted parity limitations retained",
+    "Two non-author PR reviews and CI required before substantive merge",
+    "Simulated request is not represented as an externally issued lecturer/client request"
+  ]
+}

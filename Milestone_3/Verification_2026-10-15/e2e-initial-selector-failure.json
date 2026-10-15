@@ -1,0 +1,425 @@
+{
+  "config": {
+    "argv": [
+      "C:\\Users\\rynog\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+      "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\node_modules\\@playwright\\test\\cli.js",
+      "test"
+    ],
+    "configFile": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\playwright.config.js",
+    "rootDir": "C:/Users/rynog/OneDrive - belgiumcampus.ac.za/3rd Year/SEN381/SEN831_Group_F/tests/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/rynog/OneDrive - belgiumcampus.ac.za/3rd Year/SEN381/SEN831_Group_F/test-results/browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "C:/Users/rynog/OneDrive - belgiumcampus.ac.za/3rd Year/SEN381/SEN831_Group_F/tests/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "filteredProjects": [
+      {
+        "grep": {},
+        "grepInvert": null,
+        "outputDir": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\test-results\\browser",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "name": "",
+        "testDir": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\tests\\e2e",
+        "snapshotDir": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\tests\\e2e",
+        "testIgnore": [],
+        "testMatch": "**/*.@(spec|test).?(c|m)[jt]s?(x)",
+        "timeout": 45000,
+        "use": {
+          "baseURL": "http://127.0.0.1:3103",
+          "trace": "retain-on-failure"
+        },
+        "dependencies": [],
+        "ignoreSnapshots": false,
+        "__projectId": ""
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/e2e.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "default",
+    "updateSourceMethod": "patch",
+    "version": "1.64.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "design.spec.js",
+      "file": "design.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "responsive navigation, reduced motion and request-filter recovery",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3020,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:16.044Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "3972405ea26c63f90f36-8ddedef963e2dee88e49",
+          "file": "design.spec.js",
+          "line": 3,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "workflow.spec.js",
+      "file": "workflow.spec.js",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "E2E01 FR-001/003/004: sign in, validate, save, private attachment and retrieve",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 6157,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:19.785Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93da89c2ff21c8134e9c-fe513f7a0afef3d92219",
+          "file": "workflow.spec.js",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "E2E02 FR-009/010/011/012/015: requester → staff → manager full lifecycle and reporting",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 7467,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:25.998Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93da89c2ff21c8134e9c-ed8abf2d130f2fcb1f05",
+          "file": "workflow.spec.js",
+          "line": 12,
+          "column": 1
+        },
+        {
+          "title": "API01 NFR-001: anonymous request-details API denied",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 15,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:33.493Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93da89c2ff21c8134e9c-cde9aa8569d15dfdddd7",
+          "file": "workflow.spec.js",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "API02 NFR-001: requester cannot retrieve work directory",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 625,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:33.522Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93da89c2ff21c8134e9c-c4b9fba65bbdaa4ba2a4",
+          "file": "workflow.spec.js",
+          "line": 23,
+          "column": 1
+        },
+        {
+          "title": "API03 FR-001: malformed request ID handled without internal error disclosure",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 623,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:34.166Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93da89c2ff21c8134e9c-d8e5a28247f54ba67dad",
+          "file": "workflow.spec.js",
+          "line": 24,
+          "column": 1
+        },
+        {
+          "title": "API04 NFR-001: cross-origin mutation denied before database work",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 696,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:34.808Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "93da89c2ff21c8134e9c-22dece350190dd1279c3",
+          "file": "workflow.spec.js",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "CRE2E01 FR-009: manager reassignment requires a reason and preserves history",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 3338,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected: \u001b[32m\"Enter a reason for changing the responsible staff member.\"\u001b[39m\nError: strict mode violation: getByRole('alert') resolved to 2 elements:\n    1) <p role=\"alert\" id=\"assignment-error\">Enter a reason for changing the responsible staff…</p> aka getByText('Enter a reason for changing')\n    2) <div role=\"alert\" aria-live=\"assertive\" id=\"__next-route-announcer__\"></div> aka locator('[id=\"__next-route-announcer__\"]')\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected: \u001b[32m\"Enter a reason for changing the responsible staff member.\"\u001b[39m\nError: strict mode violation: getByRole('alert') resolved to 2 elements:\n    1) <p role=\"alert\" id=\"assignment-error\">Enter a reason for changing the responsible staff…</p> aka getByText('Enter a reason for changing')\n    2) <div role=\"alert\" aria-live=\"assertive\" id=\"__next-route-announcer__\"></div> aka locator('[id=\"__next-route-announcer__\"]')\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n    at C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\tests\\e2e\\workflow.spec.js:42:121",
+                    "location": {
+                      "file": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\tests\\e2e\\workflow.spec.js",
+                      "column": 121,
+                      "line": 42
+                    },
+                    "snippet": "  40 |  await manager.getByLabel('Responsible staff').selectOption({label:'Fictional restricted'});\n  41 |  const reason=manager.getByLabel('Reassignment reason (required)',{exact:true});await reason.fill('   ');\n> 42 |  await manager.getByRole('button',{name:'Save assignment',exact:true}).click();await expect(manager.getByRole('alert')).toHaveText('Enter a reason for changing the responsible staff member.');await expect(reason).toBeFocused();\n     |                                                                                                                         ^\n  43 |  const api=href.replace('/requests/','/api/requests/');\n  44 |  const rejected=await manager.request.patch(api,{headers:{origin:'http://127.0.0.1:3103'},data:{version:3,operation:'assign',assignedTo:'66666666-6666-4666-8666-666666666666',note:' '}});\n  45 |  expect(rejected.status()).toBe(400);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\tests\\e2e\\workflow.spec.js",
+                        "column": 121,
+                        "line": 42
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('alert')\nExpected: \u001b[32m\"Enter a reason for changing the responsible staff member.\"\u001b[39m\nError: strict mode violation: getByRole('alert') resolved to 2 elements:\n    1) <p role=\"alert\" id=\"assignment-error\">Enter a reason for changing the responsible staff…</p> aka getByText('Enter a reason for changing')\n    2) <div role=\"alert\" aria-live=\"assertive\" id=\"__next-route-announcer__\"></div> aka locator('[id=\"__next-route-announcer__\"]')\n\nCall log:\n\u001b[2m  - Expect \"toHaveText\" getByRole('alert') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('alert')\u001b[22m\n\n\n  40 |  await manager.getByLabel('Responsible staff').selectOption({label:'Fictional restricted'});\n  41 |  const reason=manager.getByLabel('Reassignment reason (required)',{exact:true});await reason.fill('   ');\n> 42 |  await manager.getByRole('button',{name:'Save assignment',exact:true}).click();await expect(manager.getByRole('alert')).toHaveText('Enter a reason for changing the responsible staff member.');await expect(reason).toBeFocused();\n     |                                                                                                                         ^\n  43 |  const api=href.replace('/requests/','/api/requests/');\n  44 |  const rejected=await manager.request.patch(api,{headers:{origin:'http://127.0.0.1:3103'},data:{version:3,operation:'assign',assignedTo:'66666666-6666-4666-8666-666666666666',note:' '}});\n  45 |  expect(rejected.status()).toBe(400);\n    at C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\tests\\e2e\\workflow.spec.js:42:121"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-15T16:46:35.524Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\test-results\\browser\\workflow-CRE2E01-FR-009-ma-31724-eason-and-preserves-history\\error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\test-results\\browser\\workflow-CRE2E01-FR-009-ma-31724-eason-and-preserves-history\\trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\rynog\\OneDrive - belgiumcampus.ac.za\\3rd Year\\SEN381\\SEN831_Group_F\\tests\\e2e\\workflow.spec.js",
+                    "column": 121,
+                    "line": 42
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "93da89c2ff21c8134e9c-58b9465d0e6ebd7638cc",
+          "file": "workflow.spec.js",
+          "line": 30,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-15T16:46:09.136Z",
+    "duration": 30819.079,
+    "expected": 7,
+    "skipped": 0,
+    "unexpected": 1,
+    "flaky": 0
+  }
+}
