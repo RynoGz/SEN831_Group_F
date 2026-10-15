@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-15T16:56:12.255Z",
+  "sourceCommit": "ce2c5ef3b3246614bf617707173017c255783933",
+  "workingTreeChanges": true,
+  "environment": "Controlled PGlite simulation recovery rehearsal; not hosted Supabase",
+  "seededRequestRows": 1000,
+  "backupAt": "2026-10-15T16:56:11.256Z",
+  "failureAt": "2026-10-15T16:56:11.751Z",
+  "restoreMs": 483.0453000000002,
+  "restoreTargetMs": 1800000,
+  "lossWindowMs": 495,
+  "lossWindowTargetMs": 86400000,
+  "restoredTables": [
+    "requests",
+    "status_history",
+    "assignments",
+    "request_comments",
+    "requesters",
+    "service_members",
+    "service_scopes",
+    "categories",
+    "statuses",
+    "reopening_requests",
+    "storage.objects",
+    "storage.buckets",
+    "auth.users"
+  ],
+  "attachmentSha256": "ab112839bed421ce046cfb4b4a326906dabafc271ffdb1e20cb9dca1834e2018",
+  "assertions": [
+    "Exact backed-up table contents restored",
+    "Attachment bytes and type restored",
+    "Non-secret configuration restored",
+    "Post-backup data loss explicitly demonstrated",
+    "Requester isolation preserved",
+    "Attachment access policy preserved",
+    "Private comments remain hidden",
+    "Workflow continues after recovery",
+    "Corrupted archive rejected"
+  ],
+  "passed": true,
+  "limitations": "Controlled 1,000-request snapshot and simulated failure only. No 24-hour scheduled-backup reliability, hosted storage/Auth recovery or production RPO claim."
+}

@@ -1,0 +1,14 @@
+{
+  "environment": "Local production Next.js build + PostgreSQL-backed simulated Supabase; not hosted Supabase",
+  "operation": "Authenticated own-request list",
+  "concurrentUsers": 3,
+  "requests": 60,
+  "seededDataRows": 1000,
+  "recordsPerRead": 333,
+  "duration": "20 sequential reads per worker after warmup",
+  "p95Ms": 72.12639999999988,
+  "errors": 0,
+  "targetMs": 2000,
+  "interpretation": "Small local regression exercise only. Uses the NFR-006 dataset size and three local identities, but does not establish cloud latency, sustained production capacity, submission response time or recovery.",
+  "passed": true
+}

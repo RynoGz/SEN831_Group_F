@@ -26,3 +26,29 @@ test('API03 FR-001: malformed request ID handled without internal error disclosu
 test('API04 NFR-001: cross-origin mutation denied before database work',async({page})=>{
  await login(page,'requester');const r=await page.request.patch('/api/requests/11111111-1111-4111-8111-111111111111',{headers:{origin:'https://untrusted.example'},data:{version:1,operation:'transition',status:'Accepted'}});expect(r.status()).toBe(403);
 });
+
+test('CRE2E01 FR-009: manager reassignment requires a reason and preserves history',async({page,browser})=>{
+ await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
+ await login(page,'requester');const href=await submit(page,`Reassignment ${Date.now()}`);
+ const context=await browser.newContext();const manager=await context.newPage();await login(manager,'manager');await manager.goto(href);
+ await manager.getByLabel('Next status').selectOption('Accepted');await manager.getByRole('button',{name:'Save status',exact:true}).click();
+ await expect(manager.getByRole('heading',{name:'Assignment',exact:true})).toBeVisible();
+ await manager.getByLabel('Responsible staff').selectOption({label:'Fictional staff'});await manager.getByRole('button',{name:'Save assignment',exact:true}).click();
+ await expect(manager.getByRole('heading',{name:'Assignment history',exact:true})).toBeVisible();
+ await expect.poll(async()=>{const r=await manager.request.get(href.replace('/requests/','/api/requests/'));return (await r.json()).request.version;}).toBe(3);
+ await manager.setViewportSize({width:390,height:844});await manager.emulateMedia({reducedMotion:'reduce'});
+ await manager.getByLabel('Responsible staff').selectOption({label:'Fictional restricted'});
+ const reason=manager.getByLabel('Reassignment reason (required)',{exact:true});await reason.fill('   ');
+ await manager.getByRole('button',{name:'Save assignment',exact:true}).click();await expect(manager.locator('#assignment-error')).toHaveText('Enter a reason for changing the responsible staff member.');await expect(reason).toBeFocused();
+ const api=href.replace('/requests/','/api/requests/');
+ const rejected=await manager.request.patch(api,{headers:{origin:'http://127.0.0.1:3103'},data:{version:3,operation:'assign',assignedTo:'66666666-6666-4666-8666-666666666666',note:' '}});
+ expect(rejected.status()).toBe(400);
+ await reason.fill('Covering the original staff member');await manager.getByRole('button',{name:'Save assignment',exact:true}).click();
+ await expect.poll(async()=>{const r=await manager.request.get(api);return (await r.json()).assignments[0]?.reason;}).toBe('Covering the original staff member');
+ await manager.reload();const history=manager.locator('section').filter({has:manager.getByRole('heading',{name:'Assignment history',exact:true})});
+ await expect(history).toContainText('Covering the original staff member');await expect(history.locator('article')).toHaveCount(2);
+ expect(await manager.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+ await manager.screenshot({path:'test-results/reassignment-mobile.png',fullPage:true});
+ await page.reload();await expect(page.locator('section').filter({has:page.getByRole('heading',{name:'Assignment history',exact:true})})).toContainText('Covering the original staff member');
+ await context.close();
+});

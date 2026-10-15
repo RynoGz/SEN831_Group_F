@@ -9,7 +9,7 @@ export const USERS={
  admin:'55555555-5555-4555-8555-555555555555',
  restricted:'66666666-6666-4666-8666-666666666666',
 };
-export async function database(){
+export async function database({throughMigration=Infinity}={}){
  const db=new PGlite();
  await db.exec(`create role anon; create role authenticated;
  create schema auth;create table auth.users(id uuid primary key,email text);
@@ -23,7 +23,7 @@ export async function database(){
  grant usage on schema storage to authenticated;
  grant select,insert,delete on storage.objects to authenticated;`);
  const dir=new URL('../../supabase/migrations/',import.meta.url);
- for(const file of (await readdir(dir)).filter(f=>f.endsWith('.sql')).sort()){
+ for(const file of (await readdir(dir)).filter(f=>f.endsWith('.sql')&&Number.parseInt(f,10)<=throughMigration).sort()){
   // PGlite lacks pgcrypto; these migrations use the PostgreSQL built-in UUID generator.
   const sql=(await readFile(new URL(file,dir),'utf8')).replace('create extension if not exists "pgcrypto";','');
   await db.exec(sql);
