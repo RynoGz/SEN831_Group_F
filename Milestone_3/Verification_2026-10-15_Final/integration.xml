@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="DB01 FR-001/010: insert creates Submitted status, time and attributable history" time="2.479162" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB02 NFR-001/002: other requester and admin cannot read a request" time="0.013080" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB03 NFR-002: sensitive request requires scoped clearance" time="0.016224" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB04 FR-010/NFR-003: accept, assign, work, resolve and close preserve audit" time="0.052240" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB05 FR-010: skipped transition rolls back without history/version change" time="0.016026" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB06 NFR-005: stale version update rejected" time="0.018391" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB07 FR-011: private staff comment is invisible to requester" time="0.015604" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB08 NFR-001: requester cannot call staff operation or direct update" time="0.011478" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB09 FR-009: manager cannot assign staff outside category scope" time="0.013180" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB10 FR-010: reopening request records reason without changing terminal status" time="0.012791" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB11 FR-001/NFR-002: staged attachment linking enforces ownership and read access" time="0.018901" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB12 NFR-005: failed initial-history write rolls back the request" time="0.009579" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB13 NFR-002: direct insert cannot forge an attachment link" time="0.003232" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB14 attachment recovery: owner can delete an unlinked staged file" time="0.011340" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="CRDB01: initial assignment and saving same assignee need no reason" time="2.496315" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB02: blank reassignment reasons reject atomically through direct RPC" time="0.073336" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB03: reassignment retains original history and saves reason actor and time" time="0.031419" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB04: 4000 characters accepted and 4001 rejected without mutation" time="0.026989" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB05: valid reasons do not bypass permissions scope or stale versions" time="0.022922" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB06: private reasons remain hidden from requester and direct column reads" time="0.024528" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB07: migration preserves existing assignment data without invented reasons" time="1.400162" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB08: conflict migration preserves existing reasons, permissions and valid workflow" time="1.665819" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<!-- tests 22 -->
+	<!-- suites 0 -->
+	<!-- pass 22 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 5962.2849 -->
+</testsuites>

@@ -1,0 +1,17 @@
+{
+  "executedAt": "2026-10-15T20:04:12.453Z",
+  "environment": "Hosted Supabase",
+  "results": [
+    "Direct hosted RPC returns HTTP 409 and PT409 without timeout",
+    "Rejected stale RPC leaves request, history, assignments and comments unchanged",
+    "Application maps conflict to HTTP 409 and helpful reload message without mutation",
+    "Fresh-version update succeeds exactly once, increments version and preserves lifecycle status"
+  ],
+  "fixtureRequestId": "da7e64f9-9fa1-46b2-ae1a-968cef7bcdff",
+  "directResponse": {
+    "status": 409,
+    "code": "PT409",
+    "elapsedMs": 235
+  },
+  "passed": true
+}

@@ -66,3 +66,29 @@ test('CRDB07: migration preserves existing assignment data without invented reas
   await assert.rejects(rpc(legacy,USERS.manager,r.request_id,3,'assign',{assignedTo:USERS.restricted}),/Enter a reason/);
  }finally{await legacy.close();}
 });
+
+test('CRDB08: conflict migration preserves existing reasons, permissions and valid workflow',async()=>{
+ const legacy=await database({throughMigration:7});
+ try{
+  const r=await createRequest(legacy);
+  await rpc(legacy,USERS.staff,r.request_id,1,'transition',{status:'Accepted'});
+  await rpc(legacy,USERS.manager,r.request_id,2,'assign',{assignedTo:USERS.staff,note:'Existing private note',visible:false});
+  const snapshot=async()=>({
+   request:(await legacy.query('select * from requests where request_id=$1',[r.request_id])).rows,
+   assignments:(await legacy.query('select * from assignments where request_id=$1',[r.request_id])).rows,
+   comments:(await legacy.query('select * from request_comments where request_id=$1',[r.request_id])).rows,
+   privileges:(await legacy.query("select proacl,prosecdef,proconfig from pg_proc where oid='public.m3_change_request(uuid,integer,text,text,uuid,text,boolean,timestamp with time zone)'::regprocedure")).rows,
+  });
+  const before=await snapshot();
+  const migration=await readFile(new URL('../../supabase/migrations/008_m3_version_conflict.sql',import.meta.url),'utf8');
+  await legacy.exec(migration);
+  await legacy.exec(migration);
+  assert.deepEqual(await snapshot(),before);
+  await assert.rejects(rpc(legacy,USERS.manager,r.request_id,2,'assign',{assignedTo:USERS.restricted,note:'Stale attempt'}),e=>e.code==='PT409');
+  assert.deepEqual(await snapshot(),before);
+  await rpc(legacy,USERS.manager,r.request_id,3,'assign',{assignedTo:USERS.restricted,note:'Valid current version'});
+  const history=(await asUser(legacy,USERS.requester,tx=>tx.query('select * from m3_assignment_history($1)',[r.request_id]))).rows;
+  assert.equal(history[0].reason,'Valid current version');assert.equal(history[1].reason,null);
+  await assert.rejects(rpc(legacy,USERS.requester,r.request_id,4,'transition',{status:'In Progress'}),e=>e.code==='42501');
+ }finally{await legacy.close();}
+});

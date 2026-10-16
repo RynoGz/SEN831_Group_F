@@ -1,0 +1,656 @@
+{
+  "startedAt": "2026-10-15T20:09:51.874Z",
+  "environment": "Local production Next.js build on 3104 connected to hosted Supabase",
+  "concurrentIdentities": 3,
+  "reads": [
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 914.8090999999986,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 1272.9670999999944,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1584.9948000000004,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 853.6554000000033,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 1232.5437999999995,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 894.5135999999984,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1482.1546000000017,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 936.0683000000063,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 875.5843999999997,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 836.2661000000007,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1561.9356999999945,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 844.5391999999993,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 876.0803999999989,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 867.7686000000031,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 877.9942999999985,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1498.493300000002,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 836.4348000000027,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 811.4712,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 849.8445999999967,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 922.3636999999944,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1476.3660000000018,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 872.0737999999983,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 943.9702999999936,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 875.9026999999987,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 856.4186000000045,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1877.2161999999953,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 847.3974000000017,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 1243.3076,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 863.9432000000015,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1475.0797999999995,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 890.1353999999992,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 865.515800000001,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 918.315300000002,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1517.2415000000037,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 900.6864999999962,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 871.1442000000025,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 877.2092000000048,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 835.3508000000002,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1452.9619999999995,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 824.890800000001,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 867.4351000000024,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 863.4608000000007,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1473.3666999999987,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 870.5731999999989,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 861.9387000000061,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 884.7424000000028,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1483.5260000000053,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 1205.6765999999989,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 858.8917000000001,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "own-list",
+      "ms": 898.2690000000002,
+      "status": 200,
+      "records": 3,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "own-list",
+      "ms": 873.3508000000002,
+      "status": 200,
+      "records": 9,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1480.5961000000025,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1570.3179999999993,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1514.7797999999966,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1507.5088000000032,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1495.4994000000006,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1499.1726000000053,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1486.6013000000094,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 1673.554099999994,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "management-data",
+      "ms": 4185.502299999993,
+      "status": 200,
+      "records": 15,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "details",
+      "ms": 1974.824099999998,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "details",
+      "ms": 2087.9516000000003,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "details",
+      "ms": 2415.754700000005,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "details",
+      "ms": 1953.7440999999963,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "details",
+      "ms": 2244.422200000001,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "details",
+      "ms": 1923.7309999999998,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "details",
+      "ms": 1913.0927000000083,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "details",
+      "ms": 2038.1705999999976,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "details",
+      "ms": 1946.1471999999922,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "details",
+      "ms": 1900.383400000006,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "details",
+      "ms": 1947.1564999999973,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "details",
+      "ms": 1994.378199999992,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "manager",
+      "operation": "details",
+      "ms": 1890.7466999999888,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "operation": "details",
+      "ms": 1870.1521999999968,
+      "status": 200,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "operation": "details",
+      "ms": 1912.9642999999924,
+      "status": 200,
+      "ok": true
+    }
+  ],
+  "submissions": [
+    {
+      "role": "requester",
+      "ms": 1930.9902999999977,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "ms": 1915.956900000001,
+      "ok": true
+    },
+    {
+      "role": "requester",
+      "ms": 1399.9170999999988,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "ms": 1411.9415000000008,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "ms": 1400.9274000000005,
+      "ok": true
+    },
+    {
+      "role": "other",
+      "ms": 1399.9222000000009,
+      "ok": true
+    }
+  ],
+  "interactions": [
+    {
+      "role": "requester",
+      "operation": "search",
+      "ms": 48.24689999999828,
+      "ok": true
+    }
+  ],
+  "fixturePaths": [
+    "/requests/8fa18740-cb4d-4929-8930-3043ab275576",
+    "/requests/4abc25eb-e5c1-4de4-8938-b5425b3e637a",
+    "/requests/7f0e7bcb-35cf-4986-ac17-b8903e27560e",
+    "/requests/541cd905-dbf6-4890-a95a-e0b81d1fe640",
+    "/requests/2a6af4cd-e7ce-4524-8910-2a55ef553207",
+    "/requests/f4635159-2e69-46a8-a686-511cceb8a60f"
+  ],
+  "limitations": [
+    "Small controlled exercise with current fictional hosted data, not the local 1,000-row workload.",
+    "API read timings include application and hosted database; UI filter timings are measured after data loads.",
+    "No hosted database backup/restore or routine backup reliability claim."
+  ],
+  "visibleRowsByActor": {
+    "requester": 9,
+    "other": 3,
+    "manager": 15
+  },
+  "error": {
+    "name": "TimeoutError",
+    "message": "locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Status', { exact: true })\u001b[22m\n"
+  },
+  "passed": false,
+  "completedAt": "2026-10-15T20:11:46.259Z"
+}

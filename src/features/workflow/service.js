@@ -6,7 +6,13 @@ const UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]
 export class WorkflowError extends Error {
  constructor(message,status=400){ super(message); this.status=status; }
 }
-function checked(result){ if(result.error) throw new WorkflowError('The operation could not be completed.',result.error.code==='40001'?409:result.error.code==='42501'?403:400); return result.data; }
+function checked(result){
+ if(result.error){
+  const conflict=['PT409','40001'].includes(result.error.code);
+  throw new WorkflowError(conflict?'This request has changed. Reload it and try again.':'The operation could not be completed.',conflict?409:result.error.code==='42501'?403:400);
+ }
+ return result.data;
+}
 export async function session(client){
  const {data,error}=await client.auth.getUser();
  if(error||!data?.user) throw new WorkflowError('Please sign in.',401);
@@ -28,13 +34,17 @@ export async function detail(client,id){
  if(!UUID.test(id)) throw new WorkflowError('Request unavailable.',404);
  const row=checked(await client.from('requests').select('*,categories(name),statuses(name)').eq('request_id',id).maybeSingle());
  if(!row) throw new WorkflowError('Request unavailable.',404);
- const history=checked(await client.from('status_history').select('*,statuses(name)').eq('request_id',id).order('changed_at'))??[];
- const comments=checked(await client.from('request_comments').select('*').eq('request_id',id).order('created_at'))??[];
- const assignments=checked(await client.rpc('m3_assignment_history',{p_id:id}))??[];
- const reopenings=checked(await client.from('reopening_requests').select('*').eq('request_id',id))??[];
- const ownsRequest=checked(await client.rpc('m3_is_owner',{p_id:id}));
- const canWork=checked(await client.rpc('m3_can_work',{p_id:id}));
- return {request:row,history,comments,assignments,reopenings,actor:{...actor,ownsRequest,canWork}};
+ // The parent request is authorised above; these read-only queries are independent.
+ const results=await Promise.all([
+  client.from('status_history').select('*,statuses(name)').eq('request_id',id).order('changed_at'),
+  client.from('request_comments').select('*').eq('request_id',id).order('created_at'),
+  client.rpc('m3_assignment_history',{p_id:id}),
+  client.from('reopening_requests').select('*').eq('request_id',id),
+  client.rpc('m3_is_owner',{p_id:id}),
+  client.rpc('m3_can_work',{p_id:id}),
+ ]);
+ const [history,comments,assignments,reopenings,ownsRequest,canWork]=results.map(checked);
+ return {request:row,history:history??[],comments:comments??[],assignments:assignments??[],reopenings:reopenings??[],actor:{...actor,ownsRequest,canWork}};
 }
 export async function submit(client,input){
  const actor=await session(client);

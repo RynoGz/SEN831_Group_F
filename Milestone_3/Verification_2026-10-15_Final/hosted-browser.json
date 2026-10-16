@@ -1,0 +1,48 @@
+{
+  "startedAt": "2026-10-15T19:53:04.941Z",
+  "environment": "Next.js development server with hosted Supabase",
+  "results": [
+    {
+      "name": "Browser requester login against hosted Auth",
+      "result": "passed"
+    },
+    {
+      "name": "Browser required-field validation",
+      "result": "passed"
+    },
+    {
+      "name": "Browser request form submits and retrieves hosted request",
+      "result": "passed"
+    },
+    {
+      "name": "Browser private attachment upload and protected download",
+      "result": "passed"
+    },
+    {
+      "name": "Browser cross-requester access denied",
+      "result": "passed"
+    },
+    {
+      "name": "Browser staff queue and scoped details",
+      "result": "passed"
+    },
+    {
+      "name": "Browser manager assignment and required reassignment reason",
+      "result": "passed"
+    },
+    {
+      "name": "Browser saved assignment history survives reload on mobile",
+      "result": "passed"
+    },
+    {
+      "name": "Browser manager completes lifecycle and requester sees closure",
+      "result": "passed"
+    },
+    {
+      "name": "Hosted Next.js API denies unauthorised and cross-origin operations",
+      "result": "passed"
+    }
+  ],
+  "createdFictionalRequestPath": "/requests/a16c0ab9-1449-4bfb-9984-09d978cbdfc4",
+  "completedAt": "2026-10-15T19:54:17.818Z"
+}
