@@ -1,0 +1,36 @@
+import {createRequire} from 'node:module';
+import {writeFileSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const require=createRequire(process.cwd()+'/package.json');
+const {chromium,expect:baseExpect}=require('@playwright/test');
+const expect=baseExpect.configure({timeout:30000});
+const baseURL='http://127.0.0.1:3104',browser=await chromium.launch({headless:true});
+const out=new URL('./hosted-performance-results.json',import.meta.url);
+const report={startedAt:new Date().toISOString(),environment:'Local production Next.js build on 3104 connected to hosted Supabase',concurrentIdentities:3,reads:[],submissions:[],interactions:[],fixturePaths:[],limitations:['Small controlled exercise with current fictional hosted data, not the local 1,000-row workload.','API read timings include application and hosted database; UI filter timings are measured after data loads.','No hosted database backup/restore or routine backup reliability claim.']};
+const actors=[];
+function save(){writeFileSync(out,JSON.stringify(report,null,2));}
+function stats(values,target){const a=values.map(x=>x.ms).sort((x,y)=>x-y);return {samples:a.length,p95Ms:a[Math.ceil(a.length*.95)-1],maxMs:a.at(-1),errors:values.filter(x=>!x.ok).length,targetMs:target,passed:values.length>0&&values.every(x=>x.ok)&&a[Math.ceil(a.length*.95)-1]<=target};}
+async function login(role){const context=await browser.newContext({baseURL});const page=await context.newPage();page.setDefaultTimeout(30000);await page.goto('/auth/login');await page.getByLabel('Email',{exact:true}).fill(role+'@example.test');await page.getByLabel('Password',{exact:true}).fill('Fictional-test-password-1!');await page.getByRole('button',{name:'Sign in',exact:true}).click();await expect(page).toHaveURL(/\/(requests|management)$/);const a={role,page,context,endpoint:role==='manager'?'/api/work':'/api/my-requests'};actors.push(a);return a;}
+async function submit(a,i){await a.page.goto('/requests/new');await a.page.getByLabel('Title',{exact:false}).fill('Hosted performance '+report.startedAt+' '+a.role+' '+i);await a.page.getByLabel('Description',{exact:false}).fill('Fictional hosted performance fixture. No actual service work required.');await a.page.getByLabel('Category',{exact:false}).selectOption({label:'IT support'});await a.page.getByLabel('Location',{exact:false}).fill('Fictional test hall');await a.page.getByRole('radio',{name:'No',exact:true}).check();const start=performance.now();try{await a.page.getByRole('button',{name:'Submit request',exact:true}).click();await expect(a.page.getByRole('heading',{name:'Your request has been saved'})).toBeVisible();const href=await a.page.getByRole('link',{name:'View request',exact:true}).getAttribute('href');report.fixturePaths.push(href);report.submissions.push({role:a.role,ms:performance.now()-start,ok:true});return href;}catch(e){report.submissions.push({role:a.role,ms:performance.now()-start,ok:false,error:e.message.slice(0,200)});throw e;}finally{save();}}
+try{
+ for(const role of ['requester','other','manager'])await login(role);
+ for(const a of actors.filter(x=>x.role!=='manager'))for(let i=0;i<3;i++)await submit(a,i);
+ console.log('Completed 6 measured hosted UI submissions');
+ for(const a of actors){const r=await a.page.request.get(a.endpoint);assert.equal(r.status(),200);const b=await r.json();a.rows=b.requests;a.detail='/api/requests/'+b.requests[0].request_id;}
+ report.visibleRowsByActor=Object.fromEntries(actors.map(a=>[a.role,a.rows.length]));save();
+ await Promise.all(actors.map(async a=>{for(let i=0;i<20;i++){const start=performance.now();try{const r=await a.page.request.get(a.endpoint,{timeout:15000});const b=await r.json();report.reads.push({role:a.role,operation:a.role==='manager'?'management-data':'own-list',ms:performance.now()-start,status:r.status(),records:b.requests?.length,ok:r.status()===200&&Array.isArray(b.requests)});}catch(e){report.reads.push({role:a.role,operation:a.role==='manager'?'management-data':'own-list',ms:performance.now()-start,ok:false,error:e.name});}save();}}));
+ console.log('Completed 60 hosted list/report reads across 3 concurrent identities');
+ await Promise.all(actors.map(async a=>{for(let i=0;i<5;i++){const start=performance.now();try{const r=await a.page.request.get(a.detail,{timeout:15000});const b=await r.json();report.reads.push({role:a.role,operation:'details',ms:performance.now()-start,status:r.status(),ok:r.status()===200&&!!b.request});}catch(e){report.reads.push({role:a.role,operation:'details',ms:performance.now()-start,ok:false,error:e.name});}save();}}));
+ console.log('Completed 15 hosted detail reads');
+ for(const a of actors){await a.page.goto(a.role==='manager'?'/work':'/requests');await expect(a.page.getByRole('searchbox')).toBeVisible();
+  for(let i=0;i<5;i++){
+   let start=performance.now();await a.page.getByRole('searchbox').fill(i%2?'':'Hosted performance');await expect(a.page.getByRole('searchbox')).toHaveValue(i%2?'':'Hosted performance');await a.page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));report.interactions.push({role:a.role,operation:'search',ms:performance.now()-start,ok:true});
+   start=performance.now();await a.page.getByLabel('Status',{exact:true}).selectOption('Submitted');await expect(a.page.getByLabel('Status',{exact:true})).toHaveValue('Submitted');await a.page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));report.interactions.push({role:a.role,operation:'filter',ms:performance.now()-start,ok:true});
+   start=performance.now();await a.page.getByLabel('Sort',{exact:true}).selectOption(i%2?'newest':'oldest');await expect(a.page.getByLabel('Sort',{exact:true})).toHaveValue(i%2?'newest':'oldest');await a.page.evaluate(()=>new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r))));report.interactions.push({role:a.role,operation:'sort',ms:performance.now()-start,ok:true});
+  }save();
+ }
+ const manager=actors.find(a=>a.role==='manager');report.fixtureCleanup=[];
+ for(const href of report.fixturePaths){const api=href.replace('/requests/','/api/requests/');const d=await (await manager.page.request.get(api)).json();const r=await manager.page.request.patch(api,{headers:{origin:baseURL},data:{version:d.request.version,operation:'transition',status:'Rejected',note:'Fictional performance verification complete; no real service work required'}});report.fixtureCleanup.push({path:href,status:r.status(),terminal:r.status()===200});save();}
+ report.summary={};for(const operation of ['own-list','management-data','details'])report.summary[operation]=stats(report.reads.filter(x=>x.operation===operation),2000);for(const operation of ['search','filter','sort'])report.summary[operation]=stats(report.interactions.filter(x=>x.operation===operation),2000);report.summary.submission=stats(report.submissions,3000);report.passed=Object.values(report.summary).every(x=>x.passed);console.log(JSON.stringify(report.summary,null,2));
+}catch(e){report.error={name:e.name,message:e.message.slice(0,1500)};report.passed=false;console.log('ERROR '+e.message.slice(0,400));process.exitCode=1;}
+finally{report.completedAt=new Date().toISOString();save();for(const a of actors)await a.context.close();await browser.close();}

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="CR01: first assignment and unchanged assignee allow an omitted reason" time="0.001228" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="CR02: reassignment rejects missing and whitespace-only reasons" time="0.000376" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="CR03: reason length boundary and malformed values are checked" time="0.000215" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="BB01 FR-014 BVA: overdue before/equal/after deadline" time="0.001493" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB02 FR-014 decision table: terminal states excluded even after deadline" time="0.001147" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB03 FR-015: aggregate scope supplied by authorised query" time="0.000385" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB04 attachment BVA: reject empty and oversized; accept exact size" time="0.000837" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB05 attachment EP: declared type must match signature" time="0.000351" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT01: database link failure removes staged file" time="0.000515" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT02: cleanup failure reported rather than claiming success" time="0.000419" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="uses exactly the seven CivicConnect request statuses" time="0.002095" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="allows every defined lifecycle transition" time="0.001776" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects skipped lifecycle stages" time="0.000599" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="allows rejection only from Submitted" time="0.000266" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="does not allow transitions out of Closed or Rejected" time="0.000210" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects transitions to the same status" time="0.000256" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects unknown current and new statuses" time="0.000262" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects reopening while its rules remain deferred" time="0.000220" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="FR-001: accepts required text and an explicit false sensitivity answer without an attachment" time="0.001181" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-001: rejects empty and whitespace-only required text with field feedback" time="0.000847" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-002: rejects an unknown category even if the caller bypasses the select control" time="0.001475" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-001: an absent or string sensitivity answer cannot silently become false" time="0.000338" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="normalisation trims text without accepting caller-supplied identity, status or timestamp" time="0.000256" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="malformed input produces validation feedback instead of crashing" time="0.000207" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<!-- tests 24 -->
+	<!-- suites 0 -->
+	<!-- pass 24 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 155.1504 -->
+</testsuites>

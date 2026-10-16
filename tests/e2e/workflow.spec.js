@@ -27,6 +27,24 @@ test('API04 NFR-001: cross-origin mutation denied before database work',async({p
  await login(page,'requester');const r=await page.request.patch('/api/requests/11111111-1111-4111-8111-111111111111',{headers:{origin:'https://untrusted.example'},data:{version:1,operation:'transition',status:'Accepted'}});expect(r.status()).toBe(403);
 });
 
+test('API05 NFR-005: stale update returns a reload message and preserves the saved request',async({page,browser})=>{
+ await login(page,'requester');const href=await submit(page,`Version conflict ${Date.now()}`);const api=href.replace('/requests/','/api/requests/');
+ const context=await browser.newContext();
+ try{
+  const manager=await context.newPage();await login(manager,'manager');
+  const before=await (await manager.request.get(api)).json();
+  const patch=data=>manager.request.patch(api,{headers:{origin:'http://127.0.0.1:3103'},data,timeout:10000});
+  expect((await patch({version:before.request.version,operation:'transition',status:'Accepted'})).status()).toBe(200);
+  const saved=await (await manager.request.get(api)).json();
+  const stale=await patch({version:before.request.version,operation:'comment',note:'Stale comment must not persist'});
+  expect(stale.status()).toBe(409);expect(await stale.json()).toEqual({error:'This request has changed. Reload it and try again.'});
+  expect(await (await manager.request.get(api)).json()).toEqual(saved);
+  expect((await patch({version:saved.request.version,operation:'comment',note:'Current version succeeds'})).status()).toBe(200);
+  const updated=await (await manager.request.get(api)).json();
+  expect(updated.request.version).toBe(saved.request.version+1);expect(updated.comments.some(c=>c.body==='Current version succeeds')).toBe(true);
+ }finally{await context.close();}
+});
+
 test('CRE2E01 FR-009: manager reassignment requires a reason and preserves history',async({page,browser})=>{
  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
  await login(page,'requester');const href=await submit(page,`Reassignment ${Date.now()}`);

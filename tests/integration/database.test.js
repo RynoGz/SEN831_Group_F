@@ -36,7 +36,11 @@ test('DB05 FR-010: skipped transition rolls back without history/version change'
 });
 test('DB06 NFR-005: stale version update rejected',async()=>{
  const r=await createRequest(db);await rpc(db,USERS.staff,r.request_id,1,'transition',{status:'Accepted'});
- await assert.rejects(rpc(db,USERS.manager,r.request_id,1,'assign',{assignedTo:USERS.staff}),/reload and retry/);
+ const before=(await db.query('select to_jsonb(r) request from requests r where request_id=$1',[r.request_id])).rows[0];
+ await assert.rejects(rpc(db,USERS.manager,r.request_id,1,'assign',{assignedTo:USERS.staff}),e=>e.code==='PT409'&&/reload and retry/.test(e.message));
+ assert.deepEqual((await db.query('select to_jsonb(r) request from requests r where request_id=$1',[r.request_id])).rows[0],before);
+ assert.equal((await db.query('select * from assignments where request_id=$1',[r.request_id])).rows.length,0);
+ assert.equal((await db.query('select * from status_history where request_id=$1',[r.request_id])).rows.length,2);
 });
 test('DB07 FR-011: private staff comment is invisible to requester',async()=>{
  const r=await createRequest(db);await rpc(db,USERS.staff,r.request_id,1,'comment',{note:'Internal fictional note',visible:false});

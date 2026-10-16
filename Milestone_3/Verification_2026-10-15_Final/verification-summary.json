@@ -1,0 +1,233 @@
+{
+  "recordedAt": "2026-10-15T20:20:41.306208+00:00",
+  "baseCommit": "4c35ffc76e6d5a49a82bd6718c77b080437f73f8",
+  "workingTreeChanges": true,
+  "releaseNote": "Evidence covers the working tree with migration 008 and concurrent authorised detail reads. A new committed submission candidate is not yet identified by this record.",
+  "localFunctionalCases": {
+    "unit": 24,
+    "databaseIntegration": 22,
+    "browserAndApi": 9,
+    "total": 55,
+    "passed": true
+  },
+  "qualityChecks": {
+    "lint": "Passed; complete lint before detail optimisation and affected JavaScript files linted after optimisation",
+    "secretPatternCheck": "Passed",
+    "productionDependencyVulnerabilities": 0,
+    "productionBuild": "Passed for hosted configuration and subsequently for simulation configuration"
+  },
+  "performance": {
+    "local1000RowsThreeIdentities": {
+      "environment": "Local production Next.js build + PostgreSQL-backed simulated Supabase; not hosted Supabase",
+      "operation": "Authenticated own-request list",
+      "concurrentUsers": 3,
+      "requests": 60,
+      "seededDataRows": 1000,
+      "recordsPerRead": 333,
+      "duration": "20 sequential reads per worker after warmup",
+      "p95Ms": 72.14729999999986,
+      "errors": 0,
+      "targetMs": 2000,
+      "interpretation": "Small local regression exercise only. Uses the NFR-006 dataset size and three local identities, but does not establish cloud latency, sustained production capacity, submission response time or recovery.",
+      "passed": true
+    },
+    "hostedSmallDataSummary": {
+      "own-list": {
+        "samples": 40,
+        "p95Ms": 1232.5437999999995,
+        "maxMs": 1272.9670999999944,
+        "errors": 0,
+        "targetMs": 2000,
+        "passed": true
+      },
+      "management-data": {
+        "samples": 20,
+        "p95Ms": 1877.2161999999953,
+        "maxMs": 4185.502299999993,
+        "errors": 0,
+        "targetMs": 2000,
+        "passed": true
+      },
+      "details": {
+        "samples": 15,
+        "p95Ms": 1473.6962999999996,
+        "maxMs": 1473.6962999999996,
+        "errors": 0,
+        "targetMs": 2000,
+        "passed": true
+      },
+      "search": {
+        "samples": 15,
+        "p95Ms": 45.80349999999817,
+        "maxMs": 45.80349999999817,
+        "errors": 0,
+        "targetMs": 2000,
+        "passed": true
+      },
+      "filter": {
+        "samples": 15,
+        "p95Ms": 34.09509999999864,
+        "maxMs": 34.09509999999864,
+        "errors": 0,
+        "targetMs": 2000,
+        "passed": true
+      },
+      "sort": {
+        "samples": 15,
+        "p95Ms": 34.48070000000007,
+        "maxMs": 34.48070000000007,
+        "errors": 0,
+        "targetMs": 2000,
+        "passed": true
+      },
+      "submission": {
+        "samples": 6,
+        "p95Ms": 1930.9902999999977,
+        "maxMs": 1930.9902999999977,
+        "errors": 0,
+        "targetMs": 3000,
+        "passed": true
+      }
+    },
+    "hostedVisibleRows": {
+      "requester": 9,
+      "other": 3,
+      "manager": 15
+    },
+    "hostedFixtureDisposition": "Six newly created performance requests marked Rejected with an explicit fictional-verification reason. No real request was removed."
+  },
+  "recovery": {
+    "environment": "Controlled local simulation, not hosted Supabase",
+    "passed": true,
+    "restoreMs": 468.5985999999998,
+    "lossWindowMs": 507
+  },
+  "findings": [
+    {
+      "id": "PERF-DETAIL-01",
+      "observation": "Initial hosted detail p95 exceeded 2000 ms at 2415.75 ms",
+      "correction": "After the authorised parent request is retrieved, independent read-only detail queries execute concurrently",
+      "finalP95Ms": 1473.6962999999996,
+      "status": "Corrected and locally regression tested; hosted remeasurement passed"
+    },
+    {
+      "id": "VERIFY-FILTER-01",
+      "observation": "Initial strict Status label selector did not locate the nested select label",
+      "correction": "Follow-up selects the existing filter form controls",
+      "status": "Corrected in verification harness; 45 interactions completed"
+    },
+    {
+      "id": "HOSTED-TIMEOUT-01",
+      "observation": "One post-workload stale request exceeded a 10-second client timeout",
+      "followup": {
+        "status": 409,
+        "body": {
+          "error": "This request has changed. Reload it and try again."
+        },
+        "elapsedMs": 2247,
+        "unchanged": true,
+        "passed": true
+      },
+      "status": "Subsequent direct and production route checks passed; transient cause unconfirmed; observation retained"
+    }
+  ],
+  "limitations": [
+    "Hosted performance used the existing small fictional dataset. It does not establish every NFR-006 operation at 1000 hosted rows or sustained production capacity.",
+    "Local 1000-row performance covers request-list retrieval, not every baseline operation at that dataset size.",
+    "Hosted database/Storage/Auth disaster recovery and routine scheduled backup reliability remain unverified; public application credentials cannot perform an administrator restore.",
+    "The current CI result for the new uncommitted changes is not asserted.",
+    "Existing PED and README were not modified by this verification run."
+  ],
+  "sourceSha256": {
+    ".github/workflows/m3-quality.yml": "ff1d25dcd8402f18754aec8ca96b1583d4b63e368b506d5ff8cd4d9e1b4e0db9",
+    "next.config.mjs": "70f691a735e2b4aeb0d0950121057e107a8038c95afbc5a16d4af8090bdf9091",
+    "package-lock.json": "442575a25a53833fd7c15bca12e3e547eb44f7942d3cdee7abb9fb8979739466",
+    "package.json": "caec49e689594a1331c53965be3bfd458394336cf5c1e79c5761fc98fee9b921",
+    "scripts/build-simulation.mjs": "0bd57a28c22024c62d0c4611e6cfe7b3c09978f6d16c1f71c5a9cdf141174f09",
+    "scripts/performance.mjs": "aad6b45d680440982228ba4043c65d569b5d5070c1d24aaad2471ddc2a110a45",
+    "scripts/run-performance.mjs": "fc191a3ab3771dbfdcc6495ad036b989f994d0aa53c16e897fb0f070fad6d4b8",
+    "scripts/run-staging.mjs": "091acf84fe06c321c5af154a825fc995165466ccccad63f19cf52fe24b72d108",
+    "scripts/security-check.mjs": "9465b0f437cf0475bd28c9f2484edd949a47f175682ceb8eb5843812464ddf5d",
+    "scripts/simulation-backup.mjs": "a873281f419a45d28b959abd2db1d1f6b34f4df724a47909af5dd768f1b11429",
+    "scripts/test-recovery.mjs": "ffa97d0d5b3ba32820ed127603c91cd793397614fae229443375e4d336e6c6dd",
+    "scripts/test.mjs": "fd5f8e1e42fc08a566c5e561db9175b6ad3b40c2f78249480e20e92089575f5b",
+    "src/app/api/my-requests/route.js": "b7f3a42f201079d3ec1cf615cf804318f1d356497591dc5fe8404e5a711c670a",
+    "src/app/api/requests/[requestId]/attachment/route.js": "0fd078331a323e99da174cb4182c24a679e2cde38d351fd1add3721f7412fb9f",
+    "src/app/api/requests/[requestId]/route.js": "a504c31e86f0c38bb8e01ad08f8b8579ebd367b3b1e7c2b59ff9f0ccad56ef73",
+    "src/app/api/session/route.js": "af31a1eead36b752a5e025703eda37737d09589a47fc8cd5c91ac1c0b6f18d43",
+    "src/app/api/work/route.js": "f861912144d1c1afdae7a4d955a6345357b4aa8c24ddc0f4be37dd3f33376c5e",
+    "src/app/auth/login/page.js": "9d34ff2720a80bd27ee6bd05318cb4c7113736426b84838985b8982aae391ccd",
+    "src/app/error.js": "f73df85ce1f2b97834140950af4561927fc0e19a32c6020e7455ee2fdc5363b0",
+    "src/app/globals.css": "4fa8a175a21bd1c0bce22cefe332abdd953fd4734c71021d7d8ce1d6c893134a",
+    "src/app/layout.js": "ba953c6389bc5753e60983335f03e439c0c5e6ade602e18b2f50426a33861de2",
+    "src/app/loading.js": "8dc751e5e7f8b6ab65348b5a9b9c5e92ddf85198b8fa525b69c607ee34101235",
+    "src/app/management/page.js": "9b38c741dba0aa95c7957c6eadd4ffc01a21f8190cbf0982c2444c125871f3f0",
+    "src/app/not-found.js": "7de8078fc1cf68f7c3847623c170ec36bd3faf72a246e750b1f365579f34be2c",
+    "src/app/page.js": "1021a9553e9e5b741f01b54ea89df0e0c5d04ba42817548decc2dcd2ac79afdc",
+    "src/app/requests/[requestId]/page.js": "af26131b9e8185cbf8154dc411c6ea3a01a292d4a0546c2391a5fd0fe02b178e",
+    "src/app/requests/example/page.js": "b9f792c3f166aa745259bd174191f94a5bed19e1381db20339599d0005e3d847",
+    "src/app/requests/new/page.js": "f38bbd7473c3b0fa85b735a623c25ac60fa4f980a595124608d2bffbc9434225",
+    "src/app/requests/page.js": "5dd86f5f63e9523a8faab9a809230cd9704fe7198e597445a85455d839a04019",
+    "src/app/work/page.js": "b67d2aeb5dcf35c5abb45d7461f3523b0eb02e635a9ddbc805379947b743948a",
+    "src/components/app-shell.js": "cad97968e910fb8a36fa7c36c84d4aee3e4a1656ff00124b6eb88cc6f62f402a",
+    "src/components/community-scene.js": "c173894cbf609b2a89b5016f5ebbdbba2a2dc37f59fa034ae5e3b7e691f361da",
+    "src/components/status-badge.js": "b9f3ad38847cdf92ee4be513c15ab1339b8e2ddc7f8388999a06f827438cf5d2",
+    "src/components/textarea.js": "3a00f239dded429f03a855c477e04ce607a66b1ee17fc8cebec816818bc7d951",
+    "src/domain/requests/assignment-reason.js": "1a02927800ace743fa82c71846eb95e0d4ed4dd087daca43653c85c4bd84df3c",
+    "src/domain/requests/reporting.js": "8929e47fe0eacab2b573b471e1956abf12eaf4540fcdf2ddd47e20352974e4e5",
+    "src/domain/requests/request-transition-policy.js": "802eacb764d7c91a0fc5ef14853d3d96767cf4a7a1f82f1a5bf157766aa4a462",
+    "src/features/attachments/attachment-store.js": "9dbad2e76e4ca65a0c6f32fbf06dbc9aa9d8b92ff4b280e3a08a249b0835d88d",
+    "src/features/requests/get-categories.js": "7261a1dffe8f3f0b296dbc2e2a51a09c7fff60fe12f7afa8d76bc79e9b16c75d",
+    "src/features/requests/get-my-requests.js": "e8f0745c7db110e2a447f119239a2547df0791b5add3660877feda629eb61b04",
+    "src/features/requests/get-requester.js": "5b25ac2f00d37776e52eb6d158dd8365026f1e03b5eb15225e271de836aed372",
+    "src/features/requests/preview-data.js": "b3461a8a02f22b5bb376c2a92c77600b3d19e71b29a5edd63007ba0c5ff7993e",
+    "src/features/requests/request-details.js": "cc9d6fe12104707656e724da1c0fce4c47ae21cb3cac03d66b2541f19d28a0c6",
+    "src/features/requests/request-form.js": "716aa44874c95a9df3da0c1aa660f7aea0e483ee30bb6f93eb5166971e0ef921",
+    "src/features/requests/submit-request.js": "0dd8dffa09f1bea71c461c23efd23ce26b6d4f500652b62740ee224b0b2965e9",
+    "src/features/requests/validate-request.js": "88d4c41b19f1936fbb0916ae40a94ed17e0708bcfca6a3ed00ef557826636874",
+    "src/features/workflow/account-nav.js": "f14ed751aa349b8964fb9194d2728a8f8c7a0b123b0922d14e3d7159a0b85d0d",
+    "src/features/workflow/attachment-upload.js": "91e251621a045bf12321cb14ca109a1b4887d55878f1fdc2a324af9d5f04c412",
+    "src/features/workflow/http.js": "7ba73b9e07a7cfb28d2b5e09a9ac522277dbc6a73f26b6d505a8a8f3fc80d10d",
+    "src/features/workflow/management.js": "51ce07edbaec91f5e35ff4b65b07456a9ce8e2a1b7a29302b2313cd8a765b15f",
+    "src/features/workflow/request-list.js": "ea408ba69ed5c4ff23fd97a26aee96cf647afbf8d2e582fd17a341ad7ac11304",
+    "src/features/workflow/request-workspace.js": "16e79a0e4c65cffc600c6161ebe05e5cbcd7cc3241e3bd1b5bb38de62137755a",
+    "src/features/workflow/service.js": "06ab3a931903c2d874933746b7194e91512ef2278c0df1f2c6530f3ae7b09463",
+    "src/features/workflow/use-api.js": "c26c2137a56599e33a343b6cec84d4f4e17c7359f23d7e8fda9706fe9efd2747",
+    "src/lib/supabase/client.js": "ad2c0a753a3f08975269039e6e27dd465a1937a0a8bc1676f5221338127c739f",
+    "src/lib/supabase/server.js": "c0cf93b5bbd28294e60dfd9cfabed0cb23ee0d5226831e14ff06138a30b04610",
+    "supabase/m3-test-users.example.sql": "83cc52b4aa7dbcccc69f09ca3e2ff273e49202ca6b7abfe43e7ba052706908ee",
+    "supabase/migrations/001_initial_schema.sql": "927fc4a509a4b9ff2cc1a4a42d3be68a83d690645dc8352f79b7d8cf337544b6",
+    "supabase/migrations/002_initial_status_history.sql": "eaee7898b556e86ff0a30e4a22b05fa960a2cf52c2c6e3d677fbd934b4b95d2a",
+    "supabase/migrations/003_request_rls.sql": "6b01768934a79e9fcec3ccf4b24189b888ae2bb7130c39d6340da72acd4f9cd5",
+    "supabase/migrations/004_secure_status_triggers.sql": "51dde9a7fc7a559a4ee36345d6c20c48f27bee14579cea417fc8cedf12b7efdd",
+    "supabase/migrations/005_m3_workflow.sql": "5b495971bf9bcd7682a31a9d111a17fe61a6ae6e205f5bf0e0078d42b81af0a2",
+    "supabase/migrations/006_m3_private_attachments.sql": "53b3342426be4704d517b95662f96e4187ff0325607ac8b82363a6f40f1d05ae",
+    "supabase/migrations/007_m3_reassignment_reason.sql": "66d27861ab393ee34db052751405c303fdd792181b991e4df1cdfc466fe91456",
+    "supabase/migrations/008_m3_version_conflict.sql": "da74fd490db395d13b86eaf1f72ccae706e04196408b62e19ea8d6118954b13a",
+    "tests/assignment-reason.test.js": "b7ebc67f2d7d4590c7494668a70323d5babc16372f020ee31bfe7e1416c572e7",
+    "tests/e2e/design.spec.js": "6e7b2124575b965beb82900969332119d0e6077ca0bdec3a12ca2daef180eae5",
+    "tests/e2e/workflow.spec.js": "53d99e253eea9a80bb3d3772249c5705d63988450559df745f541ddce6e3db16",
+    "tests/integration/database.test.js": "b938e464497ad10bbbb82b89bc17b6a23857d111b0b1bce62500a587082d827d",
+    "tests/integration/reassignment.test.js": "0213f05a1d01f1fd07b18d08de3007b9eb83e5b734951af4615e23430b47e212",
+    "tests/m3-rules.test.js": "042673aabecc4ccf9781d1ccd3bea7535bf6caf56477f0672ab6ad7d7bdeabbe",
+    "tests/request-transition-policy.test.js": "9651818025ad914b594da91e033f73215e89b9903c19ca8d94ae75271ee1da1c",
+    "tests/request-validation.test.js": "aa67f66daffca8bd3e02d046aed8d0f1337815df098d3d8f9a22073950a22b23",
+    "tests/support/database.js": "44753b44a904be7b2bec5d991f0447b2ced33620173c0f26f693ecfd6cfc75b1",
+    "tests/support/provider.mjs": "4025a16d84549eeecb5164b985c70a9ecdb0333d816974314c41436eba716868"
+  },
+  "evidenceSha256": {
+    "e2e.json": "fe1d778e23c279b7e304b7e9eaca69721800f9db304244bec00a707cd34d920c",
+    "hosted-browser.json": "632cc6c0010390989e8bf83df4bdded98a0b87f649e23eaef48c9a97d55679e6",
+    "hosted-conflict-focused.json": "da9ddfeecbb601501ac5b0b65a7e301421c3e2f248820ff975a68a8ef9d5047e",
+    "hosted-performance-initial.json": "bc2d4426d36ac7428dce2d1a883e2263598ad5d5f4d42f6f05a9c2f0b9d7f3db",
+    "hosted-performance.json": "227059503ecc4d4a366dcefaf3f92a864d306742db515f44fb7193fd8dbc3723",
+    "integration.xml": "7989da4dbafaf4215c04c95545ab59ba4a89b5e47e7e133e1b056a2deb4c0882",
+    "local-performance.json": "b41ab8cc63258808b81ebacbeffee5e7e0b03d1320964037bc86de9157cf2d5f",
+    "local-recovery.json": "7f6dd128318037767e07bb1372a4b26e40c671e0275b5a5b9a6e244f5c43a525",
+    "production-audit.json": "d520787a3210204aa2b3b75f021a445e75d617c500f3793f181a3da04ef64425",
+    "unit.xml": "e9e9a9cdb5fd60bcef9625b7f90675f5b862a8e41811278ab3aa4903361b6c5e",
+    "methods/hosted-browser.mjs": "9e6d9aa57d11a4c98700f3071c41009a00e595424550909c9f519401b382bc14",
+    "methods/hosted-performance-followup.mjs": "afa9e5b89a8c2366c0b48c0d8d1fc65faaf869d9948b07b79783bf1872bbca71",
+    "methods/hosted-performance.mjs": "e84665ff5bfc969bba1adeca111623ba41eebee400f6682cb051966f186c83ce"
+  }
+}
