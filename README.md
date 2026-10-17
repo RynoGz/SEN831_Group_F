@@ -26,6 +26,31 @@ The current engineering document is [PED v3.0 PDF](Milestone_3/SEN381_CivicConne
 
 The architecture remains a **modular monolith with layers**: one Next.js application with separate presentation, protected entry points, workflow services, domain rules and Supabase adapters. The stack is JavaScript, Next.js 16.3.8, React 19.3.0 and Supabase PostgreSQL/Auth/private Storage. Use **Node.js 24.x and npm 11.x**; the lockfile records resolved packages. Vercel remains a hosting option; no public production deployment is claimed.
 
+## M4 frontend finalisation
+
+The M3 baseline above remains the recorded release. Work on `Ryno_branch` prepares the final frontend and Vercel configuration; it does not establish final M4 acceptance or production readiness.
+
+- Submission displays the server's general error and preserves entered details when it fails.
+- Signed-out request creation returns to sign-in and then to the original permitted task. Signed-in accounts without a requester profile receive setup guidance.
+- The manager selector uses `GET /api/staff-directory?requestId=<UUID>`, with the agreed response `{ "staff": [{ "user_id": "UUID", "display_name": "Name" }] }`. It shows loading, failure/retry and empty states, and requires an explicit eligible choice unless the current assignee remains eligible. Staff retain self-assignment.
+- The directory endpoint and server session renewal are Steven's pending implementation. The selector has no simulated or legacy-directory fallback. Do not merge this contract-dependent frontend until the endpoint and affected checks pass.
+- Upload validation and displayed size derive from `MAX_ATTACHMENT_BYTES` in the attachment adapter. Its current value remains authoritative until Willem's reviewed server/bucket correction is merged; the frontend does not independently lower the limit.
+- API refreshes retain the current record while loading, block workflow saves during refresh, discard obsolete responses and offer recovery after failure or expired sign-in.
+
+The member documentation is [Ryno's M4 frontend and deployment contribution](Milestone_4/M4_Frontend_and_Deployment_Contribution.docx). Final RTM scores, integrated verification, release approval and PED v4.0 follow the other members' reviewed evidence.
+
+## Vercel deployment preparation
+
+[vercel.json](vercel.json) selects Next.js, `npm ci` and `npm run build`. Use Node.js 24 and the repository root. Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` to the hosted project before building, separately for the intended Preview and Production environments. Do not set simulation values or use `build:simulation` on Vercel. The application uses Supabase's HTTP client; no direct database connection string or service-role key is required for its normal runtime.
+
+Configure the GitHub project, reviewed production branch, suitable function region and deployment checks in Vercel's dashboard. Environment changes require a new deployment. The repository configuration alone does not configure account access, review rules, deployment protection, domains or a live deployment.
+
+Apply only missing reviewed migrations to the hosted database before verifying the dependent application. Timestamp and attachment migrations 009 and 010 are planned member work, not files already supplied by this frontend change. Confirm final filenames and order after their PRs merge.
+
+Before declaring the final deployed candidate ready, verify sign-in/session renewal, requester submission/retrieval, staff eligibility and assignment, lifecycle changes, private information, attachment boundaries/download and stale-write rejection on its HTTPS URL. Record the deployed source commit and real results. The current 5 MiB upload allowance needs Willem's Vercel compatibility correction before full-size uploads can be claimed to work on Vercel.
+
+Keep local simulation for repeatable CI tests. It does not run as part of the normal Vercel build. Treat production deployment as a team release decision supported by evidence.
+
 ## Option 1 Local simulation for the M3 demonstration
 
 From the repository root:

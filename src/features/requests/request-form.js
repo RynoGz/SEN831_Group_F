@@ -61,7 +61,10 @@ export default function RequestForm({ categories, requester, submitRequest }) {
           if (typeof result?.fieldErrors?.[key] === "string") safeErrors[key] = result.fieldErrors[key];
         }
         setErrors(safeErrors);
-        setFeedback({ kind: "error", message: "Your request could not be confirmed. Check the details and try again." });
+        const formError = result?.fieldErrors?.form;
+        setFeedback({ kind: "error", message: typeof formError === "string" && formError.trim()
+          ? formError
+          : "Your request could not be confirmed. Check the details and try again." });
       }
     } catch {
       setFeedback({ kind: "error", message: "We could not confirm that your request was saved. Please check your connection before trying again." });
@@ -113,7 +116,7 @@ export default function RequestForm({ categories, requester, submitRequest }) {
       </fieldset>
       <section className="attachment-note" aria-labelledby="attachment-heading"><h2 id="attachment-heading">Attachment <span className="muted">· optional</span></h2><p>You can add a private PDF, PNG or JPEG after saving your request. Submitting without one is allowed.</p></section>
       <div ref={resultPanel} tabIndex={-1}>
-        <div aria-live="polite" aria-atomic="true">{pending && <p>Submitting your request…</p>}{feedback && <p className={`feedback ${feedback.kind === "error" ? "error-feedback" : "info-feedback"}`}>{feedback.message}</p>}</div>
+        <div aria-live="polite" aria-atomic="true">{pending && <p>Submitting your request…</p>}{feedback && <p role={feedback.kind === 'error' ? 'alert' : undefined} className={`feedback ${feedback.kind === "error" ? "error-feedback" : "info-feedback"}`}>{feedback.message}</p>}</div>
       </div>
       <div className="form-actions"><button className="button" type="submit" disabled={pending}>{pending ? "Submitting…" : isPreview ? "Check request" : "Submit request"}</button><Link className="text-link" href="/">Back to home</Link></div>
       {isPreview && <p className="muted small">Checking the form validates your input in this browser. It does not save or send a request.</p>}
