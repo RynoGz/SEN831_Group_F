@@ -1,255 +1,187 @@
 # CivicConnect
 
-CivicConnect is a community service request management platform developed for the SEN381 integrated team project. This repository is the controlled engineering workspace for requirements, architecture, decisions, risks, traceability, application evidence and the software produced across the four milestones.
+CivicConnect is Group F's SEN381 service request application. Requesters report issues and follow updates, staff handle authorised work, and managers oversee assignment, closure and service information.
 
-## Current status
+## Milestone 3 baseline
 
-| Item | Status |
-| --- | --- |
-| Current phase | Milestone 2 engineering baseline |
-| Controlled baseline | PED v2.0 |
-| Baseline date | 30 September 2026 |
-| Team approval | Approved by all three members |
-| Application | Initial authenticated request submission and requester retrieval path implemented |
+The current engineering document is [PED v3.0 PDF](Milestone_3/SEN381_CivicConnect_PED_v3.0.pdf), with an [editable Word copy](Milestone_3/SEN381_CivicConnect_PED_v3.0.docx). It continues the M1/M2 requirements and project history. The Master Project Brief remains the governing source.
 
-The current controlled document is [SEN381 CivicConnect PED v2.0](Milestone_2/SEN381_CivicConnect_PED_v2.0.docx). It extends the approved [PED v1.0](Milestone_1/SEN381_CivicConnect_PED_v1.0.docx) without replacing the Milestone 1 requirements baseline.
+- Application version: **0.3.0**.
+- Verified application commit: [374c21e7c2b3d9ecc01add9ec2b957ca53139a97](https://github.com/RynoGz/SEN831_Group_F/commit/374c21e7c2b3d9ecc01add9ec2b957ca53139a97).
+- Integration: [PR #34](https://github.com/RynoGz/SEN831_Group_F/pull/34), approved by Steven and Willem and merged into main as 9e71bd9f230328ef4a0268c64402b370c9ae20ea.
+- CI: [M3 quality gate run #13](https://github.com/RynoGz/SEN831_Group_F/actions/runs/38874694724) passed for the verified application commit.
+- Release classification: **CONDITIONALLY READY for the defined M3 demonstration**. Remaining acceptance and operational limits are recorded in PED sections 19, 28, 29 and 32. This is not a production-readiness claim.
 
-PED v2.0 integrates the approved architecture, technology, persistence and detailed-design decisions; the evolved Requirements Traceability Matrix (RTM); application and verification evidence; risks; assumptions; forward-engineering considerations; decision history; AI usage; and known limitations.
+## Implemented application
 
-## Project purpose
+- Sign-in, request submission, required-field/category validation, saved confirmation, automatic time and initial Submitted status.
+- Requester-owned lists/details and staff/manager work restricted by role, category and sensitive-information clearance.
+- Assignment and controlled status changes through Submitted, Accepted, Assigned, In Progress, Resolved and Closed, with rejection from Submitted.
+- Required reasons when replacing an existing assignee, with attributable history under [CR-M3-01](Milestone_3/Change_Requests/CR_M3_01_Reassignment_Reason.md).
+- Public updates, internal comments, resolution/closure notes and recorded reopening requests.
+- One private PDF, PNG or JPEG attachment per request, up to 5 MiB, with size/type checks, protected download and cleanup handling.
+- Search, filters, sorting and scoped management summaries, including overdue work.
+- Atomic changes, status history and version checks that reject stale updates with a reload message.
+- Responsive pages, keyboard feedback and reduced-motion support for the tested tasks.
 
-CivicConnect replaces fragmented community service request handling with one controlled workflow. The platform is intended to help requesters submit and follow requests, authorised staff manage work and responsibility, and management view dependable service information.
+The architecture remains a **modular monolith with layers**: one Next.js application with separate presentation, protected entry points, workflow services, domain rules and Supabase adapters. The stack is JavaScript, Next.js 16.3.8, React 19.3.0 and Supabase PostgreSQL/Auth/private Storage. Use **Node.js 24.x and npm 11.x**; the lockfile records resolved packages. Vercel remains a hosting option; no public production deployment is claimed.
 
-The controlled requirements cover:
+## Option 1 Local simulation for the M3 demonstration
 
-- Submission and controlled categorisation of service requests.
-- Request status, history and in-application feedback.
-- Authorised work views, request details, search and filtering.
-- Assignment, controlled status changes and recorded actions.
-- Resolution and closure using an agreed request lifecycle.
-- Management views and reporting using justified dimensions.
-- Least-privilege access, sensitive-information handling and attributable changes.
-
-The Master Project Brief remains the governing source. Features that are designed or planned are not treated as implemented until repository and verification evidence exists.
-
-## Milestone 2 baseline
-
-The selected architecture is a modular monolith implemented as one Next.js application with clear internal presentation, request-operation, domain-policy and Supabase adapter boundaries.
-
-The accepted stack is:
-
-| Area | Selection |
-| --- | --- |
-| Language | JavaScript using ECMAScript modules |
-| Application | Next.js App Router 16.3.7 |
-| User interface | React and React DOM 19.3.0 |
-| Runtime | Node.js 24.x and npm 11.x |
-| Database and authentication | Supabase PostgreSQL and Supabase Auth |
-| Attachment direction | Private Supabase Storage; implementation deferred |
-| Deployment direction | Vercel; no production deployment is claimed |
-| Verification | Node test runner, browser checks and ESLint |
-
-Primary contribution evidence is retained in the member folders:
-
-- [Ryno's architecture and frontend contribution](Milestone_2/Member_1/CivicConnect_M2_Ryno_Architecture_and_Frontend_v0.2.docx) and [integration handoff](Milestone_2/Member_1/frontend-handoff.md).
-- [ADR-001: Technology Stack Decision](Milestone_2/Member_2/ADR-001-technology-stack.md), Steven's data and persistence artefacts, migrations and [RTM v0.4](Milestone_2/Member_2/CivicConnect_M2_RTM_v0.4.docx).
-- [Willem's design and register updates](Milestone_2/Member_3/CivicConnect_M2_Member_3_Design_and_Register_Updates.docx) and request-transition policy implementation.
-
-Every member remains responsible for understanding, reviewing and defending the complete integrated baseline.
-
-## Implemented application slice
-
-The repository currently contains:
-
-- Home, login, new-request, request-list and request-details pages.
-- Browser validation and accessible field/status feedback.
-- Supabase browser and server clients using authenticated sessions.
-- Controlled category retrieval from PostgreSQL.
-- Protected request submission with server-side required-field and category checks.
-- Automatic initial `Submitted` status and initial status-history creation through database triggers.
-- Requester-scoped request list and details retrieval using row-level security (RLS).
-- A framework-independent request-transition policy covering the seven approved statuses.
-- Versioned schema, seed data, integrity constraints, indexes, triggers, grants and RLS migrations.
-- Six request-input tests and eight transition-policy tests.
-
-The integrated slice demonstrates the path:
-
-```text
-Sign in → submit request → validate → persist → confirm → retrieve requester-owned request
-```
-
-The following remain incomplete or deferred:
-
-- Optional private attachment upload, limits, cleanup and coordinated recovery.
-- Staff assignment and management workflows.
-- Integration of the transition policy with an authorised atomic database status operation.
-- Complete actor attribution for the initial history record.
-- Cross-user RLS denial evidence and broader staff/management permission policies.
-- Quantitative performance and recovery verification.
-- Production deployment and production-readiness evidence.
-
-## Local setup
-
-Use Node.js **24.x** and npm **11.x**. Exact package versions are recorded in `package.json` and `package-lock.json`.
-
-Install dependencies from the repository root:
+From the repository root:
 
 ```bash
 npm ci
+npm run build:simulation
+npm run staging:simulation
 ```
 
-Create a nonproduction Supabase project and copy the environment template:
+Open **[http://127.0.0.1:3103](http://127.0.0.1:3103)**. Leave the terminal running; Ctrl+C stops staging.
 
-```bash
-copy .env.example .env.local
+The simulation starts the production application build on **3103** and its provider on **54329**. It applies the actual SQL migrations and access policies to a temporary PostgreSQL-compatible PGlite database, with simulated authentication and temporary file storage. It needs no hosted keys. Restarting clears its temporary requests and attachments.
+
+All these local accounts use **Fictional-test-password-1!**:
+
+| Account | Role and access |
+| --- | --- |
+| requester@example.test | Submit and retrieve owned requests |
+| other@example.test | A different requester for denied-access checks |
+| staff@example.test | Maintenance staff with sensitive clearance |
+| manager@example.test | Maintenance manager without sensitive clearance |
+| restricted@example.test | Maintenance staff without sensitive clearance |
+| admin@example.test | Administration without automatic operational request access |
+
+Staff and manager fixtures have no requester profile, so submit through a requester. Use a **non-sensitive Maintenance request** for the shared demonstration. Use separate browser profiles or sign out before switching users. All presenters must continue the same running simulation to share the same request data.
+
+These are simulation accounts, not hosted Supabase credentials. Local simulation does not establish hosted authentication security, cloud performance, scheduled backups or hosted disaster recovery.
+
+## Option 2 Use hosted nonproduction Supabase
+
+Install dependencies with npm ci if needed. Copy the environment template:
+
+```powershell
+Copy-Item .env.example .env.local
 ```
 
-On macOS or Linux, use:
-
-```bash
-cp .env.example .env.local
-```
-
-Set these values in `.env.local`:
+On macOS/Linux use cp .env.example .env.local. Set the public client values in the ignored .env.local:
 
 ```text
 NEXT_PUBLIC_SUPABASE_URL=your-nonproduction-project-url
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
 ```
 
-Never commit `.env.local`, credentials or service-role keys. A privileged key must never use a `NEXT_PUBLIC_` name.
+Never commit environment files, passwords or privileged credentials. Service-role or secret keys must never use a NEXT_PUBLIC_ name.
 
-Apply the SQL files in `supabase/migrations/` to the same nonproduction project in numerical order:
+For a fresh hosted project, apply these SQL files from supabase/migrations in order through a trusted database operator and Supabase's SQL editor or the controlled migration workflow:
 
-1. `001_initial_schema.sql`
-2. `002_initial_status_history.sql`
-3. `003_request_rls.sql`
-4. `004_secure_status_triggers.sql`
+1. 001_initial_schema.sql
+2. 002_initial_status_history.sql
+3. 003_request_rls.sql
+4. 004_secure_status_triggers.sql
+5. 005_m3_workflow.sql
+6. 006_m3_private_attachments.sql
+7. 007_m3_reassignment_reason.sql
+8. 008_m3_version_conflict.sql
 
-Use the Supabase SQL editor or the team's controlled migration workflow. The migrations create the relational schema, controlled categories and statuses, initial-status/history triggers, requester grants and row-level policies.
+Apply only missing migrations to an existing project; do not blindly rerun all files. Migration 008 preserves workflow and permissions while returning PT409 for business version conflicts instead of a retryable serialization error.
 
-For a local demonstration, create a fictional test user in Supabase Auth and add a matching `public.requesters` row whose `auth_user_id` equals that Auth user's ID. Use fictional, non-sensitive request data only.
+Create fictional test users in Supabase Auth. Each submitting account needs a public.requesters row with the matching Auth UUID. Staff and managers also need public.service_members records and explicit category scopes in public.service_scopes. Adapt [the provisioning example](supabase/m3-test-users.example.sql) to actual Auth IDs before use. An Auth account alone does not grant application roles.
 
-Start the application:
+Managers can only assign staff authorised for the request's category and sensitivity. An empty list can mean no eligible staff member has been provisioned. Earlier hosted test staff had **IT support** scope, unlike the simulation's Maintenance fixtures. The team supplies hosted credentials and checks current scope; do not assume the simulation password works in Supabase.
+
+Start development on a distinct port:
 
 ```bash
-npm run dev
+npm run dev -- --hostname 127.0.0.1 --port 3104
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Open **[http://127.0.0.1:3104](http://127.0.0.1:3104)** and use actual hosted test credentials. Development mode is separate from the production-build measurements recorded in the PED.
 
-## Verification commands
+For a production build using the same hosted configuration:
+
+```bash
+npm run build
+npm start -- --hostname 127.0.0.1 --port 3104
+```
+
+Public settings are embedded at build time. Stop running production instances before switching providers, then rebuild for the chosen environment. A simulation build is not a hosted build. Plain npm run dev defaults to port 3000 and does not start the simulation provider.
+
+## Verification and CI
+
+Stop manual staging first: browser and performance commands start their own services on ports 3103 and 54329.
 
 ```bash
 npm run lint
+npm run check:secrets
+npm audit --omit=dev --audit-level=high
 npm test
-npm run build
-npm start
+npm run test:integration
+npx playwright install chromium
+npm run build:simulation
+npm run test:e2e
+npm run test:performance
+npm run test:recovery
 ```
 
-`npm start` requires a successful production build first.
+Browser tests require the simulation production build. Unit/database tests need no hosted keys. Performance measures a selected local workload; recovery is a controlled local snapshot/restore. New reports go into ignored test-results and do not automatically replace submitted dated evidence.
 
-Recorded on 30 September 2026:
+[The M3 quality workflow](.github/workflows/m3-quality.yml) runs on PRs and pushes to main. It restores dependencies, checks quality/security, runs tests, builds the simulation, verifies performance/recovery and retains reports even after failure.
 
-- `npm run lint` passed.
-- `npm test` passed all 14 unit tests.
-- Steven's Supabase demonstration recorded successful submission, persistence, initial-history creation and requester retrieval.
-- `npm run build` did not pass the final merged audit because the fictional example route imports a removed default `RequestDetails` component. A clean production build must be recorded after that integration defect is corrected.
+### Recorded M3 evidence
 
-These results support the Milestone 2 engineering baseline. They do not claim completion of all CivicConnect requirements or production readiness.
+The [final verification folder](Milestone_3/Verification_2026-10-15_Final) contains dated results, methods and the [source/report hash manifest](Milestone_3/Verification_2026-10-15_Final/verification-summary.json). Its source hashes match the verified application. Its original base-commit/working-tree fields describe evidence collection time; PR #34 and run #13 identify the later committed and reviewed candidate.
+
+| Check | Recorded result |
+| --- | --- |
+| Local regression | 24 unit + 22 database + 9 browser/API cases, all passed; 55 unique local cases |
+| Hosted checks | 10 selected browser checks plus focused conflict verification passed |
+| Static/security | Lint, bounded secret-pattern check and production builds passed; production dependency audit recorded zero findings |
+| Local performance | 1000 requests, three concurrent identities, 60 reads, zero errors; list p95 72.15 ms against 2000 ms |
+| Hosted performance | Small-data p95 targets passed; one management read exceeded two seconds; NFR-006 remains partial |
+| Local recovery | Coordinated 1000-request restore/check 468.60 ms; simulated loss 507 ms; integrity/privacy checks passed |
+| Candidate CI | Actions run #13 passed for 374c21e |
+
+These are dated results, not checks rerun for every documentation edit. Passing selected cases does not establish every acceptance criterion or complete security.
+
+## Remaining limitations
+
+- Wider NFR-006 coverage, including all relevant operations at 1000 hosted rows and sustained hosted capacity, remains incomplete.
+- Local recovery does not establish reliable daily scheduling, changing-data backups or hosted database/Auth/Storage disaster restore.
+- Production monitoring, retention decisions and broader acceptance validation remain final-submission work.
+- Queries are bounded to 1000 records, so larger datasets can yield incomplete summaries.
+- The unexplained hosted timeout remains recorded despite successful retests.
+- Earlier high-severity development dependency findings remain separate from the passing production audit.
+
+The PED RTM, Risk Register, Defect Register and Technical Debt Register retain statuses and owners. Reopening requests are recorded; automatic reopening and every future review workflow are not claimed.
 
 ## Repository structure
 
 ```text
-.
-├── src/
-│   ├── app/                         Next.js routes, layout and global states
-│   ├── domain/requests/             Framework-independent lifecycle policy
-│   ├── features/requests/           Request UI, validation and server operations
-│   └── lib/supabase/                Browser and server Supabase clients
-├── supabase/migrations/             Versioned PostgreSQL schema and security changes
-├── tests/                           Request validation and transition-policy tests
-├── package.json                     Application dependencies and commands
-├── package-lock.json                Reproducible dependency tree
-├── .env.example                     Supabase environment-variable template
-├── Milestone_1/                     Approved PED v1.0 and supporting artefacts
-├── Milestone_2/
-│   ├── SEN381_CivicConnect_PED_v2.0.docx
-│   ├── Member_1/                    Architecture, frontend and handoff evidence
-│   ├── Member_2/                    Requirements, stack, persistence and RTM evidence
-│   ├── Member_3/                    Design decisions and register evidence
-│   ├── Assignment_2/                Supporting design research
-│   └── Assignment_3/                Supporting quality and readiness research
-├── Milestone_3/
-└── Milestone_4/
+src/app/                         Pages and protected API routes
+src/components/                  Shared interface components
+src/domain/requests/             Lifecycle, reason and reporting rules
+src/features/requests/           Request form, validation and entry points
+src/features/workflow/           Services and role-aware workspaces
+src/features/attachments/        Private attachment adapter
+src/lib/supabase/                Browser/server clients
+supabase/migrations/             Migrations 001 through 008
+supabase/m3-test-users.example.sql Hosted provisioning example
+tests/                          Unit, database and browser/API tests; provider
+scripts/                        Build, staging, verification and recovery
+.github/workflows/               CI
+Milestone_1/                    PED v1.0 and original baseline
+Milestone_2/                    PED v2.0 and design contributions
+Milestone_3/                    PED v3.0, change record and dated evidence
 ```
 
-## Team
+## Team and change control
 
-| Member | Primary Milestone 2 contribution |
+| Member | Primary M3 contribution |
 | --- | --- |
-| Ryno Goetz | Architecture, technology alignment, Next.js setup, frontend and README/PED integration |
-| Steven Riaan Piek | Requirements review, data model, persistence, migrations, authentication/request integration and RTM |
-| Willem Booysen | Detailed design decisions, registers, request-transition policy and PED integration |
+| Ryno Goetz | Architecture, setup, frontend, staging, recovery verification and integration |
+| Steven Riaan Piek | Data/persistence, backend workflow and requirements traceability |
+| Willem Booysen | Design rules, attachments/reporting, quality checks, CI and release evidence |
 
-Primary ownership does not limit shared accountability. All three members must understand the architecture, data model, technology and design decisions.
+All members must understand the complete application and PED. Use focused branches, meaningful commits and substantive PRs. Protected main requires the agreed checks and two non-author approvals. Review code and documentation together, and control affected requirements, decisions, risks and verification evidence.
 
-## Team workflow and GitHub governance
-
-1. Represent substantive work with a clear task or issue.
-2. Create a focused branch from the latest approved `main` state.
-3. Use meaningful commits describing the engineering change.
-4. Open a pull request explaining its purpose, affected artefacts and verification.
-5. Obtain meaningful approval from both non-author team members.
-6. Address review findings and obtain re-review where necessary.
-7. Merge only after the change satisfies the agreed controls.
-8. Update related requirements, traceability, risks and decisions when affected.
-
-Direct substantive development on `main` is not permitted. `main` is the controlled project state.
-
-Suggested branch naming:
-
-```text
-docs/short-description
-feature/short-description
-fix/short-description
-```
-
-## Baseline and change control
-
-PED v2.0 is the approved Milestone 2 engineering baseline. It preserves the approved Milestone 1 requirement identifiers and relationships, including `STK-*`, `NEED-*`, `SCP-*`, `FR-*`, `NFR-*`, `RG-ASR-*`, `R*` and `D*` records.
-
-An approved baseline must not be silently overwritten. A material change must record the reason, affected scope and requirements, traceability, architecture/data/interface impact, risk, decision, approval and verification evidence.
-
-## Responsible AI use
-
-Material AI-assisted work is disclosed in the PED AI Usage Register:
-
-- Ryno Goetz — OpenAI Codex.
-- Steven Riaan Piek — ChatGPT.
-- Willem Booysen — OpenAI Codex.
-
-AI output is treated as a suggestion rather than authoritative evidence. Each responsible student verifies important claims, records accepted or corrected contributions and remains able to explain and modify the submitted work.
-
-## Getting started with Git
-
-```bash
-git clone https://github.com/RynoGz/SEN831_Group_F.git
-cd SEN831_Group_F
-git switch main
-git pull
-git switch -c docs/short-description
-```
-
-Before committing, review the changed artefacts and confirm that linked identifiers, references and document versions remain consistent.
-
-## Milestone progression
-
-- **Milestone 1:** Engineering foundation and requirements baseline — completed.
-- **Milestone 2:** Architecture, technology, initial design and application foundation — baseline prepared.
-- **Milestone 3:** Controlled construction, integration, quality and release readiness.
-- **Milestone 4:** Final product, project success and engineering defence.
-
-## Academic integrity
-
-All submitted work must use appropriate citations and references. Repository evidence must be authentic and progressively produced. Each team member is accountable for personal contributions, reviews, AI-assisted work and the ability to defend the complete team baseline.
+Material AI assistance is disclosed in the PED AI Usage Register; students remain accountable for checking and understanding their work. PED v1.0/v2.0 remain historical baselines. PED v3.0 is the current M3 evidence index.
