@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-17",
+  "branch": "Ryno_branch",
+  "baseCommit": "821162b845910a289c9593b4bcdcad189b284943",
+  "workingTreeChanges": true,
+  "scope": "Ryno frontend and deployment preparation; not final integrated release acceptance",
+  "environment": "Local production Next.js simulation build on 3103, actual SQL migrations 001-008 in isolated PGlite. New manager-directory UI cases use Playwright route fixtures for the agreed pending endpoint.",
+  "checks": [
+    {
+      "name": "Unit and database tests",
+      "command": "node --test tests/request-validation.test.js tests/request-transition-policy.test.js tests/m3-rules.test.js tests/assignment-reason.test.js tests/final-frontend.test.js tests/integration/database.test.js tests/integration/reassignment.test.js",
+      "passed": 49,
+      "failed": 0,
+      "evidence": "Executed stdout results; 27 unit and 22 database cases"
+    },
+    {
+      "name": "Selected browser regression",
+      "command": "node node_modules/@playwright/test/cli.js test --config test-results/frontend-check.config.js --grep-invert CRE2E01",
+      "passed": 21,
+      "failed": 0,
+      "evidence": "browser-results.json",
+      "runner": "Ignored temporary config uses separately started local test servers to avoid Windows child-server shutdown delay; same test suite, one worker, normal simulation baseURL"
+    },
+    {
+      "name": "ESLint",
+      "command": "node node_modules/eslint/bin/eslint.js .",
+      "result": "passed"
+    },
+    {
+      "name": "Secret pattern scan",
+      "command": "node scripts/security-check.mjs",
+      "result": "passed",
+      "limit": "Bounded src and supabase pattern scan, not a full repository/history security audit"
+    },
+    {
+      "name": "Frontend static audit",
+      "result": "passed",
+      "errors": 0,
+      "warnings": 0,
+      "evidence": "frontend-static-audit.json"
+    },
+    {
+      "name": "Simulation production build",
+      "command": "node scripts/build-simulation.mjs",
+      "result": "passed"
+    },
+    {
+      "name": "Hosted configuration production build",
+      "command": "node node_modules/next/dist/bin/next build",
+      "result": "passed",
+      "buildId": "rqXvILDbxbiN501PdE98w",
+      "limit": "Build validation only; does not prove live Vercel or hosted workflow behaviour"
+    },
+    {
+      "name": "Diff whitespace",
+      "command": "git diff --check",
+      "result": "passed"
+    }
+  ],
+  "deferredChecks": [
+    {
+      "case": "CRE2E01 manager reassignment against actual endpoint",
+      "reason": "Steven has not implemented /api/staff-directory in this checkout. Test was excluded explicitly, not counted as passed."
+    },
+    "Real staff-directory permissions and sensitive clearance on the final deployment",
+    "Steven session renewal integration and timestamp migration",
+    "Willem server/bucket upload limit and Vercel attachment boundary checks",
+    "Final hosted HTTPS verification and team go-live approval",
+    "Final acceptance scores and combined PED v4.0"
+  ],
+  "illustrations": "The two selected UI screenshots show fictional browser contract fixtures, not hosted Supabase data.",
+  "sourceSha256": {
+    "src/app/auth/login/page.js": "7bfd66451b06b849ed03e96a13723e1c83fc506116f769540c3c25d22debefdc",
+    "src/app/requests/[requestId]/page.js": "f15d7932c5425b88849c6b264372a7c268738f2a3a1a9338a780a15c2cf2cfc3",
+    "src/app/requests/new/page.js": "4e30b2a0dfd4f6f247008ef6a5a307c6bd29ef9e3bf9a61179bba8319f88d9f7",
+    "src/features/requests/request-form.js": "1dbb711be5d66d82a1104478d5f06bd75f17d8bdd2f04dfd8b1a7d3b086e8e5a",
+    "src/features/workflow/attachment-upload.js": "07efa2a071eb2b5c081cd579360db62282793d839f9dfdb386829efa745f56a1",
+    "src/features/workflow/request-workspace.js": "beffd6a4318e3c587b94e38b6adc71d6af886c138316a4e76ba4ef25ab0d91b4",
+    "src/features/workflow/use-api.js": "88196530ae2bdb9be20f009e9d954150ed96b8c75f99c43c51e22921b7e25506",
+    "src/features/workflow/api-response.js": "aabbd8d5bc2c866e07dd29dd1f763336e04d9b2dc7ad46ccc6f4f307b22f1edf",
+    "src/features/workflow/sign-in-destination.js": "0ec9376a9e28faf0f4e9ddec9d3d9015fae81acd5bb372e276b3252f3dac3077",
+    "tests/e2e/final-frontend.spec.js": "c3144f246ceec7168b28dabfe597263a6de2994b22c9acec8075f80f635d6cb3",
+    "tests/final-frontend.test.js": "8ab7309d58335b3ebb86570783f0195b607b57e56b53b12b39184ac74ae4a4c8",
+    "vercel.json": "9fd4ea9e9bbb01391e7e946e1b2d3e2af2dd003b27067dadcdcaf4f20b799fb1",
+    "README.md": "980f53f21fe10bd03384b5eb6bb25343f46c919f059dcf1ca17a29431a934456"
+  }
+}

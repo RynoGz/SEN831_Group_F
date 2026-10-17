@@ -4,6 +4,8 @@ import { useState } from "react";
 
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import CommunityScene from '@/components/community-scene';
+import { readApiResponse } from '@/features/workflow/api-response';
+import { signInDestination } from '@/features/workflow/sign-in-destination';
 
 export default function LoginPage() {
 
@@ -25,8 +27,9 @@ export default function LoginPage() {
       const { error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) { setMessage("Sign-in failed. Check your details and try again."); return; }
       const sessionResponse=await fetch('/api/session',{cache:'no-store'});
-      const actor=sessionResponse.ok?await sessionResponse.json():null;
-      window.location.assign(actor?.role==='manager'?'/management':actor?.role==='staff'?'/work':'/requests');
+      const actor = await readApiResponse(sessionResponse);
+      const next = new URLSearchParams(window.location.search).get('next');
+      window.location.assign(signInDestination(actor.role, next));
     } catch { setMessage("Sign-in is unavailable. Please try again later."); }
     finally { setLoading(false); }
   }
