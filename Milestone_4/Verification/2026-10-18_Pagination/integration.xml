@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="DB01 FR-001/010: insert creates Submitted status, time and attributable history" time="13.517072" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB02 NFR-001/002: other requester and admin cannot read a request" time="0.035229" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB03 NFR-002: sensitive request requires scoped clearance" time="0.053025" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB04 FR-010/NFR-003: accept, assign, work, resolve and close preserve audit" time="0.137451" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB05 FR-010: skipped transition rolls back without history/version change" time="0.057211" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB06 NFR-005: stale version update rejected" time="0.037987" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB07 FR-011: private staff comment is invisible to requester" time="0.107873" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB08 NFR-001: requester cannot call staff operation or direct update" time="0.039797" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB09 FR-009: manager cannot assign staff outside category scope" time="0.029246" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB10 FR-010: reopening request records reason without changing terminal status" time="0.042998" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB11 FR-001/NFR-002: staged attachment linking enforces ownership and read access" time="0.066238" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB12 NFR-005: failed initial-history write rolls back the request" time="0.017292" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB13 NFR-002: direct insert cannot forge an attachment link" time="0.007820" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="DB14 attachment recovery: owner can delete an unlinked staged file" time="0.032780" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="W1DB01: migration 010 applies directly after 008, preserving private legacy object access" time="5.415405" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\database.test.js"/>
+	<testcase name="M4: authenticated request creation cannot forge created_at" time="13.374265" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\final-integrity.test.js"/>
+	<testcase name="CRDB01: initial assignment and saving same assignee need no reason" time="13.501432" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB02: blank reassignment reasons reject atomically through direct RPC" time="0.189891" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB03: reassignment retains original history and saves reason actor and time" time="0.086846" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB04: 4000 characters accepted and 4001 rejected without mutation" time="0.138190" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB05: valid reasons do not bypass permissions scope or stale versions" time="0.081768" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB06: private reasons remain hidden from requester and direct column reads" time="0.061723" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB07: migration preserves existing assignment data without invented reasons" time="5.435966" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="CRDB08: conflict migration preserves existing reasons, permissions and valid workflow" time="3.159219" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\reassignment.test.js"/>
+	<testcase name="PAGE01: all 1,258 owned records are reachable with stable pages and no other requester data" time="15.592628" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE02: search finds an old request beyond the former 1,000-row window and treats wildcards literally" time="0.160758" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE03: status, category and search are combined before paging, with complete matching totals" time="0.019817" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE04: complete work totals exclude wrong-category and sensitive records regardless of ownership" time="1.300516" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE05: anonymous, requester and admin cannot invoke a work list or aggregate" time="0.027235" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE06: empty sets, out-of-range pages, invalid paging and sort have bounded behaviour" time="0.334065" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE07: API boundary forwards typed paging options and reports database failures safely" time="0.002060" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE08: migration preserves existing rows, access policies and audit history" time="4.349561" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="SD01: manager receives eligible staff for a normal request" time="13.318028" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\staff-directory.test.js"/>
+	<testcase name="SD02: sensitive requests exclude staff without clearance" time="0.057288" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\staff-directory.test.js"/>
+	<testcase name="SD03: non-managers cannot access the directory" time="0.053787" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\staff-directory.test.js"/>
+	<testcase name="SD04: invalid and unavailable requests return the same safe error" time="0.035398" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\staff-directory.test.js"/>
+	<testcase name="SD05: manager cannot view requests outside their category scope" time="0.068995" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\staff-directory.test.js"/>
+	<testcase name="SD06: staff directory is sorted alphabetically by display name" time="0.053009" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\staff-directory.test.js"/>
+	<testcase name="SD07: staff directory returns each staff member only once" time="0.052055" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\integration\staff-directory.test.js"/>
+	<!-- tests 39 -->
+	<!-- suites 0 -->
+	<!-- pass 39 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 23307.8654 -->
+</testsuites>
