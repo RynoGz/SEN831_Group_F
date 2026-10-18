@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="PAGE01: all 1,258 owned records are reachable with stable pages and no other requester data" time="1.611317" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE02: search finds an old request beyond the former 1,000-row window and treats wildcards literally" time="0.023175" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE03: status, category and search are combined before paging, with complete matching totals" time="0.004784" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE04: complete work totals exclude wrong-category and sensitive records regardless of ownership" time="0.227068" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE05: anonymous, requester and admin cannot invoke a work list or aggregate" time="0.006341" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE06: empty sets, out-of-range pages, invalid paging and sort have bounded behaviour" time="0.052158" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE07: API boundary forwards typed paging options and reports database failures safely" time="0.000733" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<testcase name="PAGE08: migration preserves existing rows, access policies and audit history" time="0.932273" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\integration\request-pagination.test.js"/>
+	<!-- tests 8 -->
+	<!-- suites 0 -->
+	<!-- pass 8 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 3018.2829 -->
+</testsuites>

@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 import { readApiResponse } from './api-response';
 
-export function useApi(url) {
+export function useApi(url, { retainPreviousData = false } = {}) {
   const [revision, setRevision] = useState(0);
   const [result, setResult] = useState({ url: null, revision: -1, data: null, error: null, status: null });
   const reload = useCallback(() => setRevision(value => value + 1), []);
@@ -30,7 +30,7 @@ export function useApi(url) {
   const loading = Boolean(url) && (result.url !== url || result.revision !== revision);
   return {
     loading,
-    data: url && result.url === url ? result.data : null,
+    data: url && (result.url === url || (retainPreviousData && result.url?.split('?')[0] === url.split('?')[0])) ? result.data : null,
     error: url && !loading ? result.error : null,
     status: url && !loading ? result.status : null,
     reload,

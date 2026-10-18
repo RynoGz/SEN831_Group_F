@@ -5,10 +5,11 @@ import {database,USERS,asUser} from './database.js';
 const db=await database();const objects=new Map();
 const seedCount=Number(process.env.TEST_SEED_COUNT||0);
 if(seedCount){
- await db.query(`insert into requests(title,description,location,requester_id,category_id,sensitive_information)
+ await db.query(`insert into requests(title,description,location,requester_id,category_id,sensitive_information,created_at)
  select 'Performance fixture '||i,'Fictional workload data','Test hall',
  (select requester_id from requesters where auth_user_id=case i%3 when 0 then $1::uuid when 1 then $2::uuid else $3::uuid end),
- (select category_id from categories where name='Maintenance'),false from generate_series(1,$4) i`,[USERS.requester,USERS.other,USERS.perf,seedCount]);
+ (select category_id from categories where name='Maintenance'),false,
+ '2026-01-01'::timestamptz+i*interval '1 second' from generate_series(1,$4) i`,[USERS.requester,USERS.other,USERS.perf,seedCount]);
 }
 const port=Number(process.env.TEST_PROVIDER_PORT||54329);
 const tokens=new Map();const refresh=new Map();
@@ -35,7 +36,7 @@ const server=createServer(async(req,res)=>{
  if(url.pathname==='/auth/v1/user'){if(!user){send(401,{msg:'Not authenticated'});return;}const name=Object.keys(USERS).find(k=>USERS[k]===user);send(200,authUser(name));return;}
  if(url.pathname==='/auth/v1/logout'){tokens.delete(req.headers.authorization?.replace(/^Bearer /i,''));send(204);return;}
  if(url.pathname.startsWith('/rest/v1/rpc/')){
-  const fn=url.pathname.split('/').pop();if(!['m3_change_request','m3_staff_directory','m3_assignment_history','m3_is_owner','m3_can_work','m3_link_attachment'].includes(fn))throw Error('Unknown RPC');
+  const fn=url.pathname.split('/').pop();if(!['m4_request_page','m3_change_request','m3_staff_directory','m3_assignment_history','m3_is_owner','m3_can_work','m3_link_attachment'].includes(fn))throw Error('Unknown RPC');
   const keys=Object.keys(body);const args=keys.map((k,i)=>`${identifier(k)}=>$${i+1}`).join(',');
   const tabular=['m3_staff_directory','m3_assignment_history'].includes(fn);
   const result=await asUser(db,user,tx=>tx.query(tabular?`select * from ${identifier(fn)}(${args})`:`select ${identifier(fn)}(${args}) result`,Object.values(body)));

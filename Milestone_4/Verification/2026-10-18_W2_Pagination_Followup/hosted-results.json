@@ -1,0 +1,885 @@
+{
+  "candidate": "b5b5ecaa291aea7a49608768c904035a88f76f08",
+  "startedAt": "2026-10-18T16:56:06.254Z",
+  "environment": "https://sen-381-group-f.vercel.app",
+  "migration011": "Willem confirms applied on 2026-10-18; functional confirmation through new paginated API",
+  "deployment": "Vercel success status for candidate; no independent administrative deployment inspection",
+  "checks": [
+    {
+      "name": "requester complete pages and totals",
+      "status": "passed",
+      "observation": {
+        "total": 19,
+        "pages": 10,
+        "summary": {
+          "open": 4,
+          "total": 19,
+          "closed": 7,
+          "overdue": 0,
+          "byStatus": {
+            "Closed": 7,
+            "Accepted": 2,
+            "Assigned": 1,
+            "Rejected": 6,
+            "Resolved": 2,
+            "Submitted": 1
+          },
+          "rejected": 6,
+          "resolved": 2,
+          "byCategory": {
+            "IT support": 12,
+            "Maintenance": 7
+          }
+        }
+      }
+    },
+    {
+      "name": "requester older reference and combined filters",
+      "status": "passed",
+      "observation": {
+        "oldestReference": "d302f3f6-e452-4e23-82d1-8547417f8274",
+        "matching": 1,
+        "emptyTotal": 0,
+        "clampedPage": 10
+      }
+    },
+    {
+      "name": "other complete pages and totals",
+      "status": "passed",
+      "observation": {
+        "total": 3,
+        "pages": 2,
+        "summary": {
+          "open": 0,
+          "total": 3,
+          "closed": 0,
+          "overdue": 0,
+          "byStatus": {
+            "Rejected": 3
+          },
+          "rejected": 3,
+          "resolved": 0,
+          "byCategory": {
+            "IT support": 3
+          }
+        }
+      }
+    },
+    {
+      "name": "other older reference and combined filters",
+      "status": "passed",
+      "observation": {
+        "oldestReference": "541cd905-dbf6-4890-a95a-e0b81d1fe640",
+        "matching": 1,
+        "emptyTotal": 0,
+        "clampedPage": 2
+      }
+    },
+    {
+      "name": "manager complete pages and totals",
+      "status": "passed",
+      "observation": {
+        "total": 25,
+        "pages": 13,
+        "summary": {
+          "open": 7,
+          "total": 25,
+          "closed": 7,
+          "overdue": 0,
+          "byStatus": {
+            "Closed": 7,
+            "Accepted": 2,
+            "Assigned": 1,
+            "Rejected": 9,
+            "Resolved": 2,
+            "Submitted": 4
+          },
+          "rejected": 9,
+          "resolved": 2,
+          "byCategory": {
+            "IT support": 18,
+            "Maintenance": 7
+          }
+        }
+      }
+    },
+    {
+      "name": "manager older reference and combined filters",
+      "status": "passed",
+      "observation": {
+        "oldestReference": "3187905a-251b-41dc-a95a-e818f1c60ee3",
+        "matching": 1,
+        "emptyTotal": 0,
+        "clampedPage": 13
+      }
+    },
+    {
+      "name": "staff complete pages and totals",
+      "status": "passed",
+      "observation": {
+        "total": 22,
+        "pages": 11,
+        "summary": {
+          "open": 6,
+          "total": 22,
+          "closed": 7,
+          "overdue": 0,
+          "byStatus": {
+            "Closed": 7,
+            "Accepted": 1,
+            "Assigned": 1,
+            "Rejected": 7,
+            "Resolved": 2,
+            "Submitted": 4
+          },
+          "rejected": 7,
+          "resolved": 2,
+          "byCategory": {
+            "IT support": 17,
+            "Maintenance": 5
+          }
+        }
+      }
+    },
+    {
+      "name": "staff older reference and combined filters",
+      "status": "passed",
+      "observation": {
+        "oldestReference": "3187905a-251b-41dc-a95a-e818f1c60ee3",
+        "matching": 1,
+        "emptyTotal": 0,
+        "clampedPage": 11
+      }
+    },
+    {
+      "name": "restricted complete pages and totals",
+      "status": "passed",
+      "observation": {
+        "total": 17,
+        "pages": 9,
+        "summary": {
+          "open": 4,
+          "total": 17,
+          "closed": 5,
+          "overdue": 0,
+          "byStatus": {
+            "Closed": 5,
+            "Accepted": 1,
+            "Rejected": 6,
+            "Resolved": 2,
+            "Submitted": 3
+          },
+          "rejected": 6,
+          "resolved": 2,
+          "byCategory": {
+            "IT support": 17
+          }
+        }
+      }
+    },
+    {
+      "name": "restricted older reference and combined filters",
+      "status": "passed",
+      "observation": {
+        "oldestReference": "3187905a-251b-41dc-a95a-e818f1c60ee3",
+        "matching": 1,
+        "emptyTotal": 0,
+        "clampedPage": 9
+      }
+    },
+    {
+      "name": "ownership and sensitive permission boundaries",
+      "status": "passed",
+      "observation": {
+        "requesterPopulationsDisjoint": true,
+        "unclearedSensitiveExcluded": true,
+        "summaryOnlyMatches": true,
+        "requesterWork": 403,
+        "anonymous": 401
+      }
+    },
+    {
+      "name": "invalid pagination rejected",
+      "status": "passed",
+      "observation": {
+        "invalidCases": 4
+      }
+    },
+    {
+      "name": "hosted UI next previous reload and older search",
+      "status": "passed",
+      "observation": {
+        "next": true,
+        "previous": true,
+        "reload": true,
+        "olderReference": "d302f3f6-e452-4e23-82d1-8547417f8274"
+      }
+    }
+  ],
+  "populations": {
+    "requester": {
+      "rows": [
+        {
+          "id": "d302f3f6-e452-4e23-82d1-8547417f8274",
+          "status": "Submitted",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "4706b793-24a4-40bc-a6b2-2869f8069c23",
+          "status": "Rejected",
+          "category": "Maintenance",
+          "sensitive": true
+        },
+        {
+          "id": "35c3f237-6711-4af7-9bd3-c4e8ae0eaf43",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "0f9af0f9-1c04-4d3f-824c-ffcac2d2bd8f",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "da7e64f9-9fa1-46b2-ae1a-968cef7bcdff",
+          "status": "Accepted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "a16c0ab9-1449-4bfb-9984-09d978cbdfc4",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "8fa18740-cb4d-4929-8930-3043ab275576",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "4abc25eb-e5c1-4de4-8938-b5425b3e637a",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "7f0e7bcb-35cf-4986-ac17-b8903e27560e",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "01cde34e-9006-4d49-8188-158706ce8334",
+          "status": "Assigned",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "1724261e-c7f7-4c52-8e5e-d18a8c95e826",
+          "status": "Closed",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "c22baeb5-8768-484c-a086-977188bc3730",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "221c4408-fe52-406d-8a5b-7b186e12547e",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "918962c0-8365-4faa-a34a-c98a73efefe7",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "143f6fb1-6e40-44a4-9d17-be812d9dd28b",
+          "status": "Accepted",
+          "category": "IT support",
+          "sensitive": true
+        },
+        {
+          "id": "e2b5ce92-8192-441b-9e52-add2f17ba6f0",
+          "status": "Closed",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "4629c835-df9c-4380-a84e-752f10f6b036",
+          "status": "Rejected",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "a5dc891b-b896-4bb5-b822-08820282f0b5",
+          "status": "Rejected",
+          "category": "Maintenance",
+          "sensitive": true
+        },
+        {
+          "id": "0dbca7d6-5395-4d3e-bc5a-75c9ba0f46e3",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        }
+      ],
+      "summary": {
+        "open": 4,
+        "total": 19,
+        "closed": 7,
+        "overdue": 0,
+        "byStatus": {
+          "Closed": 7,
+          "Accepted": 2,
+          "Assigned": 1,
+          "Rejected": 6,
+          "Resolved": 2,
+          "Submitted": 1
+        },
+        "rejected": 6,
+        "resolved": 2,
+        "byCategory": {
+          "IT support": 12,
+          "Maintenance": 7
+        }
+      },
+      "actor": {
+        "id": "cf0b4353-783f-4441-b8a7-8c056bfecd84",
+        "role": "requester",
+        "name": "requester@example.test",
+        "canViewSensitive": false
+      }
+    },
+    "other": {
+      "rows": [
+        {
+          "id": "541cd905-dbf6-4890-a95a-e0b81d1fe640",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "2a6af4cd-e7ce-4524-8910-2a55ef553207",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "f4635159-2e69-46a8-a686-511cceb8a60f",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        }
+      ],
+      "summary": {
+        "open": 0,
+        "total": 3,
+        "closed": 0,
+        "overdue": 0,
+        "byStatus": {
+          "Rejected": 3
+        },
+        "rejected": 3,
+        "resolved": 0,
+        "byCategory": {
+          "IT support": 3
+        }
+      },
+      "actor": {
+        "id": "0e793bf1-3a76-4abc-a03b-4e724a477543",
+        "role": "requester",
+        "name": "other@example.test",
+        "canViewSensitive": false
+      }
+    },
+    "manager": {
+      "rows": [
+        {
+          "id": "3187905a-251b-41dc-a95a-e818f1c60ee3",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "7b7be91f-b664-4aff-a803-d1ef6cf557c0",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "1ce793ed-4dba-48ca-bb5c-c169016635a3",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "d302f3f6-e452-4e23-82d1-8547417f8274",
+          "status": "Submitted",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "4706b793-24a4-40bc-a6b2-2869f8069c23",
+          "status": "Rejected",
+          "category": "Maintenance",
+          "sensitive": true
+        },
+        {
+          "id": "35c3f237-6711-4af7-9bd3-c4e8ae0eaf43",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "0f9af0f9-1c04-4d3f-824c-ffcac2d2bd8f",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "da7e64f9-9fa1-46b2-ae1a-968cef7bcdff",
+          "status": "Accepted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "a16c0ab9-1449-4bfb-9984-09d978cbdfc4",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "8fa18740-cb4d-4929-8930-3043ab275576",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "4abc25eb-e5c1-4de4-8938-b5425b3e637a",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "7f0e7bcb-35cf-4986-ac17-b8903e27560e",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "541cd905-dbf6-4890-a95a-e0b81d1fe640",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "2a6af4cd-e7ce-4524-8910-2a55ef553207",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "f4635159-2e69-46a8-a686-511cceb8a60f",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "01cde34e-9006-4d49-8188-158706ce8334",
+          "status": "Assigned",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "1724261e-c7f7-4c52-8e5e-d18a8c95e826",
+          "status": "Closed",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "c22baeb5-8768-484c-a086-977188bc3730",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "221c4408-fe52-406d-8a5b-7b186e12547e",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "918962c0-8365-4faa-a34a-c98a73efefe7",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "143f6fb1-6e40-44a4-9d17-be812d9dd28b",
+          "status": "Accepted",
+          "category": "IT support",
+          "sensitive": true
+        },
+        {
+          "id": "e2b5ce92-8192-441b-9e52-add2f17ba6f0",
+          "status": "Closed",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "4629c835-df9c-4380-a84e-752f10f6b036",
+          "status": "Rejected",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "a5dc891b-b896-4bb5-b822-08820282f0b5",
+          "status": "Rejected",
+          "category": "Maintenance",
+          "sensitive": true
+        },
+        {
+          "id": "0dbca7d6-5395-4d3e-bc5a-75c9ba0f46e3",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        }
+      ],
+      "summary": {
+        "open": 7,
+        "total": 25,
+        "closed": 7,
+        "overdue": 0,
+        "byStatus": {
+          "Closed": 7,
+          "Accepted": 2,
+          "Assigned": 1,
+          "Rejected": 9,
+          "Resolved": 2,
+          "Submitted": 4
+        },
+        "rejected": 9,
+        "resolved": 2,
+        "byCategory": {
+          "IT support": 18,
+          "Maintenance": 7
+        }
+      },
+      "actor": {
+        "id": "7da7bee6-cfc6-401e-8e47-60c1768d5ccf",
+        "role": "manager",
+        "name": "M3 Test Manager",
+        "canViewSensitive": true
+      }
+    },
+    "staff": {
+      "rows": [
+        {
+          "id": "3187905a-251b-41dc-a95a-e818f1c60ee3",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "7b7be91f-b664-4aff-a803-d1ef6cf557c0",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "1ce793ed-4dba-48ca-bb5c-c169016635a3",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "d302f3f6-e452-4e23-82d1-8547417f8274",
+          "status": "Submitted",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "35c3f237-6711-4af7-9bd3-c4e8ae0eaf43",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "0f9af0f9-1c04-4d3f-824c-ffcac2d2bd8f",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "da7e64f9-9fa1-46b2-ae1a-968cef7bcdff",
+          "status": "Accepted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "a16c0ab9-1449-4bfb-9984-09d978cbdfc4",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "8fa18740-cb4d-4929-8930-3043ab275576",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "4abc25eb-e5c1-4de4-8938-b5425b3e637a",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "7f0e7bcb-35cf-4986-ac17-b8903e27560e",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "541cd905-dbf6-4890-a95a-e0b81d1fe640",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "2a6af4cd-e7ce-4524-8910-2a55ef553207",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "f4635159-2e69-46a8-a686-511cceb8a60f",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "01cde34e-9006-4d49-8188-158706ce8334",
+          "status": "Assigned",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "1724261e-c7f7-4c52-8e5e-d18a8c95e826",
+          "status": "Closed",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "c22baeb5-8768-484c-a086-977188bc3730",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "221c4408-fe52-406d-8a5b-7b186e12547e",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "918962c0-8365-4faa-a34a-c98a73efefe7",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "e2b5ce92-8192-441b-9e52-add2f17ba6f0",
+          "status": "Closed",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "4629c835-df9c-4380-a84e-752f10f6b036",
+          "status": "Rejected",
+          "category": "Maintenance",
+          "sensitive": false
+        },
+        {
+          "id": "0dbca7d6-5395-4d3e-bc5a-75c9ba0f46e3",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        }
+      ],
+      "summary": {
+        "open": 6,
+        "total": 22,
+        "closed": 7,
+        "overdue": 0,
+        "byStatus": {
+          "Closed": 7,
+          "Accepted": 1,
+          "Assigned": 1,
+          "Rejected": 7,
+          "Resolved": 2,
+          "Submitted": 4
+        },
+        "rejected": 7,
+        "resolved": 2,
+        "byCategory": {
+          "IT support": 17,
+          "Maintenance": 5
+        }
+      },
+      "actor": {
+        "id": "6a07dc01-4e64-42cd-bcee-a9b18bd9f0aa",
+        "role": "staff",
+        "name": "M3 Test Staff",
+        "canViewSensitive": false
+      }
+    },
+    "restricted": {
+      "rows": [
+        {
+          "id": "3187905a-251b-41dc-a95a-e818f1c60ee3",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "7b7be91f-b664-4aff-a803-d1ef6cf557c0",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "1ce793ed-4dba-48ca-bb5c-c169016635a3",
+          "status": "Submitted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "35c3f237-6711-4af7-9bd3-c4e8ae0eaf43",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "0f9af0f9-1c04-4d3f-824c-ffcac2d2bd8f",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "da7e64f9-9fa1-46b2-ae1a-968cef7bcdff",
+          "status": "Accepted",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "a16c0ab9-1449-4bfb-9984-09d978cbdfc4",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "8fa18740-cb4d-4929-8930-3043ab275576",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "4abc25eb-e5c1-4de4-8938-b5425b3e637a",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "7f0e7bcb-35cf-4986-ac17-b8903e27560e",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "541cd905-dbf6-4890-a95a-e0b81d1fe640",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "2a6af4cd-e7ce-4524-8910-2a55ef553207",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "f4635159-2e69-46a8-a686-511cceb8a60f",
+          "status": "Rejected",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "c22baeb5-8768-484c-a086-977188bc3730",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "221c4408-fe52-406d-8a5b-7b186e12547e",
+          "status": "Resolved",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "918962c0-8365-4faa-a34a-c98a73efefe7",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        },
+        {
+          "id": "0dbca7d6-5395-4d3e-bc5a-75c9ba0f46e3",
+          "status": "Closed",
+          "category": "IT support",
+          "sensitive": false
+        }
+      ],
+      "summary": {
+        "open": 4,
+        "total": 17,
+        "closed": 5,
+        "overdue": 0,
+        "byStatus": {
+          "Closed": 5,
+          "Accepted": 1,
+          "Rejected": 6,
+          "Resolved": 2,
+          "Submitted": 3
+        },
+        "rejected": 6,
+        "resolved": 2,
+        "byCategory": {
+          "IT support": 17
+        }
+      },
+      "actor": {
+        "id": "9e43e016-c0e8-4d30-8aca-393b532562b0",
+        "role": "staff",
+        "name": "Fictional restricted",
+        "canViewSensitive": false
+      }
+    }
+  },
+  "limitations": [
+    "Hosted dataset is below 1000 rows; beyond-1000 coverage uses isolated PAGE01/PAGE02 tests.",
+    "Read-only follow-up; no deployment, migration execution, fixture creation or cleanup.",
+    "Offset pages are not a snapshot during concurrent writes."
+  ],
+  "finishedAt": "2026-10-18T16:58:12.091Z"
+}

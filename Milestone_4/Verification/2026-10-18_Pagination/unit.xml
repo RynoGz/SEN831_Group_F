@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="CR01: first assignment and unchanged assignee allow an omitted reason" time="0.001893" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="CR02: reassignment rejects missing and whitespace-only reasons" time="0.008175" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="CR03: reason length boundary and malformed values are checked" time="0.002037" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="Final sign-in returns to an allowed task without accepting external destinations" time="0.002065" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\final-frontend.test.js"/>
+	<testcase name="API failures retain safe feedback and the status needed for reauthentication and conflicts" time="0.055769" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\final-frontend.test.js"/>
+	<testcase name="Non-JSON hosting failures produce recovery guidance without leaking response content" time="0.002652" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\final-frontend.test.js"/>
+	<testcase name="BB01 FR-014 BVA: overdue before/equal/after deadline" time="0.004199" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB02 FR-014 decision table: terminal states excluded even after deadline" time="0.000441" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB03 FR-015: aggregate scope supplied by authorised query" time="0.000592" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB04 attachment BVA: reject empty and oversized; accept exact size" time="0.001265" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB05 attachment EP: declared type must match signature" time="0.000667" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT01: database link failure removes staged file" time="0.000741" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT02: cleanup failure reported rather than claiming success" time="0.000591" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT03: multipart accepts exactly 4 MiB and rejects one byte over, empty and missing files" time="0.119774" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT04: actual streamed body is bounded even without an honest content-length" time="0.027416" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT05: thrown link failure cleans staged storage without exposing the underlying error" time="0.000880" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT06: failed upload never links and failed cleanup never claims removal" time="0.000594" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT07: legacy 5 MiB object download remains byte-for-byte available through the private adapter" time="0.004608" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="uses exactly the seven CivicConnect request statuses" time="0.003384" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="allows every defined lifecycle transition" time="0.002013" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects skipped lifecycle stages" time="0.000921" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="allows rejection only from Submitted" time="0.000318" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="does not allow transitions out of Closed or Rejected" time="0.000340" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects transitions to the same status" time="0.000324" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects unknown current and new statuses" time="0.000340" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects reopening while its rules remain deferred" time="0.000294" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="FR-001: accepts required text and an explicit false sensitivity answer without an attachment" time="0.001369" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-001: rejects empty and whitespace-only required text with field feedback" time="0.001078" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-002: rejects an unknown category even if the caller bypasses the select control" time="0.001811" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-001: an absent or string sensitivity answer cannot silently become false" time="0.000469" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="normalisation trims text without accepting caller-supplied identity, status or timestamp" time="0.000420" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="malformed input produces validation feedback instead of crashing" time="0.000259" classname="test" file="C:\Users\rynog\OneDrive - belgiumcampus.ac.za\3rd Year\SEN381\SEN831_Group_F\tests\request-validation.test.js"/>
+	<!-- tests 32 -->
+	<!-- suites 0 -->
+	<!-- pass 32 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 521.5533 -->
+</testsuites>
