@@ -2,64 +2,108 @@
 
 CivicConnect is Group F's SEN381 service request application. Requesters report issues and follow updates, staff handle authorised work, and managers oversee assignment, closure and service information.
 
-## Milestone 3 baseline
+## Final project baseline
 
-The current engineering document is [PED v3.0 PDF](Milestone_3/SEN381_CivicConnect_PED_v3.0.pdf), with an [editable Word copy](Milestone_3/SEN381_CivicConnect_PED_v3.0.docx). It continues the M1/M2 requirements and project history. The Master Project Brief remains the governing source.
+- Final engineering record: [PED v4.0 PDF](Milestone_4/SEN381_CivicConnect_PED_v4.0.pdf) and [editable Word copy](Milestone_4/SEN381_CivicConnect_PED_v4.0.docx).
+- Repository: [RynoGz/SEN831_Group_F](https://github.com/RynoGz/SEN831_Group_F).
+- Assessed application commit: [`b5b5ecaa291aea7a49608768c904035a88f76f08`](https://github.com/RynoGz/SEN831_Group_F/commit/b5b5ecaa291aea7a49608768c904035a88f76f08), the reviewed PR #41 merge.
+- Application version: **0.3.0**. The exact commit identifies the assessed product; the package version was not changed for documentation closure.
+- Member evidence/documentation baseline: [`bd25d70`](https://github.com/RynoGz/SEN831_Group_F/commit/bd25d709b12eaa8ac99e2f21560de3c87f4ccbbf), after PRs #42 and #43. Application, test, migration, script and build/dependency contents are unchanged from the assessed application commit.
+- Live demonstration: [sen-381-group-f.vercel.app](https://sen-381-group-f.vercel.app/).
+- Final deployment decision: **controlled simulated-production demonstration over HTTPS using fictional data**, with real hosted Supabase Auth, Database and private Storage. The hosted app does not use the local simulation provider.
+- Final acceptance: **97.01% scope completion**, **110 Met / 7 Partially Met / 0 Not Met**, across 117 applicable approved acceptance criteria. All 80 Must functional criteria are Met. The seven partial criteria are recorded in PED section 34.
 
-- Application version: **0.3.0**.
-- Verified application commit: [374c21e7c2b3d9ecc01add9ec2b957ca53139a97](https://github.com/RynoGz/SEN831_Group_F/commit/374c21e7c2b3d9ecc01add9ec2b957ca53139a97).
-- Integration: [PR #34](https://github.com/RynoGz/SEN831_Group_F/pull/34), approved by Steven and Willem and merged into main as 9e71bd9f230328ef4a0268c64402b370c9ae20ea.
-- CI: [M3 quality gate run #13](https://github.com/RynoGz/SEN831_Group_F/actions/runs/38874694724) passed for the verified application commit.
-- Release classification: **CONDITIONALLY READY for the defined M3 demonstration**. Remaining acceptance and operational limits are recorded in PED sections 19, 28, 29 and 32. This is not a production-readiness claim.
+The approved S2 snapshot was 96.58% with 109 Met and eight Partial criteria. Final README/PED integration closes its NFR-008 AC2 documentation inconsistency, giving (110 + 7 x 0.5) / 117 x 100 = 97.01%. Fully met criteria are reported separately as 94.02%. The Master Project Brief remains authoritative; PED v4.0 preserves the M1-M3 history and concludes the existing RTM and registers.
+
+The release recommendation is bounded to the stated demonstration. It does not establish unrestricted production capacity, representative-user acceptance or scheduled hosted disaster recovery. Ryno confirmed approval of the merged work and authorised final document integration on 18 October 2026; actual contribution reviews remain in GitHub.
 
 ## Implemented application
 
-- Sign-in, request submission, required-field/category validation, saved confirmation, automatic time and initial Submitted status.
-- Requester-owned lists/details and staff/manager work restricted by role, category and sensitive-information clearance.
-- Assignment and controlled status changes through Submitted, Accepted, Assigned, In Progress, Resolved and Closed, with rejection from Submitted.
-- Required reasons when replacing an existing assignee, with attributable history under [CR-M3-01](Milestone_3/Change_Requests/CR_M3_01_Reassignment_Reason.md).
-- Public updates, internal comments, resolution/closure notes and recorded reopening requests.
-- One private PDF, PNG or JPEG attachment per request, up to 4 MiB for new uploads, with size/type checks, protected download and cleanup handling. The M3 baseline used 5 MiB; the reviewed M4 change is recorded in [W1 attachment compatibility](Milestone_4/W1_Attachment_Compatibility.md).
-- Search, filters, sorting and scoped management summaries, including overdue work.
-- Atomic changes, status history and version checks that reject stale updates with a reload message.
-- Responsive pages, keyboard feedback and reduced-motion support for the tested tasks.
+- Sign-in, validated request submission, confirmation, automatic timestamp and initial Submitted status.
+- Controlled categories; requester-owned lists/details; staff/manager access restricted by role, category and sensitive-information clearance.
+- Request lists with server pagination, database-side search/status/category filters and stable ordering. Default 25 rows per page, maximum 100; filters and pages persist in the URL.
+- Complete matching summary counts and management category/status totals across all authorised records, independent of the displayed page. The former 1,000-record cutoff is corrected by migration 011.
+- Staff acceptance, eligible manager assignment/reassignment, required reassignment reasons, controlled progress, resolution and manager closure.
+- Requester-visible updates, private staff comments/reasons and attributable lifecycle/assignment history. Reopening requests are recorded; automatic reopening is not claimed.
+- One private PDF, PNG or JPEG attachment per request, up to **4 MiB (4,194,304 bytes)** for new uploads, with matching signatures, bounded body validation, protected download and truthful cleanup handling.
+- Atomic workflow changes and version checks that reject stale updates with a reload message.
+- Responsive pages, keyboard feedback, reduced motion, expired-session recovery and retained form input after failed submission.
 
-The architecture remains a **modular monolith with layers**: one Next.js application with separate presentation, protected entry points, workflow services, domain rules and Supabase adapters. The stack is JavaScript, Next.js 16.3.8, React 19.3.0 and Supabase PostgreSQL/Auth/private Storage. Use **Node.js 24.x and npm 11.x**; the lockfile records resolved packages. The team has created a Vercel deployment; final hosted acceptance remains pending as described below.
+The architecture remains a **modular monolith with layers**: presentation, protected entry points, workflow services, domain rules and Supabase adapters in one Next.js application. The stack is JavaScript, Next.js 16.3.8, React 19.3.0 and Supabase PostgreSQL/Auth/private Storage. Use **Node.js 24.x and npm 11.x**, with the committed lockfile.
 
-## M4 frontend finalisation
+## Hosted setup and Vercel
 
-The M3 baseline above remains the recorded release. Work on `Ryno_branch` prepares the final frontend and Vercel configuration; it does not establish final M4 acceptance or production readiness.
+Install dependencies with `npm ci`. Copy `.env.example` to the ignored `.env.local` if creating a new local environment:
 
-- Submission displays the server's general error and preserves entered details when it fails.
-- Signed-out request creation returns to sign-in and then to the original permitted task. Signed-in accounts without a requester profile receive setup guidance.
-- The manager selector uses `GET /api/staff-directory?requestId=<UUID>`, with the agreed response `{ "staff": [{ "user_id": "UUID", "display_name": "Name" }] }`. It shows loading, failure/retry and empty states, and requires an explicit eligible choice unless the current assignee remains eligible. Staff retain self-assignment.
-- The directory endpoint, trusted request timestamps and session-refresh proxy are integrated from Steven's reviewed PR #38. The selector has no simulated or legacy-directory fallback.
-- Upload validation and displayed size derive from `MAX_ATTACHMENT_BYTES` in the attachment adapter, now 4 MiB following Willem's reviewed PR #37. Migration 010 aligns the hosted bucket limit when applied by the database operator.
-- API refreshes retain the current record while loading, block workflow saves during refresh, discard obsolete responses and offer recovery after failure or expired sign-in.
+```powershell
+Copy-Item .env.example .env.local
+```
 
-The member documentation is [Ryno's M4 frontend and deployment contribution](Milestone_4/M4_Frontend_and_Deployment_Contribution.docx). Final RTM scores, integrated verification, release approval and PED v4.0 follow the other members' reviewed evidence.
+Set the intended hosted project's public client settings:
 
-### Complete request lists and management totals
+```text
+NEXT_PUBLIC_SUPABASE_URL=your-project-url
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
+```
 
-The M4 pagination correction replaces the former 1,000-record window. Request lists use 25 rows per page by default, with search, status/category filters and ordering applied in PostgreSQL before pagination. Search and page state are retained in the URL. Summary cards and management totals include the entire authorised matching population, rather than just the displayed page. Existing ownership, category and sensitive-information rules remain enforced.
+Never commit environment files, passwords, tokens or privileged credentials. Normal application runtime needs no service-role key or direct database connection string. Privileged keys must never use a NEXT_PUBLIC_ name.
 
-Apply migration `011_m4_request_pagination.sql` before deploying this correction. It adds the invoker-rights `m4_request_page` function and preserves existing records, history and RLS policies. This change does not introduce a retention or deletion policy. API details, acceptance links and verification are recorded in [request pagination and reporting](Milestone_4/M4_Request_Pagination_and_Reporting.md).
+On Vercel select the repository root, Next.js and Node.js 24. [vercel.json](vercel.json) uses `npm ci` and `npm run build`. Set the public variables separately for the intended Preview and Production environments, then redeploy after environment changes. Production follows the team's reviewed main branch. Do not set local simulation values or use `build:simulation` on Vercel.
 
-## Vercel deployment preparation
+The assessed candidate has successful Vercel status: [deployment Cc7nDKQsBWSzhN2tytFrdYAeG4X2](https://vercel.com/rynogzs-projects/sen-381-group-f/Cc7nDKQsBWSzhN2tytFrdYAeG4X2). Source identity follows the recorded status and team handoff; no separate hosting-admin inspection is claimed. Later documentation-only deployments do not change the application evidence.
 
-[vercel.json](vercel.json) selects Next.js, `npm ci` and `npm run build`. Use Node.js 24 and the repository root. Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` to the hosted project before building, separately for the intended Preview and Production environments. Do not set simulation values or use `build:simulation` on Vercel. The application uses Supabase's HTTP client; no direct database connection string or service-role key is required for its normal runtime.
+### Database migrations
 
-Configure the GitHub project, reviewed production branch, suitable function region and deployment checks in Vercel's dashboard. Environment changes require a new deployment. The repository configuration alone does not configure account access, review rules, deployment protection, domains or a live deployment.
+For a new hosted project apply the SQL files under [supabase/migrations](supabase/migrations) in numeric order:
 
-Apply only missing reviewed migrations to the hosted database before verifying the dependent application. Migration 009 enforces trusted request creation timestamps; migration 010 limits new storage uploads to 4 MiB. Both files are included in this integrated branch. Their presence in Git does not confirm that they have been applied to the hosted database.
+| Migration | Purpose |
+| --- | --- |
+| 001 | Initial request/category/status/requester schema |
+| 002 | Initial status history |
+| 003 | Request ownership RLS |
+| 004 | Secure status triggers |
+| 005 | Roles, scopes, workflow, history and versioned operations |
+| 006 | Private attachments and linking/storage access |
+| 007 | Controlled reassignment reason |
+| 008 | Prompt PT409 business-version conflict response |
+| 009 | Trusted authenticated request creation timestamps |
+| 010 | Private bucket limit for new 4 MiB uploads |
+| 011 | Complete scoped pagination, filtering and aggregate totals |
 
-The Vercel project URL supplied by the team is [sen-381-group-f.vercel.app](https://sen-381-group-f.vercel.app/). Before declaring the final deployed candidate ready, verify sign-in/session renewal, requester submission/retrieval, staff eligibility and assignment, lifecycle changes, private information, attachment boundaries/download and stale-write rejection on its HTTPS URL. Record the deployed source commit and real results. Existing historical attachments above 4 MiB also require a hosted download check against the platform's response limit.
+Apply only missing reviewed migrations to an existing project. The W2 handoff confirms hosted 009-011, and the successful paginated API functionally supports 011 availability; no independent administrator migration-ledger inspection was recorded. For an authorised, linked Supabase CLI environment:
 
-Keep local simulation for repeatable CI tests. It does not run as part of the normal Vercel build. Treat production deployment as a team release decision supported by evidence.
+```bash
+npx supabase migration list
+npx supabase db push --dry-run
+npx supabase db push
+```
 
-## Option 1 Local simulation for the M3 demonstration
+Inspect the dry run first. If manually applied older migrations appear pending, reconcile the actual schema and migration history with the database operator rather than blindly replaying them or marking unknown changes applied.
 
-From the repository root:
+### Accounts and permissions
+
+Create fictional users in Supabase Auth. Submitting accounts need a matching `public.requesters` row. Staff/managers need `public.service_members` entries and explicit category scopes in `public.service_scopes`. Use [the provisioning example](supabase/m3-test-users.example.sql) with actual Auth UUIDs. An Auth account alone does not grant a requester profile or operational role.
+
+Managers can assign only staff eligible for the request category and sensitivity. Hosted scopes differ from local fixtures; inspect the actual directory instead of assuming Maintenance or a role name implies clearance. The team provides assessor account access separately; hosted passwords are not committed here.
+
+### Run locally against hosted Supabase
+
+```bash
+npm run dev -- --hostname 127.0.0.1 --port 3104
+```
+
+Open [http://127.0.0.1:3104](http://127.0.0.1:3104). For a hosted-configuration production build:
+
+```bash
+npm run build
+npm start -- --hostname 127.0.0.1 --port 3104
+```
+
+Public settings are embedded at build time. Stop the relevant production server and rebuild before switching provider environments. Plain `npm run dev` defaults to port 3000 and does not start the simulation provider.
+
+## Optional local simulation
+
+Local simulation remains repeatable CI and rehearsal infrastructure. It runs separately from Vercel:
 
 ```bash
 npm ci
@@ -67,82 +111,24 @@ npm run build:simulation
 npm run staging:simulation
 ```
 
-Open **[http://127.0.0.1:3103](http://127.0.0.1:3103)**. Leave the terminal running; Ctrl+C stops staging.
+Open [http://127.0.0.1:3103](http://127.0.0.1:3103). The provider runs on 54329 and applies actual SQL migrations/policies to a temporary PGlite database with simulated Auth and file storage. Restarting clears temporary requests and attachments. Leave the staging terminal running; Ctrl+C stops it. All presenters sharing a simulated request must use the same running provider.
 
-The simulation starts the production application build on **3103** and its provider on **54329**. It applies the actual SQL migrations and access policies to a temporary PostgreSQL-compatible PGlite database, with simulated authentication and temporary file storage. It needs no hosted keys. Restarting clears its temporary requests and attachments.
+These **simulation-only** accounts use `Fictional-test-password-1!`:
 
-All these local accounts use **Fictional-test-password-1!**:
-
-| Account | Role and access |
+| Account | Purpose |
 | --- | --- |
 | requester@example.test | Submit and retrieve owned requests |
-| other@example.test | A different requester for denied-access checks |
+| other@example.test | Different requester for isolation checks |
 | staff@example.test | Maintenance staff with sensitive clearance |
 | manager@example.test | Maintenance manager without sensitive clearance |
 | restricted@example.test | Maintenance staff without sensitive clearance |
-| admin@example.test | Administration without automatic operational request access |
+| admin@example.test | Administration without automatic request access |
 
-Staff and manager fixtures have no requester profile, so submit through a requester. Use a **non-sensitive Maintenance request** for the shared demonstration. Use separate browser profiles or sign out before switching users. All presenters must continue the same running simulation to share the same request data.
+Staff/manager fixtures have no requester profile, so submit through a requester. Use a non-sensitive Maintenance request for the shared workflow. These are not hosted credentials. Ordinary simulation restart is not backup/recovery evidence.
 
-These are simulation accounts, not hosted Supabase credentials. Local simulation does not establish hosted authentication security, cloud performance, scheduled backups or hosted disaster recovery.
+## Verification and evidence
 
-## Option 2 Use hosted nonproduction Supabase
-
-Install dependencies with npm ci if needed. Copy the environment template:
-
-```powershell
-Copy-Item .env.example .env.local
-```
-
-On macOS/Linux use cp .env.example .env.local. Set the public client values in the ignored .env.local:
-
-```text
-NEXT_PUBLIC_SUPABASE_URL=your-nonproduction-project-url
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your-publishable-key
-```
-
-Never commit environment files, passwords or privileged credentials. Service-role or secret keys must never use a NEXT_PUBLIC_ name.
-
-For a fresh hosted project, apply these SQL files from supabase/migrations in order through a trusted database operator and Supabase's SQL editor or the controlled migration workflow:
-
-1. 001_initial_schema.sql
-2. 002_initial_status_history.sql
-3. 003_request_rls.sql
-4. 004_secure_status_triggers.sql
-5. 005_m3_workflow.sql
-6. 006_m3_private_attachments.sql
-7. 007_m3_reassignment_reason.sql
-8. 008_m3_version_conflict.sql
-9. 009_m4_trusted_request_timestamps.sql
-10. 010_m4_attachment_limit.sql
-11. 011_m4_request_pagination.sql
-
-Apply only missing migrations to an existing project; do not blindly rerun all files. Migration 008 preserves workflow and permissions while returning PT409 for business version conflicts instead of a retryable serialization error.
-
-Create fictional test users in Supabase Auth. Each submitting account needs a public.requesters row with the matching Auth UUID. Staff and managers also need public.service_members records and explicit category scopes in public.service_scopes. Adapt [the provisioning example](supabase/m3-test-users.example.sql) to actual Auth IDs before use. An Auth account alone does not grant application roles.
-
-Managers can only assign staff authorised for the request's category and sensitivity. An empty list can mean no eligible staff member has been provisioned. Earlier hosted test staff had **IT support** scope, unlike the simulation's Maintenance fixtures. The team supplies hosted credentials and checks current scope; do not assume the simulation password works in Supabase.
-
-Start development on a distinct port:
-
-```bash
-npm run dev -- --hostname 127.0.0.1 --port 3104
-```
-
-Open **[http://127.0.0.1:3104](http://127.0.0.1:3104)** and use actual hosted test credentials. Development mode is separate from the production-build measurements recorded in the PED.
-
-For a production build using the same hosted configuration:
-
-```bash
-npm run build
-npm start -- --hostname 127.0.0.1 --port 3104
-```
-
-Public settings are embedded at build time. Stop running production instances before switching providers, then rebuild for the chosen environment. A simulation build is not a hosted build. Plain npm run dev defaults to port 3000 and does not start the simulation provider.
-
-## Verification and CI
-
-Stop manual staging first: browser and performance commands start their own services on ports 3103 and 54329.
+Unit/database tests need no hosted keys. Stop manual simulation servers first because browser/performance commands start their own services on ports 3103 and 54329:
 
 ```bash
 npm run lint
@@ -157,65 +143,66 @@ npm run test:performance
 npm run test:recovery
 ```
 
-Browser tests require the simulation production build. Unit/database tests need no hosted keys. Performance measures a selected local workload; recovery is a controlled local snapshot/restore. New reports go into ignored test-results and do not automatically replace submitted dated evidence.
+Browser tests use the production simulation and seed 3,300 fictional requests; performance uses its separately recorded dataset. Reports go to ignored `test-results`. Running these commands does not automatically replace dated submitted evidence. The [quality workflow](.github/workflows/m3-quality.yml), historically named M3, remains the application gate on PRs and main.
 
-[The M3 quality workflow](.github/workflows/m3-quality.yml) runs on PRs and pushes to main. It restores dependencies, checks quality/security, runs tests, builds the simulation, verifies performance/recovery and retains reports even after failure.
-
-### Recorded M3 evidence
-
-The [final verification folder](Milestone_3/Verification_2026-10-15_Final) contains dated results, methods and the [source/report hash manifest](Milestone_3/Verification_2026-10-15_Final/verification-summary.json). Its source hashes match the verified application. Its original base-commit/working-tree fields describe evidence collection time; PR #34 and run #13 identify the later committed and reviewed candidate.
-
-| Check | Recorded result |
+| Evidence | Recorded result and scope |
 | --- | --- |
-| Local regression | 24 unit + 22 database + 9 browser/API cases, all passed; 55 unique local cases |
-| Hosted checks | 10 selected browser checks plus focused conflict verification passed |
-| Static/security | Lint, bounded secret-pattern check and production builds passed; production dependency audit recorded zero findings |
-| Local performance | 1000 requests, three concurrent identities, 60 reads, zero errors; list p95 72.15 ms against 2000 ms |
-| Hosted performance | Small-data p95 targets passed; one management read exceeded two seconds; NFR-006 remains partial |
-| Local recovery | Coordinated 1000-request restore/check 468.60 ms; simulated loss 507 ms; integrity/privacy checks passed |
-| Candidate CI | Actions run #13 passed for 374c21e |
+| [PR41 implementation and local verification](Milestone_4/M4_Request_Pagination_and_Reporting.md) | 32 unit + 39 database + 25 browser cases passed; 96 unique local cases, including pagination, permissions and 3,300 seeded browser records. |
+| [CI32](https://github.com/RynoGz/SEN831_Group_F/actions/runs/39145690243) | Passed configured build, lint, secret/dependency, unit/database/browser, performance and recovery gates for PR41. |
+| [Pagination reports](Milestone_4/Verification/2026-10-18_Pagination) | Selected local paginated-read p95 235.52 ms; 60 reads, three identities, zero errors over a 3,300-record seed. Not a full hosted workload. |
+| [W2 quality closure](Milestone_4/M4_Quality_and_Release_Closure.docx) | Earlier regression and authorised HTTPS workflows retained with initial harness failures and corrected follow-ups. |
+| [W2 pagination follow-up](Milestone_4/Verification/2026-10-18_W2_Pagination_Followup) | Eight focused local cases and 13 read-only hosted groups passed for the assessed candidate. Hosted populations were below 1,000; local traversal proved 1,258 owned records. |
+| [W2 historical reports](Milestone_4/Verification/2026-10-18_W2) | Earlier performance p95 65.94 ms and local recovery 380.25 ms / simulated loss 388 ms retain their original candidate and bounded scenario. |
+| [Approved S2 assessment](Milestone_4/M4_Data_and_Acceptance_ClosureFinal.docx) | Criterion scores and evidence, with its 96.58% snapshot. Final PED documents the subsequent README/PED consistency correction. |
+| [M3 historical evidence](Milestone_3/Verification_2026-10-15_Final) | Preserved original regression, hosted, performance, recovery and source hashes; not a new measurement of the final application. |
 
-These are dated results, not checks rerun for every documentation edit. Passing selected cases does not establish every acceptance criterion or complete security.
+Repeated W2 checks are not added to the 96-case total as new unique tests. Contract fixtures explicitly simulate selected interface failures/loading/empty states. The full hosted pagination follow-up did not create or clean up fixtures. No application tests were rerun solely for this final documentation integration; unchanged source and existing verified evidence support the record.
 
-## Remaining limitations
+## Final limitations
 
-- Wider NFR-006 coverage, including all relevant operations at 1000 hosted rows and sustained hosted capacity, remains incomplete.
-- Local recovery does not establish reliable daily scheduling, changing-data backups or hosted database/Auth/Storage disaster restore.
-- Production monitoring, retention decisions and broader acceptance validation remain final-submission work.
-- Queries are bounded to 1000 records, so larger datasets can yield incomplete summaries.
-- The unexplained hosted timeout remains recorded despite successful retests.
-- Earlier high-severity development dependency findings remain separate from the passing production audit.
+- NFR-004 AC1/AC4: representative-user task evaluation is not evidenced, although scripted interface/hosted tasks pass.
+- NFR-006 AC1/AC2/AC3: the full 1,000-record, three-concurrent-user retrieval/search/filter/sort/management workload and submission target are not established. Local page timing and small-data hosted checks do not prove sustained cloud capacity.
+- NFR-007 AC1/AC4: controlled local recovery passes, but reliable scheduling, coordinated hosted Database/Auth/Storage recovery and the documented working-target/platform review remain incomplete.
+- A final retention duration is unresolved; no automatic deletion policy or infinite-storage promise is introduced.
+- Natural hosted token expiry/transparent renewal was not forced; sign-out, denied access and re-entry were checked.
+- No global bucket inventory or requester-visible hosted legacy attachment above 4 MiB was verified. New uploads use 4 MiB; historical objects are preserved.
+- Offset pages may shift during concurrent writes and do not provide a frozen multi-page snapshot.
+- The historical post-workload timeout remains unexplained despite passing focused 409 retests.
+- The recorded production audit has zero findings; five high-severity development dependency findings remain. Secret scanning is a bounded heuristic, not a penetration or full-history audit.
+- Production monitoring and broader operational acceptance are not inferred from the controlled demonstration.
 
-The PED RTM, Risk Register, Defect Register and Technical Debt Register retain statuses and owners. Reopening requests are recorded; automatic reopening and every future review workflow are not claimed.
+The old 1,000-record application cutoff is **resolved**, not a current limitation. PED sections 20, 34 and 38 give final statuses and owners. Four labelled W2 fixtures remain in terminal states by agreement; further cleanup is controlled separately.
 
-## Repository structure
+## Repository and team
 
 ```text
 src/app/                         Pages and protected API routes
 src/components/                  Shared interface components
 src/domain/requests/             Lifecycle, reason and reporting rules
 src/features/requests/           Request form, validation and entry points
-src/features/workflow/           Services and role-aware workspaces
+src/features/workflow/           Services, pagination and role-aware workspaces
 src/features/attachments/        Private attachment adapter
 src/lib/supabase/                Browser/server clients
-supabase/migrations/             Migrations 001 through 008
+src/proxy.js                     Session refresh boundary
+supabase/migrations/             Reviewed migrations 001 through 011
 supabase/m3-test-users.example.sql Hosted provisioning example
-tests/                          Unit, database and browser/API tests; provider
-scripts/                        Build, staging, verification and recovery
-.github/workflows/               CI
-Milestone_1/                    PED v1.0 and original baseline
-Milestone_2/                    PED v2.0 and design contributions
-Milestone_3/                    PED v3.0, change record and dated evidence
+tests/                           Unit, database and browser tests; provider
+scripts/                         Build, staging, verification and local recovery
+.github/workflows/               Quality gate
+Milestone_1/                     Historical PED v1.0 and original baseline
+Milestone_2/                     Historical PED v2.0 and design contributions
+Milestone_3/                     Historical PED v3.0 and dated M3 evidence
+Milestone_4/                     Final PED v4.0, closure contributions and evidence
 ```
 
-## Team and change control
-
-| Member | Primary M3 contribution |
+| Member | Final contribution |
 | --- | --- |
-| Ryno Goetz | Architecture, setup, frontend, staging, recovery verification and integration |
-| Steven Riaan Piek | Data/persistence, backend workflow and requirements traceability |
-| Willem Booysen | Design rules, attachments/reporting, quality checks, CI and release evidence |
+| Ryno Goetz | Architecture/setup/frontend, integration, deployment handoff, pagination/reporting correction and final PED/README |
+| Steven Riaan Piek | Data/backend integrity, directory/session work, requirements traceability and criterion-level acceptance |
+| Willem Booysen | Design rules, private attachments, verification, CI and quality/release conclusions |
 
-All members must understand the complete application and PED. Use focused branches, meaningful commits and substantive PRs. Protected main requires the agreed checks and two non-author approvals. Review code and documentation together, and control affected requirements, decisions, risks and verification evidence.
+All members must understand the combined product. The team process requires focused branches, meaningful commits, passing agreed checks and both non-author reviews for substantive PRs. Reviews and merges for the final contributions are recorded in PRs #37-43. Material AI assistance and actual verification are disclosed in the PED; students remain responsible for understanding and defending the work.
 
-Material AI assistance is disclosed in the PED AI Usage Register; students remain accountable for checking and understanding their work. PED v1.0/v2.0 remain historical baselines. PED v3.0 is the current M3 evidence index.
+## Final submission and presentation
+
+Submit PED v4.0, this repository URL, the exact assessed commit/tag/release identifier and the assessor access information required by the portal. The final RTM and registers are continued in the PED; no disconnected duplicate report or source-code ZIP is required unless specifically requested. The final product demonstration and individual engineering defence are live. Earlier milestone files remain historical baselines.
