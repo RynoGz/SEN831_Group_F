@@ -1,0 +1,12 @@
+{
+  "METHOD.md": "eb6c08fe92a7bcc8b9968f6b2ceefcc9fd372397e4d2e72a17a53e33eabcc7fd",
+  "methods/w2-directory-discovery.mjs": "2a53afd3a3b6d44a31e6aa01c8bf67913ba199f03a14e7919476d44882be19b5",
+  "methods/w2-hosted-followup.mjs": "6cfd176e0f976fa9d259252584e159db7f3ba7d65a31a15ff19fed1260f81e99",
+  "methods/w2-hosted-reassignment.mjs": "59346f7505727c86fac8be423d55ad615ccdf40946f284fa8b6989903d61fecb",
+  "methods/w2-hosted.mjs": "42d996e1639cbe0933f944f2ae0359c987a1a6288ccabba1af4b42643e18f005",
+  "verification-summary.json": "8ec7b1b925518c243cf163528502237c45053076b161ffceef9574e35d1e4f96",
+  "w2-directory-discovery.json": "819281f99f4e328f0fab6f0ea1eed5c6bcafc0e83d80b7f4f806009a2d0d7349",
+  "w2-hosted-followup.json": "34c72fd49b7ed1f2183e9f965d2961a8c38ccc87b28de2643e52a7d200c580d8",
+  "w2-hosted-reassignment.json": "68983a642b9dfdb0cea3a7609772a3aceb30ffb72c7a14ece2baf55ff856d284",
+  "w2-hosted-results.json": "c8e917e829e90caca7fdd8e5404e03107fe9f53565dcf335544891b0137a1065"
+}

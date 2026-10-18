@@ -1,0 +1,40 @@
+{
+  "startedAt": "2026-10-18T16:27:41.375Z",
+  "candidate": "e0ac856759b24d95d6fa3cb790972d6ee0a625a4",
+  "environment": "https://sen-381-group-f.vercel.app",
+  "candidateSource": "Ryno handoff supplied by Willem; Vercel successful status checked separately",
+  "migrationConfirmation": "Willem confirms 009 and 010 applied; not administrator SQL inspection",
+  "fixtureAgreement": "Retain clearly labelled verification records, finishing Closed or Rejected",
+  "marker": "W2 VERIFICATION 2026-10-18T16-27-41-375Z",
+  "checks": [],
+  "fixtures": [],
+  "limitations": [],
+  "directories": [
+    {
+      "category": "Maintenance",
+      "status": 200,
+      "eligible": [
+        {
+          "user_id": "6a07dc01-4e64-42cd-bcee-a9b18bd9f0aa",
+          "display_name": "M3 Test Staff"
+        }
+      ],
+      "sensitive": false
+    },
+    {
+      "category": "IT support",
+      "status": 200,
+      "eligible": [
+        {
+          "user_id": "9e43e016-c0e8-4d30-8aca-393b532562b0",
+          "display_name": "Fictional restricted"
+        },
+        {
+          "user_id": "6a07dc01-4e64-42cd-bcee-a9b18bd9f0aa",
+          "display_name": "M3 Test Staff"
+        }
+      ],
+      "sensitive": false
+    }
+  ]
+}

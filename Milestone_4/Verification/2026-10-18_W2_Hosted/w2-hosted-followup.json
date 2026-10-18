@@ -1,0 +1,111 @@
+{
+  "startedAt": "2026-10-18T16:25:44.358Z",
+  "candidate": "e0ac856759b24d95d6fa3cb790972d6ee0a625a4",
+  "environment": "https://sen-381-group-f.vercel.app",
+  "candidateSource": "Ryno handoff supplied by Willem; Vercel successful status checked separately",
+  "migrationConfirmation": "Willem confirms 009 and 010 applied; not administrator SQL inspection",
+  "fixtureAgreement": "Retain clearly labelled verification records, finishing Closed or Rejected",
+  "marker": "W2 VERIFICATION 2026-10-18T16-21-04-158Z",
+  "checks": [
+    {
+      "name": "Follow-up HTTPS sign in requester",
+      "criteria": "NFR-001",
+      "status": "passed",
+      "elapsedMs": 3903.2445,
+      "observation": {
+        "role": "requester",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "Follow-up HTTPS sign in staff",
+      "criteria": "NFR-001",
+      "status": "passed",
+      "elapsedMs": 3578.4961999999996,
+      "observation": {
+        "role": "staff",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "Follow-up HTTPS sign in manager",
+      "criteria": "NFR-001",
+      "status": "passed",
+      "elapsedMs": 3484.5547000000006,
+      "observation": {
+        "role": "manager",
+        "canViewSensitive": true
+      }
+    },
+    {
+      "name": "Follow-up HTTPS sign in restricted",
+      "criteria": "NFR-001",
+      "status": "passed",
+      "elapsedMs": 3549.4867000000013,
+      "observation": {
+        "role": "staff",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "Corrected staff self-assignment and no directory request",
+      "criteria": "FR-009",
+      "status": "passed",
+      "elapsedMs": 7312.612499999999
+    },
+    {
+      "name": "Hosted manager directory selection, reason validation and private assignment history",
+      "criteria": "FR-009/011/016; NFR-002",
+      "status": "failed",
+      "elapsedMs": 4927.3524,
+      "error": "A second eligible identity is required for this check"
+    },
+    {
+      "name": "Actual HTTPS staff progress/resolution and manager closure UI",
+      "criteria": "FR-005/010/012/016",
+      "status": "passed",
+      "elapsedMs": 16600.140199999998
+    },
+    {
+      "name": "Known record search category/status filtering and oldest/newest order",
+      "criteria": "FR-007",
+      "status": "passed",
+      "elapsedMs": 1699.4202000000005
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "e2b5ce92-8192-441b-9e52-add2f17ba6f0",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z lifecycle",
+      "category": "Maintenance",
+      "sensitive": false,
+      "createdByThisRun": true,
+      "finalStatus": "Closed",
+      "retained": true
+    },
+    {
+      "id": "4629c835-df9c-4380-a84e-752f10f6b036",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z rejection",
+      "category": "Maintenance",
+      "sensitive": false,
+      "createdByThisRun": true,
+      "finalStatus": "Rejected",
+      "retained": true
+    },
+    {
+      "id": "a5dc891b-b896-4bb5-b822-08820282f0b5",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z sensitive",
+      "category": "Maintenance",
+      "sensitive": true,
+      "createdByThisRun": true,
+      "finalStatus": "Rejected",
+      "retained": true
+    }
+  ],
+  "limitations": [],
+  "priorRun": "2026-10-18T16:21:04.158Z",
+  "correction": "Initial harness selected a button named Assign to me, but that text belongs to the Responsible staff option; the correct button is Save assignment. Dependent unassigned lifecycle/filter assertions were blocked. Original failed results are retained.",
+  "completedAt": "2026-10-18T16:26:33.802Z",
+  "passed": 7,
+  "failed": 1
+}
