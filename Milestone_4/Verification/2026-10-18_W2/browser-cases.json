@@ -1,0 +1,222 @@
+{
+  "sourceCommit": "79f503a270599a1c4ecbd4b9a4fa28cdc0e46fc8",
+  "environment": "Local production simulation; existing Playwright tests without exclusions",
+  "runnerExitCode": 0,
+  "stats": {
+    "startTime": "2026-10-18T13:14:05.842Z",
+    "duration": 28836.816000000003,
+    "expected": 23,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "cases": [
+    {
+      "title": "design.spec.js / responsive navigation, reduced motion and request-filter recovery",
+      "file": "design.spec.js",
+      "line": 3,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 2362,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / signed-out request creation returns to the same task after sign-in",
+      "file": "final-frontend.spec.js",
+      "line": 23,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 472,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / submission explains an expired session and keeps the entered request",
+      "file": "final-frontend.spec.js",
+      "line": 33,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 889,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / a service account without a requester profile receives clear setup guidance",
+      "file": "final-frontend.spec.js",
+      "line": 52,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 503,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / manager waits for eligible staff and explicitly selects before saving",
+      "file": "final-frontend.spec.js",
+      "line": 63,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 564,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / empty eligible directory explains why assignment is unavailable",
+      "file": "final-frontend.spec.js",
+      "line": 95,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 349,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / directory failure can be retried and is never presented as no eligible staff",
+      "file": "final-frontend.spec.js",
+      "line": 107,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 635,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / malformed staff results show a recoverable error instead of crashing",
+      "file": "final-frontend.spec.js",
+      "line": 122,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 269,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / an eligible current assignee stays selected and changing it still requires a reason",
+      "file": "final-frontend.spec.js",
+      "line": 130,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 565,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / workflow saves stay disabled while authoritative details refresh",
+      "file": "final-frontend.spec.js",
+      "line": 143,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 628,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / staff self-assignment does not fetch a manager directory",
+      "file": "final-frontend.spec.js",
+      "line": 162,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 235,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / expired details session provides a sign-in recovery link",
+      "file": "final-frontend.spec.js",
+      "line": 172,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 214,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / upload rejects a file above the shared limit before sending it",
+      "file": "final-frontend.spec.js",
+      "line": 179,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 646,
+      "errors": []
+    },
+    {
+      "title": "final-frontend.spec.js / an HTML upload failure gives readable recovery guidance and preserves the chosen file",
+      "file": "final-frontend.spec.js",
+      "line": 190,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 528,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / W1API01: attachment HTTP boundaries, safe errors and private retrieval",
+      "file": "workflow.spec.js",
+      "line": 6,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 3749,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / E2E01 FR-001/003/004: sign in, validate, save, private attachment and retrieve",
+      "file": "workflow.spec.js",
+      "line": 30,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 2796,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / E2E02 FR-009/010/011/012/015: requester → staff → manager full lifecycle and reporting",
+      "file": "workflow.spec.js",
+      "line": 38,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 4497,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / API01 NFR-001: anonymous request-details API denied",
+      "file": "workflow.spec.js",
+      "line": 48,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 8,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / API02 NFR-001: requester cannot retrieve work directory",
+      "file": "workflow.spec.js",
+      "line": 49,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 396,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / API03 FR-001: malformed request ID handled without internal error disclosure",
+      "file": "workflow.spec.js",
+      "line": 50,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 405,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / API04 NFR-001: cross-origin mutation denied before database work",
+      "file": "workflow.spec.js",
+      "line": 52,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 370,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / API05 NFR-005: stale update returns a reload message and preserves the saved request",
+      "file": "workflow.spec.js",
+      "line": 56,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 2647,
+      "errors": []
+    },
+    {
+      "title": "workflow.spec.js / CRE2E01 FR-009: manager reassignment requires a reason and preserves history",
+      "file": "workflow.spec.js",
+      "line": 74,
+      "expectedStatus": "passed",
+      "status": "passed",
+      "durationMs": 3521,
+      "errors": []
+    }
+  ]
+}
