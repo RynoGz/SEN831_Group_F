@@ -14,6 +14,7 @@ export async function database({throughMigration=Infinity}={}){
  await db.exec(`create role anon; create role authenticated;
  create schema auth;create table auth.users(id uuid primary key,email text);
  create function auth.uid() returns uuid language sql stable as $$select nullif(current_setting('request.jwt.claim.sub',true),'')::uuid$$;
+create function auth.role() returns text language sql stable as $$select nullif(current_setting('request.jwt.claim.role',true),'')$$;
  grant usage on schema auth,public to anon,authenticated;
  grant execute on function auth.uid() to anon,authenticated;
  create schema storage;
@@ -39,6 +40,7 @@ export async function database({throughMigration=Infinity}={}){
 export async function asUser(db,id,fn){
  return db.transaction(async tx=>{
   await tx.query("select set_config('request.jwt.claim.sub',$1,true)",[id??'']);
+await tx.query("select set_config('request.jwt.claim.role',$1,true)",[id?'authenticated':'anon']);
   await tx.exec(id?'set local role authenticated':'set local role anon');
   return fn(tx);
  });

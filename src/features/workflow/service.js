@@ -75,3 +75,57 @@ export async function change(client,id,input){
  p_assigned_to:input.assignedTo??null,p_note:input.note?.trim()||null,p_visible:input.visible??true,p_target_at:target||null
  }));
 }
+export async function staffDirectory(client, requestId) {
+  const actor = await session(client);
+
+  if (actor.role !== 'manager') {
+    throw new WorkflowError('Manager access is required.', 403);
+  }
+
+  if (!UUID.test(requestId ?? '')) {
+    throw new WorkflowError('Request unavailable.', 404);
+  }
+
+  const request = checked(
+    await client
+      .from('requests')
+      .select('request_id, category_id, sensitive_information')
+      .eq('request_id', requestId)
+      .maybeSingle()
+  );
+
+  if (!request) {
+    throw new WorkflowError('Request unavailable.', 404);
+  }
+
+  // Confirm the manager is authorised for this request's category.
+  const scope = checked(
+    await client
+      .from('service_scopes')
+      .select('category_id')
+      .eq('user_id', actor.id)
+      .eq('category_id', request.category_id)
+      .maybeSingle()
+  );
+
+  if (!scope) {
+    throw new WorkflowError('Request unavailable.', 404);
+  }
+
+  const staff = checked(
+    await client.rpc('m3_staff_directory')
+  ) ?? [];
+
+  return {
+    staff: staff
+      .filter(
+        member =>
+          member.category_id === request.category_id &&
+          (!request.sensitive_information || member.can_view_sensitive)
+      )
+      .map(({ user_id, display_name }) => ({
+        user_id,
+        display_name,
+      })),
+  };
+}
