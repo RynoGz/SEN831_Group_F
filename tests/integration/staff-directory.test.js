@@ -161,7 +161,6 @@ test('SD02: sensitive requests exclude staff without clearance', async () => {
   'update service_members set can_view_sensitive = true where user_id = $1',
   [USERS.manager],
 );
-  console.log('SD02 request:', request);
 
   const result = await staffDirectory(
     clientFor(USERS.manager),
