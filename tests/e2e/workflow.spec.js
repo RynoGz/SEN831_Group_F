@@ -1,6 +1,32 @@
 import {test,expect} from '@playwright/test';
+import {MAX_ATTACHMENT_BYTES} from '../../src/features/attachments/attachment-store.js';
 async function login(page,name){await page.goto('/auth/login');await page.getByLabel('Email',{exact:true}).fill(`${name}@example.test`);await page.getByLabel('Password',{exact:true}).fill('Fictional-test-password-1!');await page.getByRole('button',{name:'Sign in',exact:true}).click();await expect(page).toHaveURL(/\/(requests|work|management)$/);}
 async function submit(page,title){await page.goto('/requests/new');await page.getByLabel('Title',{exact:false}).fill(title);await page.getByLabel('Description',{exact:false}).fill('Fictional leak for controlled testing.');await page.getByLabel('Category',{exact:false}).selectOption({label:'Maintenance'});await page.getByLabel('Location',{exact:false}).fill('Test hall');await page.getByRole('radio',{name:'No',exact:true}).check();await page.getByRole('button',{name:'Submit request',exact:true}).click();await expect(page.getByRole('heading',{name:'Your request has been saved'})).toBeVisible();const link=page.getByRole('link',{name:'View request',exact:true});const href=await link.getAttribute('href');await link.click();await expect(page.getByRole('heading',{name:title,exact:true})).toBeVisible();return href;}
+
+test('W1API01: attachment HTTP boundaries, safe errors and private retrieval',async({page,browser,request})=>{
+ await login(page,'requester');const href=await submit(page,`W1 boundary ${Date.now()}`);
+ const url=`${href.replace('/requests/','/api/requests/')}/attachment`;
+ const headers={origin:'http://127.0.0.1:3103'};
+ const upload=buffer=>page.request.post(url,{headers,multipart:{file:{name:'fixture.pdf',mimeType:'application/pdf',buffer}}});
+ for(const [bytes,status] of [[Buffer.alloc(0),400],[Buffer.from('invalid PDF'),400],[Buffer.alloc(MAX_ATTACHMENT_BYTES+1),413]]){
+  const response=await upload(bytes);expect(response.status()).toBe(status);expect((await response.json()).error).toEqual(expect.any(String));
+ }
+ const malformed=await page.request.post(url,{headers:{...headers,'content-type':'multipart/form-data; boundary=missing'},data:'malformed'});
+ expect(malformed.status()).toBe(400);
+ expect((await request.get(url)).status()).toBe(401);
+ const other=await browser.newContext();
+ try{
+  const p=await other.newPage();await login(p,'other');
+  expect((await p.request.get(url)).status()).toBe(404);
+  expect((await p.request.post(url,{headers,multipart:{file:{name:'fixture.pdf',mimeType:'application/pdf',buffer:Buffer.from('%PDF-1.4')}}})).status()).toBe(404);
+  const bytes=Buffer.alloc(MAX_ATTACHMENT_BYTES);bytes.write('%PDF-1.4');
+  const saved=await upload(bytes);expect(saved.status()).toBe(200);expect(await saved.json()).toEqual({ok:true});
+  const downloaded=await page.request.get(url);expect(downloaded.status()).toBe(200);expect(await downloaded.body()).toEqual(bytes);
+  expect(downloaded.headers()['cache-control']).toBe('private, no-store');
+  expect((await p.request.get(url)).status()).toBe(404);
+  expect((await upload(Buffer.from('%PDF-1.4'))).status()).toBe(409);
+ }finally{await other.close();}
+});
 test('E2E01 FR-001/003/004: sign in, validate, save, private attachment and retrieve',async({page})=>{
  await login(page,'requester');await page.goto('/requests/new');await page.getByRole('button',{name:'Submit request',exact:true}).click();await expect(page.getByRole('heading',{name:'Please check your request'})).toBeVisible();
  const title=`E2E requester ${Date.now()}`;const href=await submit(page,title);

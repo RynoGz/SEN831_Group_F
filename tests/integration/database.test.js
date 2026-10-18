@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 import {database,USERS,asUser,createRequest,rpc} from '../support/database.js';
 let db;
 test.before(async()=>{db=await database();});
@@ -89,4 +90,22 @@ test('DB14 attachment recovery: owner can delete an unlinked staged file',async(
  await asUser(db,USERS.requester,tx=>tx.query('insert into storage.objects(bucket_id,name,owner_id) values($1,$2,$3)',['request-attachments',key,USERS.requester]));
  const deleted=await asUser(db,USERS.requester,tx=>tx.query('delete from storage.objects where name=$1 returning name',[key]));
  assert.equal(deleted.rows.length,1);
+});
+
+test('W1DB01: migration 010 applies directly after 008, preserving private legacy object access',async()=>{
+ const legacy=await database({throughMigration:8});
+ try{
+  const r=await createRequest(legacy);const key=`${r.request_id}/legacy-5mib.pdf`;
+  await asUser(legacy,USERS.requester,tx=>tx.query('insert into storage.objects(bucket_id,name,owner_id) values($1,$2,$3)',['request-attachments',key,USERS.requester]));
+  await asUser(legacy,USERS.requester,tx=>tx.query('select m3_link_attachment($1,$2)',[r.request_id,key]));
+  const before=(await legacy.query('select * from storage.objects where name=$1',[key])).rows;
+  const policies=(await legacy.query("select policyname,qual,with_check from pg_policies where schemaname='storage' order by policyname")).rows;
+  const sql=await readFile(new URL('../../supabase/migrations/010_m4_attachment_limit.sql',import.meta.url),'utf8');
+  await legacy.exec(sql);
+  assert.deepEqual((await legacy.query("select public,file_size_limit,allowed_mime_types from storage.buckets where id='request-attachments'")).rows,[{public:false,file_size_limit:4194304,allowed_mime_types:['application/pdf','image/png','image/jpeg']}]);
+  assert.deepEqual((await legacy.query('select * from storage.objects where name=$1',[key])).rows,before);
+  assert.deepEqual((await legacy.query("select policyname,qual,with_check from pg_policies where schemaname='storage' order by policyname")).rows,policies);
+  for(const user of [USERS.requester,USERS.staff])assert.equal((await asUser(legacy,user,tx=>tx.query('select name from storage.objects where name=$1',[key]))).rows.length,1);
+  for(const user of [USERS.other,USERS.admin])assert.equal((await asUser(legacy,user,tx=>tx.query('select name from storage.objects where name=$1',[key]))).rows.length,0);
+ }finally{await legacy.close();}
 });

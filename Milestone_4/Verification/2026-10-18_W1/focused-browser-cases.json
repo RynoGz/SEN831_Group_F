@@ -1,0 +1,16 @@
+[
+  {
+    "title": "W1API01: attachment HTTP boundaries, safe errors and private retrieval",
+    "status": "passed",
+    "expectedStatus": "passed",
+    "durationMs": 3741,
+    "errors": []
+  },
+  {
+    "title": "E2E01 FR-001/003/004: sign in, validate, save, private attachment and retrieve",
+    "status": "passed",
+    "expectedStatus": "passed",
+    "durationMs": 2711,
+    "errors": []
+  }
+]
