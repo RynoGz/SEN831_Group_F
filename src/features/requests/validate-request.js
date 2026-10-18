@@ -1,5 +1,5 @@
-// Browser feedback only. Steven's server operation must independently validate
-// input, derive the requester from the session, and enforce authorisation.
+// Shared browser/server input checks. The workflow service derives the requester
+// from the session, and database policies enforce access.
 export function validateRequestInput(input, categories) {
   const text = (value) => typeof value === "string" ? value.trim() : "";
   const values = {

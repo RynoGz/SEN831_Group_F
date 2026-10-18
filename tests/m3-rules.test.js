@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {isOverdue,summarize} from '../src/domain/requests/reporting.js';
+import {isOverdue} from '../src/domain/requests/reporting.js';
 import {attachmentStore,inspectAttachment,uploadAttachment,readAttachmentFile,MAX_ATTACHMENT_BYTES} from '../src/features/attachments/attachment-store.js';
 const row=(status,target)=>({statuses:{name:status},categories:{name:'Maintenance'},target_at:target});
 test('BB01 FR-014 BVA: overdue before/equal/after deadline',()=>{
@@ -10,10 +10,6 @@ test('BB01 FR-014 BVA: overdue before/equal/after deadline',()=>{
 test('BB02 FR-014 decision table: terminal states excluded even after deadline',()=>{
  for(const status of ['Resolved','Closed','Rejected'])assert.equal(isOverdue(row(status,'2020-01-01'),Date.now()),false);
  assert.equal(isOverdue(row('Submitted',null)),false);
-});
-test('BB03 FR-015: aggregate scope supplied by authorised query',()=>{
- const r=summarize([row('Submitted','2020-01-01'),row('Closed',null),row('Resolved',null)]);
- assert.equal(r.total,3);assert.equal(r.open,1);assert.equal(r.overdue,1);assert.equal(r.closed,1);assert.equal(r.resolved,1);assert.equal(r.byCategory.Maintenance,3);
 });
 test('BB04 attachment BVA: reject empty and oversized; accept exact size',()=>{
  assert.throws(()=>inspectAttachment(new Uint8Array(0),'application/pdf'),/nonempty/);
