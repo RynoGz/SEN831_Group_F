@@ -39,6 +39,12 @@ The M3 baseline above remains the recorded release. Work on `Ryno_branch` prepar
 
 The member documentation is [Ryno's M4 frontend and deployment contribution](Milestone_4/M4_Frontend_and_Deployment_Contribution.docx). Final RTM scores, integrated verification, release approval and PED v4.0 follow the other members' reviewed evidence.
 
+### Complete request lists and management totals
+
+The M4 pagination correction replaces the former 1,000-record window. Request lists use 25 rows per page by default, with search, status/category filters and ordering applied in PostgreSQL before pagination. Search and page state are retained in the URL. Summary cards and management totals include the entire authorised matching population, rather than just the displayed page. Existing ownership, category and sensitive-information rules remain enforced.
+
+Apply migration `011_m4_request_pagination.sql` before deploying this correction. It adds the invoker-rights `m4_request_page` function and preserves existing records, history and RLS policies. This change does not introduce a retention or deletion policy. API details, acceptance links and verification are recorded in [request pagination and reporting](Milestone_4/M4_Request_Pagination_and_Reporting.md).
+
 ## Vercel deployment preparation
 
 [vercel.json](vercel.json) selects Next.js, `npm ci` and `npm run build`. Use Node.js 24 and the repository root. Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` to the hosted project before building, separately for the intended Preview and Production environments. Do not set simulation values or use `build:simulation` on Vercel. The application uses Supabase's HTTP client; no direct database connection string or service-role key is required for its normal runtime.
@@ -109,6 +115,7 @@ For a fresh hosted project, apply these SQL files from supabase/migrations in or
 8. 008_m3_version_conflict.sql
 9. 009_m4_trusted_request_timestamps.sql
 10. 010_m4_attachment_limit.sql
+11. 011_m4_request_pagination.sql
 
 Apply only missing migrations to an existing project; do not blindly rerun all files. Migration 008 preserves workflow and permissions while returning PT409 for business version conflicts instead of a retryable serialization error.
 

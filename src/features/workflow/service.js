@@ -35,15 +35,22 @@ export async function session(client){
  const membership=checked(await client.from('service_members').select('*').eq('user_id',data.user.id).maybeSingle());
  return {id:data.user.id,role:membership?.role??'requester',name:membership?.display_name??data.user.email,canViewSensitive:membership?.can_view_sensitive??false};
 }
-export async function listRequests(client,{own=false,query='',status='',category='',sort='newest'}={}){
+export async function listRequests(client,{own=false,query='',status='',category='',sort='newest',page=1,pageSize=25,summaryOnly=false}={}){
  const actor=await session(client);
- let builder=client.from('requests').select('*,categories(name),statuses(name)').order('created_at',{ascending:sort==='oldest'}).limit(1000);
- if(own){const profile=checked(await client.from('requesters').select('requester_id').eq('auth_user_id',actor.id).maybeSingle()); if(!profile) throw new WorkflowError('Your requester profile needs to be provisioned.',409); builder=builder.eq('requester_id',profile.requester_id);}
+ const validInteger=value=>/^[1-9]\d*$/.test(String(value))&&Number.isSafeInteger(Number(value));
+ if(!validInteger(page)||Number(page)>2147483647||!validInteger(pageSize)||Number(pageSize)>100||
+  !['newest','oldest'].includes(sort)||typeof query!=='string'||query.length>200||
+  typeof status!=='string'||typeof category!=='string'||typeof own!=='boolean'||typeof summaryOnly!=='boolean')
+  throw new WorkflowError('Choose valid search and page options.');
+ if(own){const profile=checked(await client.from('requesters').select('requester_id').eq('auth_user_id',actor.id).maybeSingle()); if(!profile) throw new WorkflowError('Your requester profile needs to be provisioned.',409);}
  else if(!['staff','manager'].includes(actor.role)) throw new WorkflowError('Work access is not permitted.',403);
- let data=checked(await builder)??[];
- if(!own){const scopes=checked(await client.from('service_scopes').select('category_id').eq('user_id',actor.id))??[]; const allowed=new Set(scopes.map(s=>s.category_id)); data=data.filter(r=>allowed.has(r.category_id)&&(!r.sensitive_information||actor.canViewSensitive));}
- const needle=typeof query==='string'?query.trim().toLowerCase():'';
- return data.filter(r=>(!status||r.statuses?.name===status)&&(!category||r.category_id===category)&&(!needle||[r.title,r.location,r.request_id].some(s=>s.toLowerCase().includes(needle))));
+ let result;
+ try{result=await client.rpc('m4_request_page',{
+  p_own:own,p_query:query.trim(),p_status:status,p_category:category,p_sort:sort,
+  p_page:Number(page),p_page_size:Number(pageSize),p_summary_only:summaryOnly
+ });}catch{throw new WorkflowError('Requests could not be loaded. Try again.',503);}
+ if(result.error)throw new WorkflowError('Requests could not be loaded. Try again.',503);
+ return {...result.data,actor};
 }
 export async function detail(client,id){
  const actor=await session(client);
