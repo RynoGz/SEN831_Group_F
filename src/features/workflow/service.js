@@ -13,6 +13,22 @@ function checked(result){
  }
  return result.data;
 }
+async function checkedStaffDirectoryQuery(query) {
+  try {
+    const result = await query;
+
+    if (result.error) {
+      throw new Error('Staff directory query failed');
+    }
+
+    return result.data;
+  } catch {
+    throw new WorkflowError(
+      'The service is temporarily unavailable.',
+      503
+    );
+  }
+}
 export async function session(client){
  const {data,error}=await client.auth.getUser();
  if(error||!data?.user) throw new WorkflowError('Please sign in.',401);
@@ -86,7 +102,7 @@ export async function staffDirectory(client, requestId) {
     throw new WorkflowError('Request unavailable.', 404);
   }
 
-  const request = checked(
+const request = await checkedStaffDirectoryQuery(
     await client
       .from('requests')
       .select('request_id, category_id, sensitive_information')
@@ -99,7 +115,7 @@ export async function staffDirectory(client, requestId) {
   }
 
   // Confirm the manager is authorised for this request's category.
-  const scope = checked(
+const scope = await checkedStaffDirectoryQuery(
     await client
       .from('service_scopes')
       .select('category_id')
@@ -112,8 +128,9 @@ export async function staffDirectory(client, requestId) {
     throw new WorkflowError('Request unavailable.', 404);
   }
 
-  const staff = checked(
-    await client.rpc('m3_staff_directory')
+const staff =
+  await checkedStaffDirectoryQuery(
+    client.rpc('m3_staff_directory')
   ) ?? [];
 
 
