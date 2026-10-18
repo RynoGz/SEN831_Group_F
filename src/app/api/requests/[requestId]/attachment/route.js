@@ -1,7 +1,7 @@
 import { createSupabaseServerClient } from '@/lib/supabase/server';
 import { detail,WorkflowError } from '@/features/workflow/service';
 import { failure,sameOrigin } from '@/features/workflow/http';
-import { attachmentStore,inspectAttachment,uploadAttachment,MAX_ATTACHMENT_BYTES } from '@/features/attachments/attachment-store';
+import { attachmentStore,inspectAttachment,uploadAttachment,readAttachmentFile,AttachmentValidationError } from '@/features/attachments/attachment-store';
 export const runtime='nodejs';
 export async function POST(request,{params}){try{
  sameOrigin(request);
@@ -10,9 +10,8 @@ export async function POST(request,{params}){try{
  const {data:owned,error}=await client.rpc('m3_is_owner',{p_id:id});
  if(error||!owned)throw new WorkflowError('Upload not permitted.',403);
  if(row.attachment_reference)throw new WorkflowError('This request already has an attachment.',409);
- if(Number(request.headers.get('content-length'))>MAX_ATTACHMENT_BYTES+65536)throw new WorkflowError('Choose a file up to 5 MiB.',413);
- const form=await request.formData();const file=form.get('file');
- if(!(file instanceof File)||file.size>MAX_ATTACHMENT_BYTES)throw new WorkflowError('Choose a file up to 5 MiB.',400);
+ let file;
+ try{file=await readAttachmentFile(request);}catch(e){if(e instanceof AttachmentValidationError)throw new WorkflowError(e.message,e.status);throw e;}
  const bytes=new Uint8Array(await file.arrayBuffer());let extension;
  try{extension=inspectAttachment(bytes,file.type);}catch(e){throw new WorkflowError(e.message);}
  const key=`${id}/${crypto.randomUUID()}.${extension}`;

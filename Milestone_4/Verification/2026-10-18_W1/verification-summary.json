@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-18",
+  "checkpoint": "W1",
+  "baseCommit": "44242849c009158c8c8b4afc32539986e086c0f2",
+  "source": "Working tree identified by SHA-256 file hashes; the containing commit provides the submitted candidate",
+  "environment": "Node 24.19.0; local production Next.js simulation and PGlite; isolated fictional identities",
+  "maximumFileBytes": 4194304,
+  "maximumMultipartBodyBytes": 4259840,
+  "teamLimitApproval": "Pending; no Ryno/Steven approval recorded",
+  "unitPassed": 29,
+  "databasePassed": 23,
+  "focusedBrowserCasesPassed": 2,
+  "browserRunner": "Both per-case results passed; Windows webServer teardown did not finish; interrupted after preserving results. Not a clean full-suite exit.",
+  "lint": "Passed",
+  "secretPatternCheck": "Passed",
+  "simulationBuild": "Passed after explicit generated-directory permissions",
+  "criteria": {
+    "FR-001": "Exact maximum, oversized/empty/invalid files, successful private retrieval",
+    "NFR-005": "Reported/thrown link failures attempt cleanup; unconfirmed removal is not claimed",
+    "NFR-001/NFR-002": "Unauthenticated and other-user reads/uploads denied; bucket private; access policies preserved"
+  },
+  "migration": "010 applied directly after 008 in isolated database; no dependency on 009; old object rows, MIME settings and policies preserved",
+  "historicalObjects": "5 MiB adapter fixture and modelled policy access passed; real hosted inventory/download not performed",
+  "hostedChanges": "None",
+  "frontendHandoff": "Ryno must import MAX_ATTACHMENT_BYTES and derive size wording; upload UI/new-request guidance/README/PED remain his ownership",
+  "fileHashes": {
+    "tests/e2e/workflow.spec.js": "71c5491385a3ae13da17a61270de68d70b458a05cbd39af6cf565d26155f5dc3",
+    "src/app/api/requests/[requestId]/attachment/route.js": "5a3c0f77482f335aef313e281b11ed39d753261f8beb75d96da149e181af4b27",
+    "tests/m3-rules.test.js": "a80c0050dd2b913006ad7b42eb007640dcef88a1f539df0dcfeb99fc2032c0b6",
+    "tests/integration/database.test.js": "e4839a0195c81e33355eeaeae7804c16429ec007a1c3be44763a2e918c89c099",
+    "src/features/attachments/attachment-store.js": "e164f65cd29799ded7b47f7da3c6962a9d3fa4f846872e3dfcb5100b40fe0224",
+    "supabase/migrations/010_m4_attachment_limit.sql": "935d5868b74d1ca1379a7b14a6680b391781bc88b4e22a709f0ae2acf87800f2"
+  }
+}
