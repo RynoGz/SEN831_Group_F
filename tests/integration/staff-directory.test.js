@@ -1,4 +1,3 @@
-
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
@@ -19,7 +18,7 @@ test.after(async () => {
   await db?.close();
 });
 
-function clientFor(userId) {
+function clientFor(userId, { staffRows } = {}) {
   return {
     auth: {
       async getUser() {
@@ -125,7 +124,7 @@ function clientFor(userId) {
         );
 
         return {
-          data: result.rows,
+          data: staffRows ?? result.rows,
           error: null,
         };
       });
@@ -157,10 +156,11 @@ test('SD01: manager receives eligible staff for a normal request', async () => {
 
 test('SD02: sensitive requests exclude staff without clearance', async () => {
   const request = await createRequest(db, USERS.requester, true);
+
   await db.query(
-  'update service_members set can_view_sensitive = true where user_id = $1',
-  [USERS.manager],
-);
+    'update service_members set can_view_sensitive = true where user_id = $1',
+    [USERS.manager],
+  );
 
   const result = await staffDirectory(
     clientFor(USERS.manager),
@@ -212,17 +212,74 @@ test('SD04: invalid and unavailable requests return the same safe error', async 
 test('SD05: manager cannot view requests outside their category scope', async () => {
   const request = await createRequest(db);
 
-  // Use the test database owner connection to arrange the out-of-scope case.
-  // This setup does not run as the authenticated manager.
+  // Remove the manager's scope to simulate an out-of-scope request.
   await db.query(
     'delete from service_scopes where user_id = $1 and category_id = $2',
     [USERS.manager, request.category_id],
   );
 
-  await assert.rejects(
-    staffDirectory(clientFor(USERS.manager), request.request_id),
-    (error) =>
-      error.status === 404 &&
-      error.message === 'Request unavailable.',
+  try {
+    await assert.rejects(
+      staffDirectory(clientFor(USERS.manager), request.request_id),
+      (error) =>
+        error.status === 404 &&
+        error.message === 'Request unavailable.',
+    );
+  } finally {
+    // Restore the scope so this test does not affect later tests.
+    await db.query(
+      `insert into service_scopes (user_id, category_id)
+       values ($1, $2)
+       on conflict do nothing`,
+      [USERS.manager, request.category_id],
+    );
+  }
+});
+
+test('SD06: staff directory is sorted alphabetically by display name', async () => {
+  const request = await createRequest(db);
+
+  const result = await staffDirectory(
+    clientFor(USERS.manager),
+    request.request_id,
+  );
+
+  const names = result.staff.map((member) => member.display_name);
+
+  assert.deepEqual(
+    names,
+    [...names].sort((a, b) =>
+      a.localeCompare(b, undefined, { sensitivity: 'base' }),
+    ),
+    'Staff should be sorted alphabetically by display name',
+  );
+});
+
+test('SD07: staff directory returns each staff member only once', async () => {
+  const request = await createRequest(db);
+
+  const duplicateStaff = {
+    user_id: USERS.staff,
+    display_name: 'Test Staff',
+    category_id: request.category_id,
+    can_view_sensitive: true,
+  };
+
+  const result = await staffDirectory(
+    clientFor(USERS.manager, {
+      staffRows: [
+        duplicateStaff,
+        { ...duplicateStaff },
+      ],
+    }),
+    request.request_id,
+  );
+
+  const staffIds = result.staff.map((member) => member.user_id);
+
+  assert.equal(
+    staffIds.filter((id) => id === USERS.staff).length,
+    1,
+    'Each staff member should appear only once',
   );
 });

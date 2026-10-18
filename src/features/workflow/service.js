@@ -116,16 +116,34 @@ export async function staffDirectory(client, requestId) {
     await client.rpc('m3_staff_directory')
   ) ?? [];
 
+
+  const eligibleStaff = staff
+    .filter(
+      member =>
+        member.category_id === request.category_id &&
+        (!request.sensitive_information || member.can_view_sensitive)
+    );
+
+  const uniqueStaff = new Map();
+
+  for (const member of eligibleStaff) {
+    if (!uniqueStaff.has(member.user_id)) {
+      uniqueStaff.set(member.user_id, {
+        user_id: member.user_id,
+        display_name: member.display_name,
+      });
+    }
+  }
+
   return {
-    staff: staff
-      .filter(
-        member =>
-          member.category_id === request.category_id &&
-          (!request.sensitive_information || member.can_view_sensitive)
-      )
-      .map(({ user_id, display_name }) => ({
-        user_id,
-        display_name,
-      })),
+    staff: [...uniqueStaff.values()].sort(
+      (a, b) =>
+        (a.display_name ?? '').localeCompare(
+          b.display_name ?? '',
+          undefined,
+          { sensitivity: 'base' }
+        ) || a.user_id.localeCompare(b.user_id)
+    ),
   };
+
 }
