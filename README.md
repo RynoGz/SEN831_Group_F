@@ -19,12 +19,12 @@ The current engineering document is [PED v3.0 PDF](Milestone_3/SEN381_CivicConne
 - Assignment and controlled status changes through Submitted, Accepted, Assigned, In Progress, Resolved and Closed, with rejection from Submitted.
 - Required reasons when replacing an existing assignee, with attributable history under [CR-M3-01](Milestone_3/Change_Requests/CR_M3_01_Reassignment_Reason.md).
 - Public updates, internal comments, resolution/closure notes and recorded reopening requests.
-- One private PDF, PNG or JPEG attachment per request, up to 5 MiB, with size/type checks, protected download and cleanup handling.
+- One private PDF, PNG or JPEG attachment per request, up to 4 MiB for new uploads, with size/type checks, protected download and cleanup handling. The M3 baseline used 5 MiB; the reviewed M4 change is recorded in [W1 attachment compatibility](Milestone_4/W1_Attachment_Compatibility.md).
 - Search, filters, sorting and scoped management summaries, including overdue work.
 - Atomic changes, status history and version checks that reject stale updates with a reload message.
 - Responsive pages, keyboard feedback and reduced-motion support for the tested tasks.
 
-The architecture remains a **modular monolith with layers**: one Next.js application with separate presentation, protected entry points, workflow services, domain rules and Supabase adapters. The stack is JavaScript, Next.js 16.3.8, React 19.3.0 and Supabase PostgreSQL/Auth/private Storage. Use **Node.js 24.x and npm 11.x**; the lockfile records resolved packages. Vercel remains a hosting option; no public production deployment is claimed.
+The architecture remains a **modular monolith with layers**: one Next.js application with separate presentation, protected entry points, workflow services, domain rules and Supabase adapters. The stack is JavaScript, Next.js 16.3.8, React 19.3.0 and Supabase PostgreSQL/Auth/private Storage. Use **Node.js 24.x and npm 11.x**; the lockfile records resolved packages. The team has created a Vercel deployment; final hosted acceptance remains pending as described below.
 
 ## M4 frontend finalisation
 
@@ -33,8 +33,8 @@ The M3 baseline above remains the recorded release. Work on `Ryno_branch` prepar
 - Submission displays the server's general error and preserves entered details when it fails.
 - Signed-out request creation returns to sign-in and then to the original permitted task. Signed-in accounts without a requester profile receive setup guidance.
 - The manager selector uses `GET /api/staff-directory?requestId=<UUID>`, with the agreed response `{ "staff": [{ "user_id": "UUID", "display_name": "Name" }] }`. It shows loading, failure/retry and empty states, and requires an explicit eligible choice unless the current assignee remains eligible. Staff retain self-assignment.
-- The directory endpoint and server session renewal are Steven's pending implementation. The selector has no simulated or legacy-directory fallback. Do not merge this contract-dependent frontend until the endpoint and affected checks pass.
-- Upload validation and displayed size derive from `MAX_ATTACHMENT_BYTES` in the attachment adapter. Its current value remains authoritative until Willem's reviewed server/bucket correction is merged; the frontend does not independently lower the limit.
+- The directory endpoint, trusted request timestamps and session-refresh proxy are integrated from Steven's reviewed PR #38. The selector has no simulated or legacy-directory fallback.
+- Upload validation and displayed size derive from `MAX_ATTACHMENT_BYTES` in the attachment adapter, now 4 MiB following Willem's reviewed PR #37. Migration 010 aligns the hosted bucket limit when applied by the database operator.
 - API refreshes retain the current record while loading, block workflow saves during refresh, discard obsolete responses and offer recovery after failure or expired sign-in.
 
 The member documentation is [Ryno's M4 frontend and deployment contribution](Milestone_4/M4_Frontend_and_Deployment_Contribution.docx). Final RTM scores, integrated verification, release approval and PED v4.0 follow the other members' reviewed evidence.
@@ -45,9 +45,9 @@ The member documentation is [Ryno's M4 frontend and deployment contribution](Mil
 
 Configure the GitHub project, reviewed production branch, suitable function region and deployment checks in Vercel's dashboard. Environment changes require a new deployment. The repository configuration alone does not configure account access, review rules, deployment protection, domains or a live deployment.
 
-Apply only missing reviewed migrations to the hosted database before verifying the dependent application. Timestamp and attachment migrations 009 and 010 are planned member work, not files already supplied by this frontend change. Confirm final filenames and order after their PRs merge.
+Apply only missing reviewed migrations to the hosted database before verifying the dependent application. Migration 009 enforces trusted request creation timestamps; migration 010 limits new storage uploads to 4 MiB. Both files are included in this integrated branch. Their presence in Git does not confirm that they have been applied to the hosted database.
 
-Before declaring the final deployed candidate ready, verify sign-in/session renewal, requester submission/retrieval, staff eligibility and assignment, lifecycle changes, private information, attachment boundaries/download and stale-write rejection on its HTTPS URL. Record the deployed source commit and real results. The current 5 MiB upload allowance needs Willem's Vercel compatibility correction before full-size uploads can be claimed to work on Vercel.
+The Vercel project URL supplied by the team is [sen-381-group-f.vercel.app](https://sen-381-group-f.vercel.app/). Before declaring the final deployed candidate ready, verify sign-in/session renewal, requester submission/retrieval, staff eligibility and assignment, lifecycle changes, private information, attachment boundaries/download and stale-write rejection on its HTTPS URL. Record the deployed source commit and real results. Existing historical attachments above 4 MiB also require a hosted download check against the platform's response limit.
 
 Keep local simulation for repeatable CI tests. It does not run as part of the normal Vercel build. Treat production deployment as a team release decision supported by evidence.
 
@@ -107,6 +107,8 @@ For a fresh hosted project, apply these SQL files from supabase/migrations in or
 6. 006_m3_private_attachments.sql
 7. 007_m3_reassignment_reason.sql
 8. 008_m3_version_conflict.sql
+9. 009_m4_trusted_request_timestamps.sql
+10. 010_m4_attachment_limit.sql
 
 Apply only missing migrations to an existing project; do not blindly rerun all files. Migration 008 preserves workflow and permissions while returning PT409 for business version conflicts instead of a retryable serialization error.
 
