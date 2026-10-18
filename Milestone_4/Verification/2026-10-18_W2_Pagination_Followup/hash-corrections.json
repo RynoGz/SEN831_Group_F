@@ -1,0 +1,17 @@
+{
+  "basis": "SHA-256 of exact committed Git blob bytes at 8fbb961e0bec01efac7b4c28176159f266c2a834; independent of checkout line-ending conversion",
+  "corrections": {
+    "methods/w2-directory-discovery.mjs": {
+      "previous": "2a53afd3a3b6d44a31e6aa01c8bf67913ba199f03a14e7919476d44882be19b5",
+      "corrected": "5183a652dfff6c3322695362a4f0b9d0c479430e2923ad47bad3953c9eb26fbe"
+    },
+    "methods/w2-hosted-followup.mjs": {
+      "previous": "6cfd176e0f976fa9d259252584e159db7f3ba7d65a31a15ff19fed1260f81e99",
+      "corrected": "6f1fca3a16f3158066b78e91ebf14a2422560b0f89a1c89944dcca0728c9a854"
+    },
+    "methods/w2-hosted-reassignment.mjs": {
+      "previous": "59346f7505727c86fac8be423d55ad615ccdf40946f284fa8b6989903d61fecb",
+      "corrected": "20b96a8eb1c4bd4afde0c8804d3072da32d6b37c6931f112a678bd2d67703683"
+    }
+  }
+}

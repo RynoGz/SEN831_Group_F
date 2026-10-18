@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+	<testcase name="CR01: first assignment and unchanged assignee allow an omitted reason" time="0.001347" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="CR02: reassignment rejects missing and whitespace-only reasons" time="0.000202" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="CR03: reason length boundary and malformed values are checked" time="0.000110" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\assignment-reason.test.js"/>
+	<testcase name="Final sign-in returns to an allowed task without accepting external destinations" time="0.000709" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\final-frontend.test.js"/>
+	<testcase name="API failures retain safe feedback and the status needed for reauthentication and conflicts" time="0.048040" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\final-frontend.test.js"/>
+	<testcase name="Non-JSON hosting failures produce recovery guidance without leaking response content" time="0.001044" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\final-frontend.test.js"/>
+	<testcase name="BB01 FR-014 BVA: overdue before/equal/after deadline" time="0.001781" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB02 FR-014 decision table: terminal states excluded even after deadline" time="0.000144" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB03 FR-015: aggregate scope supplied by authorised query" time="0.000177" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB04 attachment BVA: reject empty and oversized; accept exact size" time="0.000529" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="BB05 attachment EP: declared type must match signature" time="0.000217" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT01: database link failure removes staged file" time="0.000262" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT02: cleanup failure reported rather than claiming success" time="0.000217" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT03: multipart accepts exactly 4 MiB and rejects one byte over, empty and missing files" time="0.058007" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT04: actual streamed body is bounded even without an honest content-length" time="0.001999" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT05: thrown link failure cleans staged storage without exposing the underlying error" time="0.000376" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT06: failed upload never links and failed cleanup never claims removal" time="0.000232" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="ATT07: legacy 5 MiB object download remains byte-for-byte available through the private adapter" time="0.002392" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\m3-rules.test.js"/>
+	<testcase name="uses exactly the seven CivicConnect request statuses" time="0.001884" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="allows every defined lifecycle transition" time="0.000241" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects skipped lifecycle stages" time="0.000360" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="allows rejection only from Submitted" time="0.000121" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="does not allow transitions out of Closed or Rejected" time="0.000097" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects transitions to the same status" time="0.000189" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects unknown current and new statuses" time="0.000122" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="rejects reopening while its rules remain deferred" time="0.000084" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-transition-policy.test.js"/>
+	<testcase name="FR-001: accepts required text and an explicit false sensitivity answer without an attachment" time="0.000680" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-001: rejects empty and whitespace-only required text with field feedback" time="0.000586" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-002: rejects an unknown category even if the caller bypasses the select control" time="0.000143" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="FR-001: an absent or string sensitivity answer cannot silently become false" time="0.000210" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="normalisation trims text without accepting caller-supplied identity, status or timestamp" time="0.000155" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-validation.test.js"/>
+	<testcase name="malformed input produces validation feedback instead of crashing" time="0.000099" classname="test" file="C:\Users\willi\Documents\GitHub\SEN831_Group_F\tests\request-validation.test.js"/>
+	<!-- tests 32 -->
+	<!-- suites 0 -->
+	<!-- pass 32 -->
+	<!-- fail 0 -->
+	<!-- cancelled 0 -->
+	<!-- skipped 0 -->
+	<!-- todo 0 -->
+	<!-- duration_ms 260.9535 -->
+</testsuites>

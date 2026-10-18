@@ -1,0 +1,251 @@
+{
+  "startedAt": "2026-10-18T16:21:04.158Z",
+  "candidate": "e0ac856759b24d95d6fa3cb790972d6ee0a625a4",
+  "environment": "https://sen-381-group-f.vercel.app",
+  "candidateSource": "Ryno handoff supplied by Willem; Vercel successful status checked separately",
+  "migrationConfirmation": "Willem confirms 009 and 010 applied; not administrator SQL inspection",
+  "fixtureAgreement": "Retain clearly labelled verification records, finishing Closed or Rejected",
+  "marker": "W2 VERIFICATION 2026-10-18T16-21-04-158Z",
+  "checks": [
+    {
+      "name": "HTTPS sign in requester",
+      "criteria": "FR-001; NFR-001",
+      "status": "passed",
+      "elapsedMs": 11122.779499999999,
+      "observation": {
+        "role": "requester",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "HTTPS sign in other",
+      "criteria": "FR-001; NFR-001",
+      "status": "passed",
+      "elapsedMs": 4434.6474,
+      "observation": {
+        "role": "requester",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "HTTPS sign in staff",
+      "criteria": "FR-001; NFR-001",
+      "status": "passed",
+      "elapsedMs": 4139.532499999999,
+      "observation": {
+        "role": "staff",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "HTTPS sign in manager",
+      "criteria": "FR-001; NFR-001",
+      "status": "passed",
+      "elapsedMs": 4126.9205,
+      "observation": {
+        "role": "manager",
+        "canViewSensitive": true
+      }
+    },
+    {
+      "name": "HTTPS sign in restricted",
+      "criteria": "FR-001; NFR-001",
+      "status": "passed",
+      "elapsedMs": 3427.528199999997,
+      "observation": {
+        "role": "staff",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "All seven controlled categories and required-field feedback",
+      "criteria": "FR-001/002",
+      "status": "passed",
+      "elapsedMs": 1246.5674,
+      "observation": {
+        "categories": [
+          "Damaged equipment",
+          "Facility fault",
+          "IT support",
+          "Lost property",
+          "Maintenance",
+          "Other",
+          "Security concern"
+        ]
+      }
+    },
+    {
+      "name": "Requester submission, confirmation, retrieval and automatic time",
+      "criteria": "FR-001/003/004; NFR-003",
+      "status": "passed",
+      "elapsedMs": 7216.298299999999,
+      "observation": {
+        "id": "e2b5ce92-8192-441b-9e52-add2f17ba6f0"
+      }
+    },
+    {
+      "name": "Cross-requester detail/upload/download and staff directory denied",
+      "criteria": "NFR-001/002; FR-003/008",
+      "status": "passed",
+      "elapsedMs": 6238.934000000001
+    },
+    {
+      "name": "Private attachment empty, invalid, one-byte-over and exact 4 MiB",
+      "criteria": "FR-001; NFR-002/005",
+      "status": "passed",
+      "elapsedMs": 24770.749299999996,
+      "observation": {
+        "bytes": 4194304
+      }
+    },
+    {
+      "name": "Staff accepts with target; requester sees acceptance",
+      "criteria": "FR-005/009/010/014; NFR-003",
+      "status": "passed",
+      "elapsedMs": 3959.4713000000047
+    },
+    {
+      "name": "Staff Assign to me uses no manager directory",
+      "criteria": "FR-009",
+      "status": "failed",
+      "elapsedMs": 30670.3303,
+      "error": "locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Assign to me', exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "Manager directory sorted unique and actual reassignment reason",
+      "criteria": "FR-009/016; NFR-001/003",
+      "status": "failed",
+      "elapsedMs": 32672.938599999994,
+      "error": "expect(locator).toHaveValue(expected) failed\n\nLocator:  getByLabel('Responsible staff')\nExpected: \"6a07dc01-4e64-42cd-bcee-a9b18bd9f0aa\"\nReceived: \"\"\nTimeout:  30000ms\n\nCall log:\n  - Expect \"toHaveValue\" getByLabel('Responsible staff') with timeout 30000ms\n  - waiting for getByLabel('Responsible staff')\n    3 × locator resolved to <select disabled required=\"\" name=\"assignedTo\">…</select>\n      - unexpected value \"\"\n    52 × locator resolved to <select required=\"\" name=\"assignedTo\">…</select>\n       - unexpected value \"\"\n"
+    },
+    {
+      "name": "Public/private comments, private reasons and stale updates",
+      "criteria": "FR-011/016; NFR-002/005",
+      "status": "passed",
+      "elapsedMs": 16552.65089999998,
+      "observation": {
+        "conflictMs": 3022.1092000000062,
+        "historyUnchanged": true
+      }
+    },
+    {
+      "name": "Staff progresses and resolves; manager closes; requester receives outcome",
+      "criteria": "FR-005/010/012/016",
+      "status": "failed",
+      "elapsedMs": 2605.5709999999963,
+      "error": "{\"error\":\"That status change is not allowed.\"}\n\n400 !== 200\n"
+    },
+    {
+      "name": "Rejection feedback and retained fictional record",
+      "criteria": "FR-005/010",
+      "status": "passed",
+      "elapsedMs": 10715.007199999993
+    },
+    {
+      "name": "Sensitive clearance on actual hosted request",
+      "criteria": "FR-006/008; NFR-002",
+      "status": "passed",
+      "elapsedMs": 13279.019300000014
+    },
+    {
+      "name": "Search/filter/sort against the created known records",
+      "criteria": "FR-007",
+      "status": "failed",
+      "elapsedMs": 35112.008,
+      "error": "locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByLabel('Status', { exact: true })\u001b[22m\n"
+    },
+    {
+      "name": "Management category/status totals match authorised source rows",
+      "criteria": "FR-013/014/015",
+      "status": "passed",
+      "elapsedMs": 4822.445700000011,
+      "observation": {
+        "authorisedRows": 24,
+        "categories": {
+          "Maintenance": 7,
+          "IT support": 17
+        },
+        "statuses": {
+          "Submitted": 5,
+          "Rejected": 8,
+          "Accepted": 3,
+          "Closed": 5,
+          "Resolved": 2,
+          "Assigned": 1
+        },
+        "populationLimit": 1000
+      }
+    },
+    {
+      "name": "Existing requester-visible attachment inventory and download",
+      "criteria": "FR-004; NFR-002",
+      "status": "passed",
+      "elapsedMs": 7736.929700000008,
+      "observation": {
+        "scope": "Requester-visible pre-existing linked attachments only; not full bucket inventory",
+        "downloads": [
+          {
+            "requestId": "a16c0ab9-1449-4bfb-9984-09d978cbdfc4",
+            "status": 200,
+            "bytes": 47,
+            "above4MiB": false
+          },
+          {
+            "requestId": "da7e64f9-9fa1-46b2-ae1a-968cef7bcdff",
+            "status": 200,
+            "bytes": 47,
+            "above4MiB": false
+          },
+          {
+            "requestId": "d302f3f6-e452-4e23-82d1-8547417f8274",
+            "status": 200,
+            "bytes": 52,
+            "above4MiB": false
+          }
+        ]
+      }
+    },
+    {
+      "name": "Sign out, denied session and sign-in return to task",
+      "criteria": "NFR-001/004",
+      "status": "passed",
+      "elapsedMs": 5461.3107999999775,
+      "observation": {
+        "actualExpiredJwtRefresh": "Not forced; logout/unauthenticated recovery verified"
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "e2b5ce92-8192-441b-9e52-add2f17ba6f0",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z lifecycle",
+      "category": "Maintenance",
+      "sensitive": false,
+      "createdByThisRun": true,
+      "finalStatus": "Accepted",
+      "retained": true
+    },
+    {
+      "id": "4629c835-df9c-4380-a84e-752f10f6b036",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z rejection",
+      "category": "Maintenance",
+      "sensitive": false,
+      "createdByThisRun": true,
+      "finalStatus": "Rejected",
+      "retained": true
+    },
+    {
+      "id": "a5dc891b-b896-4bb5-b822-08820282f0b5",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z sensitive",
+      "category": "Maintenance",
+      "sensitive": true,
+      "createdByThisRun": true,
+      "finalStatus": "Rejected",
+      "retained": true
+    }
+  ],
+  "limitations": [],
+  "completedAt": "2026-10-18T16:25:15.359Z",
+  "passed": 16,
+  "failed": 4
+}

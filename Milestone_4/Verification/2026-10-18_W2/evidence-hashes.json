@@ -1,0 +1,12 @@
+{
+  "browser-cases.json": "2fd370d94758a1bf229ba25632396875ae9bfb0c253280fdaa69b6274183d0a0",
+  "full-audit.json": "cb359a55155d6546a2824cf04b24433452106ad33cb26e89c5fa45978025b5e0",
+  "https-anonymous-checks.json": "0c97f8396541640640074b045ccacc25b60a810961209d1b1504535f4830b4c4",
+  "integration.xml": "158a7fbc39d1004c3aa0cf66c4223dc653e2bb10f05d3ecf4f6bdc62f23b2e3c",
+  "METHOD.md": "c9350d8156b4a545a3e4710e4c5b03315221cd8ad0ee2ba3604af2b8088637c3",
+  "performance.json": "5b2625348c4e0f4baf6425a8011d792f45f17de2ff4c433873f75bf3bacddc86",
+  "production-audit.json": "04fe8fff5e24ad6c1bc6d8afc144286a82d74ad240cee235fa0b8ccd1f465c9e",
+  "recovery.json": "c85e492e40bcc89545ec6100593bc936f4ca9f91cb738af1b8bbf473a5ea7aeb",
+  "unit.xml": "d4280fa03589edddab9de69132078a1660489c2a60026eeefd574720bf570d4b",
+  "verification-summary.json": "aa399747f23f9d0c090f5dffdd37a427a17b6d009e19871ac4a794fcac3e5800"
+}

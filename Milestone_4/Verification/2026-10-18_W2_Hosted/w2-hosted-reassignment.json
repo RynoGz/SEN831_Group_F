@@ -1,0 +1,72 @@
+{
+  "startedAt": "2026-10-18T16:28:17.043Z",
+  "candidate": "e0ac856759b24d95d6fa3cb790972d6ee0a625a4",
+  "environment": "https://sen-381-group-f.vercel.app",
+  "candidateSource": "Ryno handoff supplied by Willem; Vercel successful status checked separately",
+  "migrationConfirmation": "Willem confirms 009 and 010 applied; not administrator SQL inspection",
+  "fixtureAgreement": "Retain clearly labelled verification records, finishing Closed or Rejected",
+  "marker": "W2 VERIFICATION 2026-10-18T16-28-17-043Z",
+  "checks": [
+    {
+      "name": "Reassignment sign in requester",
+      "criteria": "NFR-001",
+      "status": "passed",
+      "elapsedMs": 4244.7474,
+      "observation": {
+        "role": "requester",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "Reassignment sign in staff",
+      "criteria": "NFR-001",
+      "status": "passed",
+      "elapsedMs": 3156.0033000000003,
+      "observation": {
+        "role": "staff",
+        "canViewSensitive": false
+      }
+    },
+    {
+      "name": "Reassignment sign in manager",
+      "criteria": "NFR-001",
+      "status": "passed",
+      "elapsedMs": 3194.2968,
+      "observation": {
+        "role": "manager",
+        "canViewSensitive": true
+      }
+    },
+    {
+      "name": "IT support fictional fixture and initial assignment",
+      "criteria": "FR-001/009",
+      "status": "passed",
+      "elapsedMs": 12808.3658
+    },
+    {
+      "name": "Hosted manager directory selection, reason validation and private assignment history",
+      "criteria": "FR-009/011/016; NFR-002",
+      "status": "passed",
+      "elapsedMs": 13068.6384,
+      "observation": {
+        "eligible": 2,
+        "reasonPrivate": true
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "0dbca7d6-5395-4d3e-bc5a-75c9ba0f46e3",
+      "title": "W2 VERIFICATION 2026-10-18T16-28-17-043Z reassignment",
+      "category": "IT support",
+      "sensitive": false,
+      "createdByThisRun": true,
+      "finalStatus": "Closed",
+      "retained": true
+    }
+  ],
+  "limitations": [],
+  "completedAt": "2026-10-18T16:29:09.488Z",
+  "passed": 5,
+  "failed": 0
+}

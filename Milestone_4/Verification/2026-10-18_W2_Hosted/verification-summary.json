@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-18",
+  "checkpoint": "W2 selected verification complete; ready for non-author review",
+  "candidate": "e0ac856759b24d95d6fa3cb790972d6ee0a625a4",
+  "environment": "https://sen-381-group-f.vercel.app",
+  "handoff": "Ryno message supplied by Willem identifies candidate and successful Vercel deployment",
+  "vercelStatus": {
+    "state": "success",
+    "url": "https://vercel.com/rynogzs-projects/sen-381-group-f/3HZwCSsEGjeCdVq3CrkUwQGpss86"
+  },
+  "migrationConfirmation": {
+    "migrations": [
+      "009",
+      "010"
+    ],
+    "source": "Willem confirms applied",
+    "independentAdministratorInspection": false
+  },
+  "userScope": "Verification and quality records only; no full deployment work requested or performed",
+  "localEvidence": {
+    "candidate": "79f503a270599a1c4ecbd4b9a4fa28cdc0e46fc8",
+    "unit": 32,
+    "database": 31,
+    "browser": 23,
+    "total": 86,
+    "equivalentApplicationTestScriptMigrationDependencyContents": true,
+    "sourceEquivalenceCommand": "git diff --name-only 79f503a e0ac856 -- src supabase tests scripts package.json package-lock.json next.config.mjs playwright.config.js .github/workflows/m3-quality.yml vercel.json",
+    "path": "../2026-10-18_W2"
+  },
+  "initial": {
+    "passed": 16,
+    "failed": 4,
+    "disposition": "Four groups affected by incorrect staff button / filter label selectors and the unassigned dependent lifecycle. Original failed results retained."
+  },
+  "followup": {
+    "passed": 7,
+    "failed": 1,
+    "disposition": "Corrected self-assignment, lifecycle and known-record filters pass. The Maintenance manager reassignment precondition lacked a second eligible staff member."
+  },
+  "supplementary": {
+    "passed": 5,
+    "failed": 0,
+    "disposition": "Normal IT support has two eligible staff identities. Its labelled fixture exercised actual manager UI reassignment, required reason, private assignment history and terminal cleanup."
+  },
+  "counting": "Raw repeated logins and group reruns are retained, not added as unique acceptance cases. See named groups and dispositions rather than a combined inflated pass total.",
+  "hostedCoverage": [
+    "Five actual fictional account sign-ins",
+    "Seven category options and required-field feedback",
+    "Submission confirmation, retrieval and automatic timestamp window",
+    "Cross-requester and disallowed directory access denied",
+    "Empty/invalid/oversized files rejected; exact 4194304-byte PDF uploaded and downloaded byte-for-byte",
+    "Staff acceptance with past target and self-assignment without calling manager directory",
+    "Manager eligible directory and assignee retention; real IT support reassignment with required reason",
+    "Public/internal comments and private reassignment reasons",
+    "409 stale update preserves state",
+    "Staff progress/resolution and manager closure with requester feedback",
+    "Rejection feedback and sensitive-clearance isolation",
+    "Known-record search, status/category filters and both sort orders",
+    "Category/status totals matched 24 authorised response rows at the observation snapshot",
+    "Three pre-existing requester-visible attachments download; none above 4 MiB",
+    "Sign-out, denied session and return to permitted task"
+  ],
+  "fixtures": [
+    {
+      "id": "e2b5ce92-8192-441b-9e52-add2f17ba6f0",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z lifecycle",
+      "category": "Maintenance",
+      "sensitive": false,
+      "finalStatus": "Closed",
+      "retained": true
+    },
+    {
+      "id": "4629c835-df9c-4380-a84e-752f10f6b036",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z rejection",
+      "category": "Maintenance",
+      "sensitive": false,
+      "finalStatus": "Rejected",
+      "retained": true
+    },
+    {
+      "id": "a5dc891b-b896-4bb5-b822-08820282f0b5",
+      "title": "W2 VERIFICATION 2026-10-18T16-21-04-158Z sensitive",
+      "category": "Maintenance",
+      "sensitive": true,
+      "finalStatus": "Rejected",
+      "retained": true
+    },
+    {
+      "id": "0dbca7d6-5395-4d3e-bc5a-75c9ba0f46e3",
+      "title": "W2 VERIFICATION 2026-10-18T16-28-17-043Z reassignment",
+      "category": "IT support",
+      "sensitive": false,
+      "finalStatus": "Closed",
+      "retained": true
+    }
+  ],
+  "cleanupHandoff": "Four created records already retained in terminal states. User subsequently asked to stop further cleanup because Ryno will finish it. No further cleanup or deletion was performed.",
+  "limitations": [
+    "Natural access-token expiry and transparent renewal were not forced or waited out; do not equate logout with expiry refresh",
+    "No requester-visible pre-existing file exceeded 4 MiB; no global bucket inventory or legacy 5 MiB hosted download claim",
+    "Service disruption and empty/loading/failure UI states retain local fixture evidence; no hosted service fault injection",
+    "NFR-006 workload/capacity and NFR-007 scheduled/hosted recovery remain partial",
+    "409 repeat was not the historic post-workload timeout scenario; root cause remains unconfirmed",
+    "No final acceptance percentage or team go-live approval inferred"
+  ],
+  "recommendation": "Controlled simulated-production demonstration on the existing candidate; wider production operational readiness not asserted",
+  "credentials": "Passwords, cookies and session tokens excluded from tracked evidence and methods"
+}
