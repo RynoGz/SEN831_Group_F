@@ -686,10 +686,6 @@ input[type=radio] {
 .error-feedback a {
   color:inherit
 }
-.info-feedback {
-  background:#eef5ed;
-  border-color:#9ab89b
-}
 .empty-state {
   padding:40px 24px;
   text-align:center

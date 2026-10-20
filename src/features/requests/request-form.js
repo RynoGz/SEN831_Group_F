@@ -8,13 +8,12 @@ import { validateRequestInput } from "./validate-request";
 
 export default function RequestForm({ categories, requester, submitRequest }) {
   const [errors, setErrors] = useState({});
-  const [feedback, setFeedback] = useState(null);
+  const [feedback, setFeedback] = useState("");
   const [savedRequest, setSavedRequest] = useState(null);
   const [pending, setPending] = useState(false);
   const errorSummary = useRef(null);
   const resultPanel = useRef(null);
   const inFlight = useRef(false);
-  const isPreview = !submitRequest;
 
   const focusAfterRender = (ref) => requestAnimationFrame(() => ref.current?.focus());
   const fieldProps = (name) => ({
@@ -38,14 +37,9 @@ export default function RequestForm({ categories, requester, submitRequest }) {
       sensitiveInformation: sensitive === "yes" ? true : sensitive === "no" ? false : undefined,
     }, categories);
     setErrors(validation.errors);
-    setFeedback(null);
+    setFeedback("");
     if (!validation.valid) {
       focusAfterRender(errorSummary);
-      return;
-    }
-    if (isPreview) {
-      setFeedback({ kind: "info", message: "The form is ready for the next step. This preview has not submitted or saved your request." });
-      focusAfterRender(resultPanel);
       return;
     }
     inFlight.current = true;
@@ -62,12 +56,12 @@ export default function RequestForm({ categories, requester, submitRequest }) {
         }
         setErrors(safeErrors);
         const formError = result?.fieldErrors?.form;
-        setFeedback({ kind: "error", message: typeof formError === "string" && formError.trim()
+        setFeedback(typeof formError === "string" && formError.trim()
           ? formError
-          : "Your request could not be confirmed. Check the details and try again." });
+          : "Your request could not be confirmed. Check the details and try again.");
       }
     } catch {
-      setFeedback({ kind: "error", message: "We could not confirm that your request was saved. Please check your connection before trying again." });
+      setFeedback("We could not confirm that your request was saved. Please check your connection before trying again.");
     } finally {
       inFlight.current = false;
       setPending(false);
@@ -106,7 +100,7 @@ export default function RequestForm({ categories, requester, submitRequest }) {
       <section className="requester-info" aria-labelledby="requester-heading">
         <h2 id="requester-heading">Requester details</h2>
         <p>{requester?.displayName || "Requester profile unavailable"}<br />{requester?.contact || "Contact details unavailable"}</p>
-        <p className="muted">{isPreview ? "Fictional details for this preview. Sign-in is not connected yet." : "These details come from your signed-in profile."}</p>
+        <p className="muted">These details come from your signed-in profile.</p>
       </section>
       <fieldset className="field" id="sensitiveInformation" tabIndex={-1} aria-describedby={errors.sensitiveInformation ? "sensitivity-hint sensitiveInformation-error" : "sensitivity-hint"} aria-invalid={errors.sensitiveInformation ? true : undefined}>
         <legend>Does this contain sensitive information? <span aria-hidden="true">*</span></legend>
@@ -116,10 +110,9 @@ export default function RequestForm({ categories, requester, submitRequest }) {
       </fieldset>
       <section className="attachment-note" aria-labelledby="attachment-heading"><h2 id="attachment-heading">Attachment <span className="muted">· optional</span></h2><p>You can add a private PDF, PNG or JPEG after saving your request. Submitting without one is allowed.</p></section>
       <div ref={resultPanel} tabIndex={-1}>
-        <div aria-live="polite" aria-atomic="true">{pending && <p>Submitting your request…</p>}{feedback && <p role={feedback.kind === 'error' ? 'alert' : undefined} className={`feedback ${feedback.kind === "error" ? "error-feedback" : "info-feedback"}`}>{feedback.message}</p>}</div>
+        <div aria-live="polite" aria-atomic="true">{pending && <p>Submitting your request…</p>}{feedback && <p role="alert" className="feedback error-feedback">{feedback}</p>}</div>
       </div>
-      <div className="form-actions"><button className="button" type="submit" disabled={pending}>{pending ? "Submitting…" : isPreview ? "Check request" : "Submit request"}</button><Link className="text-link" href="/">Back to home</Link></div>
-      {isPreview && <p className="muted small">Checking the form validates your input in this browser. It does not save or send a request.</p>}
+      <div className="form-actions"><button className="button" type="submit" disabled={pending}>{pending ? "Submitting…" : "Submit request"}</button><Link className="text-link" href="/">Back to home</Link></div>
     </form>
   );
 }
